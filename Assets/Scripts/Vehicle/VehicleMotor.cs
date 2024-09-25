@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VehicleMotor : MonoBehaviour
@@ -7,8 +5,9 @@ public class VehicleMotor : MonoBehaviour
     [Header("References")]
     [SerializeField] Joystick joystick;
 
-    public Vector2 GetInputs()
+    public Vector3 GetInputs()
     {
-        return joystick.Direction.normalized;
+        Vector2 input = joystick.Direction.normalized;
+        return new Vector3(input.x, 0, input.y);
     }
 }

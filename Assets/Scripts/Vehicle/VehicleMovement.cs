@@ -7,13 +7,13 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 1500;
 
     [Space(5)]
-    [SerializeField] float turnSensitivity = 1;
-    [SerializeField] float maxSteerAngle = 30;
+    [SerializeField] float turnSensitivity = 100;
+    [SerializeField] float maxSteerAngle = 45;
 
     [Space(5)]
     [SerializeField] Vector3 massCenterPos;
-    [SerializeField] float brakeForce;
     [SerializeField] AnimationCurve brakeForceCurve;
+    [SerializeField] float brakeForce;
 
     [Space(10)]
     [SerializeField] Wheel[] wheels;
@@ -40,7 +40,7 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
     Vector3 input;
-    float diffAngleInput;
+    float steerInput;
 
     private void Start()
     {
@@ -50,6 +50,8 @@ public class VehicleMovement : MonoBehaviour
     private void Update()
     {
         SetInputs();
+
+        if(Input.GetKeyDown(KeyCode.Space)) AddPeople();
     }
 
     private void LateUpdate()
@@ -61,7 +63,7 @@ public class VehicleMovement : MonoBehaviour
     {
         Move();
         Steer();
-        //Brake();
+        Brake();
     }
 
     void Move()
@@ -78,16 +80,35 @@ public class VehicleMovement : MonoBehaviour
         {
             if(wheel.wheelType == Wheel.WheelType.Front)
             {
-                float steerAngle = diffAngleInput * turnSensitivity * maxSteerAngle;
-                wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, .6f);
+                float steerAngle = steerInput * turnSensitivity;
+                wheel.wheelCollider.steerAngle = steerInput;
             }
         }
     }
+
+    void AddPeople()
+    {
+        foreach (Wheel wheel in wheels)
+        {
+            WheelFrictionCurve newCurve = wheel.wheelCollider.forwardFriction;
+            newCurve.extremumSlip *= 1.1f;
+            newCurve.asymptoteSlip *= 1.1f;
+
+            wheel.wheelCollider.forwardFriction = newCurve;
+
+            newCurve = wheel.wheelCollider.sidewaysFriction;
+            newCurve.extremumSlip *= 1.1f;
+            newCurve.asymptoteSlip *= 1.1f;
+
+            wheel.wheelCollider.sidewaysFriction = newCurve;
+        }
+    }
+
     void Brake()
     {
-        foreach(Wheel wheel in wheels)
+        foreach  (Wheel wheel in wheels)
         {
-            wheel.wheelCollider.brakeTorque = brakeForceCurve.Evaluate(Mathf.Abs(diffAngleInput)) * Time.fixedDeltaTime;
+            wheel.wheelCollider.brakeTorque = brakeForceCurve.Evaluate(steerInput) * brakeForce * Time.fixedDeltaTime;
         }
     }
 
@@ -107,9 +128,14 @@ public class VehicleMovement : MonoBehaviour
     {
         input = motor.GetInputs();
 
-        if(input.magnitude > .01f)
+        if (input.magnitude > .01f)
         {
-            float angle = Vector2.Angle(transform.forward, input);
+            float angle = Vector3.SignedAngle(input, transform.forward, transform.up) * -1;
+            steerInput = Mathf.Clamp(angle, -maxSteerAngle, maxSteerAngle);
+        }
+        else
+        {
+            steerInput = 0;
         }
     }
 
