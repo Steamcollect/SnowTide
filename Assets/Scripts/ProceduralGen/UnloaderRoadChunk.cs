@@ -5,12 +5,9 @@ using UnityEngine;
 
 public class UnloaderRoadChunk : MonoBehaviour
 {
-    public event Action<GameObject> OnChunkUnloaded;
-    
-    public void UnloadChunk(GameObject chunk) { throw new NotImplementedException(); }
-    
-    private IEnumerator UnloadLoadChunkAsync(GameObject chunk)
+
+    public void UnloadChunk(GameObject chunk)
     {
-        yield return InstantiateAsync(chunk);
+        chunk.SetActive(false);
     }
 }

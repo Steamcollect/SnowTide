@@ -5,17 +5,18 @@ using UnityEngine;
 
 public class LoaderRoadChunk : MonoBehaviour
 {
-    public event Action<GameObject> OnChunkLoaded;
+    public event Action<GameObject[]> OnChunkLoaded;
 
-    public void LoadChunk(GameObject chunk, Transform parent)
+    public void LoadChunk(GameObject chunk, int quantity)
     {
-        StartCoroutine(LoadChunkAsync(chunk, parent));
-        var obj = InstantiateAsync(chunk, parent);
+        StartCoroutine(LoadChunkAsync(chunk, quantity));
     }
 
-    private IEnumerator LoadChunkAsync(GameObject chunk, Transform parent)
+    private IEnumerator LoadChunkAsync(GameObject chunk, int quantity)
     {
-        yield return InstantiateAsync(chunk, parent);
+        var instantiateAsync = InstantiateAsync(chunk, quantity);
+        yield return instantiateAsync;
+        if (instantiateAsync.Result != null) OnChunkLoaded?.Invoke(instantiateAsync.Result);
         
     }
 }

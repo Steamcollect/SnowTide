@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChunkRoad : MonoBehaviour
 {
-    public static readonly Vector2 sizechunk = new Vector2 (100, 100);
+    public static readonly Vector3 Sizechunk = new Vector3( 1f, 1f, 1f );
     private Vector3 anchorStart;
     private Vector3 anchorEnd;
 }
