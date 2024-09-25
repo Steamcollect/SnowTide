@@ -53,7 +53,7 @@ MonoBehaviour:
   - {fileID: 7308105483842802863, guid: bca7b5e167684b041ae5562fc6424ee1, type: 3}
   - {fileID: 7308105483842802863, guid: 69dc971e49c1d22428eaa39b750a458f, type: 3}
   - {fileID: 7308105483842802863, guid: 840263752b8afc8459af89d5343c4a50, type: 3}
-  chunkVisible: 3
+  scoRoadGen: {fileID: 11400000, guid: 931423b9504ede04780ee8442026bebd, type: 2}
 --- !u!114 &5834548674661811309
 MonoBehaviour:
   m_ObjectHideFlags: 0

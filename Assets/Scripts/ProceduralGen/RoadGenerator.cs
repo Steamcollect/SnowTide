@@ -12,10 +12,10 @@ public class RoadGenerator : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject roadGm;
     [SerializeField] private List<GameObject> roadChunkT = new List<GameObject>();
+    [SerializeField] private SettingsRoadGeneration scoRoadGen;
+    
+    
     private List<GameObject> loadedRoadChunks = new List<GameObject>();
-
-    [Header("Parameter")]
-    [SerializeField] [Min(1)] private int chunkVisible;
     
     private void Start()
     {
@@ -23,7 +23,7 @@ public class RoadGenerator : MonoBehaviour
         {
             foreach (var chunkT in roadChunkT)
             {
-                loaderRoadChunk.LoadChunk(chunkT, chunkVisible);
+                loaderRoadChunk.LoadChunk(chunkT, scoRoadGen.chunksVisibe);
             }
         }
         if (!roadGm) Debug.LogWarning(message: "No road assigned");
@@ -31,21 +31,24 @@ public class RoadGenerator : MonoBehaviour
 
     private void InitializationRoad()
     {
-        GameObject chunkRoad;
-        Vector3 forward = roadGm? roadGm.transform.forward : Vector3.forward;
-        for (int i = 0; i < chunkVisible; ++i)
+        for (int i = 0; i < scoRoadGen.chunksVisibe; ++i)
         {
-            chunkRoad = SelectionChunk();
-            chunkRoad.transform.position = new Vector3(ChunkRoad.Sizechunk.x * i * forward.x,0,ChunkRoad.Sizechunk.z * i * forward.z);
-            chunkRoad.SetActive(true);
+            BuildRoad(i);
         }
     }
 
-    private void BuildRoad(){}
-    
-    private void AnalyzeSateChunk(GameObject chunk)
+    private void BuildRoad(Vector3 referencePosition)
     {
-        if (unloaderRoadChunk) unloaderRoadChunk.UnloadChunk(chunk);
+        GameObject chunkRoad = SelectionChunk();
+        chunkRoad.transform.position = referencePosition + new Vector3( scoRoadGen.sizeChunk.x * Vector3.forward.x * scoRoadGen.chunksVisibe, 0, scoRoadGen.sizeChunk.z * Vector3.forward.z * scoRoadGen.chunksVisibe);
+        chunkRoad.SetActive(true);
+    }
+
+    private void BuildRoad(int indexReferencePos)
+    {
+        GameObject chunkRoad = SelectionChunk();
+        chunkRoad.transform.position = new Vector3(scoRoadGen.sizeChunk.x * Vector3.forward.x * indexReferencePos, 0, scoRoadGen.sizeChunk.z * Vector3.forward.z *indexReferencePos);
+        chunkRoad.SetActive(true);
     }
 
     private void OnEnable()
@@ -58,16 +61,22 @@ public class RoadGenerator : MonoBehaviour
         if (loaderRoadChunk) loaderRoadChunk.OnChunkLoaded -= NotifyLoadComplete;
     }
 
+    private void NotifyExitChunk(GameObject chunk)
+    {
+        if (unloaderRoadChunk) unloaderRoadChunk.UnloadChunk(chunk);
+        BuildRoad(chunk.transform.position);
+    }
+    
     private void NotifyLoadComplete(GameObject[] chunks)
     {
         foreach (var chunk in chunks)
         {
             chunk.SetActive(false);
-            chunk.GetComponent<TriggerExitChunk>().OnChunkExit += AnalyzeSateChunk;
+            chunk.GetComponent<TriggerExitChunk>().OnChunkExit += NotifyExitChunk;
             loadedRoadChunks.Add(chunk);
             if (roadGm) chunk.transform.SetParent(roadGm.transform);
         }
-        if (loadedRoadChunks.Count == chunkVisible * roadChunkT.Count) InitializationRoad();
+        if (loadedRoadChunks.Count == scoRoadGen.chunksVisibe * roadChunkT.Count) InitializationRoad();
     }
     
     private GameObject SelectionChunk()
