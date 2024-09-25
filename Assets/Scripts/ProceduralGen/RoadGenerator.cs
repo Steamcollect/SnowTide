@@ -15,7 +15,7 @@ public class RoadGenerator : MonoBehaviour
     [SerializeField] private SettingsRoadGeneration scoRoadGen;
     
     
-    private List<GameObject> loadedRoadChunks = new List<GameObject>();
+    private List<ChunkRoad> _loadedRoadChunks = new List<ChunkRoad>();
     
     private void Start()
     {
@@ -39,16 +39,16 @@ public class RoadGenerator : MonoBehaviour
 
     private void BuildRoad(Vector3 referencePosition)
     {
-        GameObject chunkRoad = SelectionChunk();
+        ChunkRoad chunkRoad = SelectionChunk();
         chunkRoad.transform.position = referencePosition + new Vector3( scoRoadGen.sizeChunk.x * Vector3.forward.x * scoRoadGen.chunksVisibe, 0, scoRoadGen.sizeChunk.z * Vector3.forward.z * scoRoadGen.chunksVisibe);
-        chunkRoad.SetActive(true);
+        chunkRoad.gameObject.SetActive(true);
     }
 
     private void BuildRoad(int indexReferencePos)
     {
-        GameObject chunkRoad = SelectionChunk();
+        ChunkRoad chunkRoad = SelectionChunk();
         chunkRoad.transform.position = new Vector3(scoRoadGen.sizeChunk.x * Vector3.forward.x * indexReferencePos, 0, scoRoadGen.sizeChunk.z * Vector3.forward.z *indexReferencePos);
-        chunkRoad.SetActive(true);
+        chunkRoad.gameObject.SetActive(true);
     }
 
     private void OnEnable()
@@ -73,15 +73,15 @@ public class RoadGenerator : MonoBehaviour
         {
             chunk.SetActive(false);
             chunk.GetComponent<TriggerExitChunk>().OnChunkExit += NotifyExitChunk;
-            loadedRoadChunks.Add(chunk);
+            _loadedRoadChunks.Add(chunk.GetComponent<ChunkRoad>());
             if (roadGm) chunk.transform.SetParent(roadGm.transform);
         }
-        if (loadedRoadChunks.Count == scoRoadGen.chunksVisibe * roadChunkT.Count) InitializationRoad();
+        if (_loadedRoadChunks.Count == scoRoadGen.chunksVisibe * roadChunkT.Count) InitializationRoad();
     }
     
-    private GameObject SelectionChunk()
+    private ChunkRoad SelectionChunk()
     {
-        return loadedRoadChunks.FindAll(o => !o.activeSelf).GetRandom();
+        return _loadedRoadChunks.FindAll(o => !o.gameObject.activeSelf).GetRandom();
     }
     
 }
