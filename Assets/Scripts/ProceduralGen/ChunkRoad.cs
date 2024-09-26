@@ -36,7 +36,7 @@ public class ChunkRoad : MonoBehaviour
         if (collider != null)
         {
             collider.center = new Vector3(0,scoRoadGen.sizeChunk.y/2,scoRoadGen.sizeChunk.z/2);
-            collider.size = new Vector3(scoRoadGen.sizeChunk.x, scoRoadGen.sizeChunk.y, 0.1f);
+            collider.size = new Vector3(scoRoadGen.sizeChunk.x, scoRoadGen.sizeChunk.y, 0.2f);
         }
     }
 
