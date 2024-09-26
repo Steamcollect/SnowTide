@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1239773065896706203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56,7 +56,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.1}
+  m_Size: {x: 1, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0.5, z: 0.5}
 --- !u!114 &6645865621247186360
 MonoBehaviour:
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65dc134529fd0b4fa870f1ccd2ec8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chunk: {fileID: 4708793068784703101}
 --- !u!114 &4708793068784703101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,11 +83,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496d84ec12283f9428c843c2bc138691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <_anchorStart>k__BackingField: {fileID: 4215874181001014899}
-  <_anchorEnd>k__BackingField: {fileID: 6636152273908165448}
+  <anchorStart>k__BackingField: {fileID: 4215874181001014899}
+  <anchorEnd>k__BackingField: {fileID: 6636152273908165448}
   collider: {fileID: 995848554020776921}
   mesh: {fileID: 5902266783158726668}
   scoRoadGen: {fileID: 11400000, guid: 931423b9504ede04780ee8442026bebd, type: 2}
+  <sizeChunk>k__BackingField: {x: 1, y: 1, z: 1}
+  automaticMoveAnchor: 1
 --- !u!1 &2493924374711594969
 GameObject:
   m_ObjectHideFlags: 0
