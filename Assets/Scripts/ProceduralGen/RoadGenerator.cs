@@ -31,9 +31,25 @@ public class RoadGenerator : MonoBehaviour
 
     private void InitializationRoad()
     {
+        ChunkRoad lastchuck = null; 
         for (int i = 0; i < scoRoadGen.chunksVisibe; ++i)
         {
-            BuildRoad(i);
+            if (lastchuck != null)
+            {
+                var chunk = SelectionChunk();
+                chunk.transform.position = lastchuck._anchorEnd.position +
+                                           Vector3.Distance(chunk._anchorStart.position, chunk.transform.position) *
+                                           Vector3.forward;
+                chunk.gameObject.SetActive(true);
+                lastchuck = chunk;
+            }
+            else
+            {
+                lastchuck = SelectionChunk();
+                lastchuck.transform.position = Vector3.zero;
+                lastchuck.gameObject.SetActive(true);
+            }
+            // BuildRoad(i);
         }
     }
 

@@ -6,9 +6,9 @@ using UnityEngine.Serialization;
 
 public class ChunkRoad : MonoBehaviour
 {
-    [Header("Components")]
-    [SerializeField] private Transform _anchorStart;
-    [SerializeField] private Transform _anchorEnd;
+    [field:Header("Components")]
+    [field:SerializeField] public Transform _anchorStart { get; private set; }
+    [field:SerializeField] public Transform _anchorEnd { get; private set; }
     [SerializeField] private new BoxCollider collider;
     [SerializeField] private GameObject mesh;
 
