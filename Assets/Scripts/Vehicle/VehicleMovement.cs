@@ -4,7 +4,9 @@ using UnityEngine;
 public class VehicleMovement : MonoBehaviour
 {
     [Header("Statistics")]
-    [SerializeField] float moveSpeed = 1500;
+    [SerializeField] float wheelSpeed;
+    [SerializeField] float moveSpeed;
+
 
     [Space(5)]
     [SerializeField] float turnSensitivity = 100;
@@ -51,7 +53,7 @@ public class VehicleMovement : MonoBehaviour
     {
         SetInputs();
 
-        if(Input.GetKeyDown(KeyCode.Space)) AddPeople();
+        if (Input.GetKeyDown(KeyCode.Space)) AddPeople();
     }
 
     private void LateUpdate()
@@ -70,7 +72,7 @@ public class VehicleMovement : MonoBehaviour
     {
         foreach (Wheel wheel in wheels)
         {
-            wheel.wheelCollider.motorTorque = moveSpeed * Time.fixedDeltaTime;
+            wheel.wheelCollider.motorTorque = wheelSpeed * Time.fixedDeltaTime;
         }
     }
 
@@ -91,10 +93,10 @@ public class VehicleMovement : MonoBehaviour
         foreach (Wheel wheel in wheels)
         {
             WheelFrictionCurve newCurve = wheel.wheelCollider.forwardFriction;
-            newCurve.extremumSlip *= 1.1f;
-            newCurve.asymptoteSlip *= 1.1f;
+            //newCurve.extremumSlip *= 1.1f;
+            //newCurve.asymptoteSlip *= 1.1f;
 
-            wheel.wheelCollider.forwardFriction = newCurve;
+            //wheel.wheelCollider.forwardFriction = newCurve;
 
             newCurve = wheel.wheelCollider.sidewaysFriction;
             newCurve.extremumSlip *= 1.1f;
