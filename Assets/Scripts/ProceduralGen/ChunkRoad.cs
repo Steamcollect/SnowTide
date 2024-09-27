@@ -29,7 +29,7 @@ public class ChunkRoad : MonoBehaviour
     {
         if (mesh != null)
         {
-            mesh.transform.localScale = new Vector3(scoRoadGen.sizeChunk.x, 0.1f,scoRoadGen.sizeChunk.z);
+            mesh.transform.localScale = new Vector3(sizeChunk.x, 0.1f,sizeChunk.z);
             mesh.transform.localPosition = new Vector3(0,0.05f,0);
         }
     }
