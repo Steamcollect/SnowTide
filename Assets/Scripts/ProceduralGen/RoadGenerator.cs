@@ -40,7 +40,8 @@ public class RoadGenerator : MonoBehaviour
     private void BuildRoad()
     {
         var currentChunk = SelectionChunk();
-        currentChunk.transform.position = _frontChunk == null ? Vector3.zero : _frontChunk.anchorEnd.position + Vector3.Distance(currentChunk.anchorStart.position,currentChunk.transform.position)* Vector3.forward;
+        print(_frontChunk is null);
+        currentChunk.transform.position = _frontChunk is null ? Vector3.zero : _frontChunk.anchorEnd.position;
         currentChunk.gameObject.SetActive(true);
         _frontChunk = currentChunk;
     }
