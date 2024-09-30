@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] float wheelSpeed;
     [SerializeField] float moveSpeed;
 
+    public TMP_Text peopleCountTxt;
+    int peopleCount = 0;
 
     [Space(5)]
     [SerializeField] float turnSensitivity = 100;
@@ -52,8 +55,6 @@ public class VehicleMovement : MonoBehaviour
     private void Update()
     {
         SetInputs();
-
-        if (Input.GetKeyDown(KeyCode.Space)) AddPeople();
     }
 
     private void LateUpdate()
@@ -88,8 +89,11 @@ public class VehicleMovement : MonoBehaviour
         }
     }
 
-    void AddPeople()
+    public void AddPeople(float multiplier)
     {
+        peopleCount++;
+        peopleCountTxt.text = $"x{peopleCount}";
+
         foreach (Wheel wheel in wheels)
         {
             WheelFrictionCurve newCurve = wheel.wheelCollider.forwardFriction;
@@ -99,8 +103,8 @@ public class VehicleMovement : MonoBehaviour
             //wheel.wheelCollider.forwardFriction = newCurve;
 
             newCurve = wheel.wheelCollider.sidewaysFriction;
-            newCurve.extremumSlip *= 1.1f;
-            newCurve.asymptoteSlip *= 1.1f;
+            newCurve.extremumSlip *= multiplier;
+            newCurve.asymptoteSlip *= multiplier;
 
             wheel.wheelCollider.sidewaysFriction = newCurve;
         }
