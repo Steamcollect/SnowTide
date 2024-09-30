@@ -10,6 +10,7 @@ public class VehicleHealth : MonoBehaviour
     [SerializeField] float healtRegenTime;
 
     [SerializeField] RSE_EventBasic rse_onDeath;
+    [SerializeField] AvalancheFollow avalancheFollow;
 
     Coroutine regenCoroutine;
 
@@ -26,6 +27,7 @@ public class VehicleHealth : MonoBehaviour
         if (currentHeath <= 0) Die();
         else
         {
+            if(currentHeath <= maxHealth /2) avalancheFollow.Show();
             regenCoroutine = StartCoroutine(Regen());
         }
     }
@@ -41,11 +43,13 @@ public class VehicleHealth : MonoBehaviour
         {
             regenCoroutine = StartCoroutine(Regen());
         }
+
+        if(currentHeath >= maxHealth /2) avalancheFollow.Hide();
     }
 
     void Die()
     {
-        print("dead");
+        avalancheFollow.Bury();
         rse_onDeath.Call();
     }
 
