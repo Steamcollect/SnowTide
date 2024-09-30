@@ -28,6 +28,7 @@ public class AvalancheFollow : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (!player) return;
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(player.position + hidenPos, .3f);
         
