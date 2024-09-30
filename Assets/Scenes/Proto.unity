@@ -962,13 +962,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2025103408286586390, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025103408286586390, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025103408286586390, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025103408286586390, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4266565681297591026, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
       propertyPath: joystick
       value: 
       objectReference: {fileID: 681743833}
     - target: {fileID: 5436041779986169186, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
       propertyPath: healtRegenTime
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5436041779986169186, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
       propertyPath: avalancheFollow
