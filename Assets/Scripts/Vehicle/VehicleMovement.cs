@@ -4,7 +4,7 @@ public class VehicleMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField, Tooltip("Forward movement speed")] float forwardSpeed = 10;
-    [SerializeField, Tooltip("Drifting speed")] float driftSpeed = 7;
+    [SerializeField, Tooltip("Forward drifting speed")] float driftSpeed = 7;
 
     [Space(5)]
     [SerializeField, Tooltip("Transition time to changing movement speed (ex : drift speed to normal)")] float changementVelocityTime = .3f;
@@ -31,6 +31,10 @@ public class VehicleMovement : MonoBehaviour
 
     Vector2 input;
 
+void Update(){
+    CheckDrift();
+}
+
     private void FixedUpdate()
     {
         Move();
@@ -42,7 +46,7 @@ public class VehicleMovement : MonoBehaviour
     {
         rb.velocity = GetVelocity();
     }
-    Vector2 GetVelocity()
+    Vector3 GetVelocity()
     {
         yMovement = Mathf.SmoothDamp(yMovement, isDrifting ? driftSpeed : forwardSpeed, ref yMovementVelocity, changementVelocityTime);
         Vector3 forwardVelocity = Vector3.forward * yMovement;
