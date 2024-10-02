@@ -359,14 +359,14 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.9150943, g: 0.90275663, b: 0.8935119, a: 1}
+  m_Intensity: 1.15
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -399,10 +399,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.97
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -418,13 +418,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519725229}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: -0.92033327, y: -0.38550517, z: 0.016235644, w: -0.06410073}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: -187.499, y: -1.1289978, z: -45.52899}
 --- !u!1 &632574802
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +997,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 6012877173641510615}
+    - target: {fileID: 5252208531344736008, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
+      propertyPath: posOffset.y
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5252208531344736008, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
+      propertyPath: posOffset.z
+      value: -15.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1331,6 +1339,10 @@ PrefabInstance:
       propertyPath: roadGm
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
+      propertyPath: roadChunkT.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6188283500091550504, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
       propertyPath: m_Name
       value: RoadGenerator
@@ -1541,9 +1553,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpeed: 16
   driftSpeed: 12
-  gravity: 0
   changementVelocityTime: 0.3
-  moveSpeed: 10
+  moveSpeed: 13
   friction: 0.5
   turnSmoothTime: 0.3
   minMaxRotation: {x: -90, y: 90}
@@ -2015,12 +2026,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6012877173641510615}
     - target: {fileID: 2420877045404733733, guid: a9d98d096e31d62469819904f2472dec, type: 3}
+      propertyPath: showPos.z
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2420877045404733733, guid: a9d98d096e31d62469819904f2472dec, type: 3}
       propertyPath: timeOffset
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2420877045404733733, guid: a9d98d096e31d62469819904f2472dec, type: 3}
       propertyPath: destroyPos.z
-      value: 80
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 6459651899617173253, guid: a9d98d096e31d62469819904f2472dec, type: 3}
       propertyPath: m_LocalScale.x

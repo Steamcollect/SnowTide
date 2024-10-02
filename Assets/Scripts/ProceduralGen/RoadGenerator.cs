@@ -82,7 +82,7 @@ public class RoadGenerator : MonoBehaviour
             _loadedRoadChunks.Add(chunk.GetComponent<ChunkRoad>());
             if (roadGm) chunk.transform.SetParent(roadGm.transform);
         }
-        if (_loadedRoadChunks.Count == scoRoadGen.chunksVisibe + 1 * roadChunkT.Count) InitializationRoad();
+        if (_loadedRoadChunks.Count == (scoRoadGen.chunksVisibe + 1) * roadChunkT.Count) InitializationRoad();
     }
     
     private ChunkRoad SelectionChunk()

@@ -48,13 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unloaderRoadChunk: {fileID: 2716576168818115705}
   loaderRoadChunk: {fileID: 5834548674661811309}
-  roadGm: {fileID: 0}
   roadChunkT:
   - {fileID: 1271070144976020458, guid: 3833938a0db6f304ebf4f94c64e4f4e5, type: 3}
   - {fileID: 1271070144976020458, guid: 3115af5c9c072cc40b4886fc9cd9db5b, type: 3}
   - {fileID: 1271070144976020458, guid: 4abe8fb3923bb02468e86d2a8c195ead, type: 3}
   - {fileID: 1271070144976020458, guid: 843d5878083b9ba44a13e59f3cef63d9, type: 3}
-  - {fileID: 1271070144976020458, guid: cea2f1d142314a44aa28c2a071580f55, type: 3}
   scoRoadGen: {fileID: 11400000, guid: 931423b9504ede04780ee8442026bebd, type: 2}
 --- !u!114 &5834548674661811309
 MonoBehaviour:
