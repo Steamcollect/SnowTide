@@ -3,11 +3,11 @@ using UnityEngine;
 public class VehicleMotor : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] VehicleMovement vehicleMovement;
     [SerializeField] Joystick joystick;
 
-    public Vector3 GetInputs()
+    private void Update()
     {
-        Vector2 input = joystick.Direction.normalized;
-        return new Vector3(input.x, 0, input.y);
+        vehicleMovement.SetInput(joystick.Direction);
     }
 }

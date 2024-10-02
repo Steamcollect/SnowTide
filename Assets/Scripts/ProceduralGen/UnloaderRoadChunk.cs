@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class UnloaderRoadChunk : MonoBehaviour
 {
-
+    private Queue<GameObject> chunksWaitUnload = new Queue<GameObject>();
+    
     public void UnloadChunk(GameObject chunk)
     {
-        chunk.SetActive(false);
+        chunksWaitUnload.Enqueue(chunk);
+        if(chunksWaitUnload.Count > 1) chunksWaitUnload.Dequeue().SetActive(false);
     }
 }
