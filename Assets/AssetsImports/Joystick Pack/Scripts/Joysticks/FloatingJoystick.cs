@@ -13,7 +13,12 @@ public class FloatingJoystick : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        background.anchoredPosition = Input.mousePosition * 1.5f;
+        Vector2 mousePos = Input.mousePosition;
+
+
+        background.anchoredPosition = mousePos;
+        background.position = mousePos;
+
         background.gameObject.SetActive(true);
         base.OnPointerDown(eventData);
     }
