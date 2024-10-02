@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class People : Interactible
 {
-    [SerializeField, Range(1,2)] float wheelFrictionMulitplier;
+    [SerializeField, Range(.05f, 1)] float frictionToAdd;
 
     public override void OnPlayerCollision(Transform player)
     {
         if (player.TryGetComponent(out VehicleMovement vehicleMovement))
         {
-            vehicleMovement.AddPeople(wheelFrictionMulitplier);
+            vehicleMovement.AddFriction(frictionToAdd);
             gameObject.SetActive(false);
         }
     }
