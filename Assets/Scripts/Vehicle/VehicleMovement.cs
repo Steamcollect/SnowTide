@@ -18,7 +18,7 @@ public class VehicleMovement : MonoBehaviour
     [Space(10), Header("Rotation")]
     [SerializeField, Tooltip("Time to reach the target angle")] float turnSmoothTime = .3f;
     float turnSmoothVelocity;
-    [SerializeField, Tooltip("Minimum and Maximum rotation possible for the vehicle")] Vector2 minMaxRotation = new Vector2(-90, 90);
+    [SerializeField, Tooltip("Minimum and Maximum rotation possible for the vehicle")] Vector2 minMaxRotation = new Vector2(-130, 130);
 
     [Space(10), Header("Drift")]
     [SerializeField, Tooltip("Minimum angle require to drift")] float minDriftAngle = 30;
@@ -31,9 +31,10 @@ public class VehicleMovement : MonoBehaviour
 
     Vector2 input;
 
-void Update(){
-    CheckDrift();
-}
+    void Update()
+    {
+        CheckDrift();
+    }
 
     private void FixedUpdate()
     {
@@ -49,7 +50,7 @@ void Update(){
     Vector3 GetVelocity()
     {
         yMovement = Mathf.SmoothDamp(yMovement, isDrifting ? driftSpeed : forwardSpeed, ref yMovementVelocity, changementVelocityTime);
-        Vector3 forwardVelocity = Vector3.forward * yMovement;
+        Vector3 forwardVelocity = Quaternion.AngleAxis(currentDriftAngle / 2, Vector3.up) * (Vector3.forward * yMovement);
 
         xInput = Mathf.SmoothDamp(xInput, input.x, ref xMovementVelocity, friction);
         xMovement = xInput * moveSpeed;
@@ -110,5 +111,10 @@ void Update(){
     public void SetInput(Vector2 inputs)
     {
         input = inputs;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, Quaternion.AngleAxis(currentDriftAngle / 2, Vector3.up) * (Vector3.forward * yMovement));
     }
 }
