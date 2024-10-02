@@ -21,7 +21,7 @@ public class ChunkRoad : MonoBehaviour
     private void RecalibrateCollider()
     {
         if (collider == null) return;
-        collider.center = anchorEnd.position + Vector3.up * sizeColliderExit.y/2;
+        collider.center = anchorEnd.localPosition + Vector3.up * sizeColliderExit.y/2;
         collider.size = sizeColliderExit;
     }
 }

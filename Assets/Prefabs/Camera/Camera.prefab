@@ -106,5 +106,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  posOffset: {x: 0, y: 80, z: -15.5}
+  posOffset: {x: 0, y: 70, z: -15.5}
   timeOffset: 0.2

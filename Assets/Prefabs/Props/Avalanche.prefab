@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  hidenPos: {x: 0, y: 0, z: -12}
-  showPos: {x: 0, y: 0, z: -2.5}
-  destroyPos: {x: 0, y: 0, z: 145}
+  hidenPos: {x: 0, y: 0, z: -20}
+  showPos: {x: 0, y: 0, z: -10}
+  destroyPos: {x: 0, y: 0, z: 130}
   timeOffset: 0.2
 --- !u!1 &9081810499929099310
 GameObject:
@@ -111,7 +111,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
