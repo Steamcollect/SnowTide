@@ -6,20 +6,16 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField, Tooltip("Forward drifting speed")] float driftminimumSpeed = 5;
     [SerializeField, Tooltip("Forward movement speed")] float moveMaximumSpeed = 10;
 
+    float speedVelocity;
+    float speed;
+    [SerializeField] float accelerationTime;
+
     Vector3 velocity;
     Vector3 rotationVelocity;
 
-    //[Space(5)]
-    //[SerializeField, Tooltip("Transition time to changing movement speed (ex : drift speed to normal)")] float changementVelocityTime = .3f;
-    //float yMovement, yMovementVelocity;
-
-    //[Space(5)]
-    //[SerializeField, Tooltip("Lateral movement speed")] float moveSpeed = 15;
-    //[SerializeField, Tooltip("Time require to reach maximum speed")] float friction = 1.8f;
-    //float xInput, xMovement, xMovementVelocity;
-
     [Space(10), Header("Rotation")]
     [SerializeField, Tooltip("Time to reach the target angle")] float turnSmoothTime = .3f;
+    [SerializeField] float maxRotationAngle;
     float turnSmoothVelocity;
 
     [Space(10), Header("Drift")]
@@ -74,10 +70,14 @@ public class VehicleMovement : MonoBehaviour
         else if (currentDriftAngle > driftRotationStatistics.slideAngle) rotationSpeed = driftRotationStatistics.slideRotationSpeed;
         else rotationSpeed = driftRotationStatistics.turnRotationSpeed;
 
-        float moveSpeed =  Mathf.Lerp(driftminimumSpeed, moveMaximumSpeed, -(Mathf.Clamp(currentDriftAngle, 0,90) / 90));
+        // Get Move speed
+        float targetSpeed = Mathf.Lerp(driftminimumSpeed, moveMaximumSpeed, 1 - Mathf.Clamp(currentDriftAngle, 0, 90) / 90);
+
+        if (speed < targetSpeed) speed = Mathf.SmoothDamp(speed, targetSpeed, ref speedVelocity, accelerationTime);
+        else speed = targetSpeed;
 
         // Set velocity
-        velocity = Vector3.SmoothDamp(velocity.normalized, transform.forward, ref rotationVelocity, rotationSpeed / currentDriftAngle) * moveSpeed;
+        velocity = Vector3.SmoothDamp(velocity.normalized, transform.forward, ref rotationVelocity, rotationSpeed / currentDriftAngle) * speed;
 
         Debug.DrawRay(transform.position, rb.velocity.normalized, Color.red);
         Debug.DrawRay(transform.position, transform.forward, Color.blue);
@@ -86,29 +86,14 @@ public class VehicleMovement : MonoBehaviour
         return velocity;
     }
 
-    //Vector3 GetVelocity()
-    //{
-    //    Vector3 velocity;
-
-    //    yMovement = Mathf.SmoothDamp(yMovement, isDrifting ? driftSpeed : forwardSpeed, ref yMovementVelocity, changementVelocityTime);
-    //    Vector3 forwardVelocity = Vector3.Lerp(rb.velocity.normalized, transform.forward, .5f) * forwardSpeed;
-    //    Debug.DrawRay(transform.position, forwardVelocity, Color.red);
-
-    //    xInput = Mathf.SmoothDamp(xInput, input.x, ref xMovementVelocity, friction);
-    //    xMovement = xInput * moveSpeed;
-
-    //    Vector3 velocity = forwardVelocity;
-    //    velocity.x = xMovement;
-
-    //    return velocity;
-    //}
-
     void Rotate()
     {
+        float currentAngle = transform.eulerAngles.y;
         float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
-        //targetAngle = Mathf.Clamp(targetAngle, minMaxRotation.x, minMaxRotation.y);
 
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        targetAngle = Mathf.Clamp(targetAngle, currentAngle - maxRotationAngle, currentAngle + maxRotationAngle);
+
+        float angle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
         rb.rotation = Quaternion.Euler(0, angle, 0);
     }
