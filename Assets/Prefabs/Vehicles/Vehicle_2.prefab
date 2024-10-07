@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 1140545425272953594}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.9}
+  m_LocalPosition: {x: 0, y: 0, z: -0.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -229,7 +229,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 100
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -448,7 +448,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 100
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -668,14 +668,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc06f3dfac9e2e4c8345a675b860171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 16
-  driftSpeed: 12
-  changementVelocityTime: 0.3
-  moveSpeed: 10
-  friction: 0.5
-  turnSmoothTime: 0.3
-  minMaxRotation: {x: -90, y: 90}
-  minDriftAngle: 30
+  driftminimumSpeed: 20
+  moveMaximumSpeed: 28
+  accelerationTime: 0.3
+  turnSmoothTime: 0.38
+  driftRotationStatistics:
+    turnRotationSpeed: 4
+    slideAngle: 28
+    slideRotationSpeed: 20
+    driftAngle: 55
+    driftRotationSpeed: 50
   tyreMarks:
   - {fileID: 7556485232449684549}
   - {fileID: 3003505250717470929}
@@ -855,7 +857,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 100
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -991,7 +993,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 100
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -1239,7 +1241,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1.2829053, z: 2.8410068}
+  m_Size: {x: 1.3190053, y: 1.2829053, z: 2.8410068}
   m_Center: {x: 0, y: 0.5085473, z: -0.027248621}
 --- !u!1001 &2258279466341037312
 PrefabInstance:

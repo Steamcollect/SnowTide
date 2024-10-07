@@ -8,14 +8,13 @@ public class VehicleMovement : MonoBehaviour
 
     float speedVelocity;
     float speed;
-    [SerializeField] float accelerationTime;
+    [SerializeField, Tooltip("Time to reach the max speed")] float accelerationTime;
 
     Vector3 velocity;
     Vector3 rotationVelocity;
 
     [Space(10), Header("Rotation")]
     [SerializeField, Tooltip("Time to reach the target angle")] float turnSmoothTime = .3f;
-    [SerializeField] float maxRotationAngle;
     float turnSmoothVelocity;
 
     [Space(10), Header("Drift")]
@@ -36,9 +35,8 @@ public class VehicleMovement : MonoBehaviour
         public float driftRotationSpeed;
     }
 
-    [SerializeField] TrailRenderer[] tyreMarks;
+    [SerializeField, Tooltip("TyreMarksReferences")] TrailRenderer[] tyreMarks;
     float currentDriftAngle;
-    bool isDrifting = false;
 
     [Space(10), Header("References")]
     [SerializeField] Rigidbody rb;
@@ -91,7 +89,7 @@ public class VehicleMovement : MonoBehaviour
         float currentAngle = transform.eulerAngles.y;
         float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
 
-        targetAngle = Mathf.Clamp(targetAngle, currentAngle - maxRotationAngle, currentAngle + maxRotationAngle);
+        //targetAngle = Mathf.Clamp(targetAngle, currentAngle - maxRotationAngle, currentAngle + maxRotationAngle);
 
         float angle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
@@ -111,12 +109,10 @@ public class VehicleMovement : MonoBehaviour
         if (currentDriftAngle >= driftRotationStatistics.slideAngle)
         {
             StartEmmiter();
-            isDrifting = true;
         }
         else
         {
             StopEmmiter();
-            isDrifting = false;
         }
     }
     void StartEmmiter()

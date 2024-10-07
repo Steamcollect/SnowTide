@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Interactible : MonoBehaviour
 {
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.CompareTag("Player")) OnPlayerCollision(collision.transform);

@@ -16,7 +16,7 @@ public class VehicleHealth : MonoBehaviour
 
     private void Start()
     {
-        currentHeath =maxHealth;
+        currentHeath = maxHealth;
     }
 
     public void TakeDamage(int damage)
