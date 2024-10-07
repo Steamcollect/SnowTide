@@ -18,8 +18,6 @@ public class VehicleMovement : MonoBehaviour
     float turnSmoothVelocity;
 
     [Space(10), Header("Drift")]
-
-    // Drift rotation statistics
     [SerializeField] DriftRotationStatistics driftRotationStatistics;
     [System.Serializable]
     struct DriftRotationStatistics
@@ -37,6 +35,14 @@ public class VehicleMovement : MonoBehaviour
 
     [SerializeField, Tooltip("TyreMarksReferences")] TrailRenderer[] tyreMarks;
     float currentDriftAngle;
+
+    [Header("Drift score")]
+    [SerializeField] float driftScore;
+    [SerializeField] float scoreGivenDelay;
+    [SerializeField] float comboTime;
+    float currentDriftTime;
+
+    [SerializeField] RSE_IntEvent rse_AddScore;
 
     [Space(10), Header("References")]
     [SerializeField] Rigidbody rb;
@@ -109,10 +115,15 @@ public class VehicleMovement : MonoBehaviour
         if (currentDriftAngle >= driftRotationStatistics.slideAngle)
         {
             StartEmmiter();
+
+            //currentDriftTime += Time.deltaTime;
+            //if (currentDriftTime > driftRotationStatistics.slideAngle) ;
         }
         else
         {
             StopEmmiter();
+
+            currentDriftTime = 0;
         }
     }
     void StartEmmiter()

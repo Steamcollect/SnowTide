@@ -690,6 +690,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115839833}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &119045085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2261881164303107419, guid: 1a62050213fcd954595640bb0820137c, type: 3}
+  m_PrefabInstance: {fileID: 582315342}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &138890830
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,6 +2164,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle
       objectReference: {fileID: 0}
+    - target: {fileID: 7608850567575051620, guid: 1a62050213fcd954595640bb0820137c, type: 3}
+      propertyPath: scoreTxt
+      value: 
+      objectReference: {fileID: 119045085}
+    - target: {fileID: 7608850567575051620, guid: 1a62050213fcd954595640bb0820137c, type: 3}
+      propertyPath: _RSE_IntEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: bbd2197f20605c54b82864586fc7892c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
