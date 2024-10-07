@@ -3,37 +3,50 @@ using UnityEngine;
 public class VehicleMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField, Tooltip("Forward movement speed")] float forwardSpeed = 10;
-    [SerializeField, Tooltip("Forward drifting speed")] float driftSpeed = 7;
+    [SerializeField, Tooltip("Forward drifting speed")] float driftminimumSpeed = 5;
+    [SerializeField, Tooltip("Forward movement speed")] float moveMaximumSpeed = 10;
 
-    [Space(5)]
-    [SerializeField, Tooltip("Transition time to changing movement speed (ex : drift speed to normal)")] float changementVelocityTime = .3f;
-    float yMovement, yMovementVelocity;
+    float speedVelocity;
+    float speed;
+    [SerializeField, Tooltip("Time to reach the max speed")] float accelerationTime;
 
-    [Space(5)]
-    [SerializeField, Tooltip("Lateral movement speed")] float moveSpeed = 15;
-    [SerializeField, Tooltip("Time require to reach maximum speed")] float friction = 1.8f;
-    float xInput, xMovement, xMovementVelocity;
+    Vector3 velocity;
+    Vector3 rotationVelocity;
 
     [Space(10), Header("Rotation")]
     [SerializeField, Tooltip("Time to reach the target angle")] float turnSmoothTime = .3f;
     float turnSmoothVelocity;
-    [SerializeField, Tooltip("Minimum and Maximum rotation possible for the vehicle")] Vector2 minMaxRotation = new Vector2(-90, 90);
 
     [Space(10), Header("Drift")]
-    [SerializeField, Tooltip("Minimum angle require to drift")] float minDriftAngle = 30;
-    [SerializeField] TrailRenderer[] tyreMarks;
+
+    // Drift rotation statistics
+    [SerializeField] DriftRotationStatistics driftRotationStatistics;
+    [System.Serializable]
+    struct DriftRotationStatistics
+    {
+        public float turnRotationSpeed;
+
+        [Space(5)]
+        public float slideAngle;
+        public float slideRotationSpeed;
+
+        [Space(5)]
+        public float driftAngle;
+        public float driftRotationSpeed;
+    }
+
+    [SerializeField, Tooltip("TyreMarksReferences")] TrailRenderer[] tyreMarks;
     float currentDriftAngle;
-    bool isDrifting = false;
 
     [Space(10), Header("References")]
     [SerializeField] Rigidbody rb;
 
     Vector2 input;
 
-void Update(){
-    CheckDrift();
-}
+    void Update()
+    {
+        CheckDrift();
+    }
 
     private void FixedUpdate()
     {
@@ -46,26 +59,39 @@ void Update(){
     {
         rb.velocity = GetVelocity();
     }
+
     Vector3 GetVelocity()
     {
-        yMovement = Mathf.SmoothDamp(yMovement, isDrifting ? driftSpeed : forwardSpeed, ref yMovementVelocity, changementVelocityTime);
-        Vector3 forwardVelocity = Vector3.forward * yMovement;
+        // Get rotationSpeed
+        float rotationSpeed;
+        if (currentDriftAngle > driftRotationStatistics.driftAngle) rotationSpeed = driftRotationStatistics.driftRotationSpeed;
+        else if (currentDriftAngle > driftRotationStatistics.slideAngle) rotationSpeed = driftRotationStatistics.slideRotationSpeed;
+        else rotationSpeed = driftRotationStatistics.turnRotationSpeed;
 
-        xInput = Mathf.SmoothDamp(xInput, input.x, ref xMovementVelocity, friction);
-        xMovement = xInput * moveSpeed;
+        // Get Move speed
+        float targetSpeed = Mathf.Lerp(driftminimumSpeed, moveMaximumSpeed, 1 - Mathf.Clamp(currentDriftAngle, 0, 90) / 90);
 
-        Vector3 velocity = forwardVelocity;
-        velocity.x = xMovement;
+        if (speed < targetSpeed) speed = Mathf.SmoothDamp(speed, targetSpeed, ref speedVelocity, accelerationTime);
+        else speed = targetSpeed;
 
+        // Set velocity
+        velocity = Vector3.SmoothDamp(velocity.normalized, transform.forward, ref rotationVelocity, rotationSpeed / currentDriftAngle) * speed;
+
+        Debug.DrawRay(transform.position, rb.velocity.normalized, Color.red);
+        Debug.DrawRay(transform.position, transform.forward, Color.blue);
+
+        velocity.y = 0;
         return velocity;
     }
 
     void Rotate()
     {
+        float currentAngle = transform.eulerAngles.y;
         float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
-        targetAngle = Mathf.Clamp(targetAngle, -89, 89);
 
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        //targetAngle = Mathf.Clamp(targetAngle, currentAngle - maxRotationAngle, currentAngle + maxRotationAngle);
+
+        float angle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
         rb.rotation = Quaternion.Euler(0, angle, 0);
     }
@@ -73,22 +99,20 @@ void Update(){
 
     public void AddFriction(float _friction)
     {
-        friction += friction;
+        //friction += friction;
     }
 
     #region Drift
     void CheckDrift()
     {
         currentDriftAngle = Vector3.Angle(transform.forward, rb.velocity.normalized);
-        if (currentDriftAngle >= minDriftAngle)
+        if (currentDriftAngle >= driftRotationStatistics.slideAngle)
         {
             StartEmmiter();
-            isDrifting = true;
         }
         else
         {
             StopEmmiter();
-            isDrifting = false;
         }
     }
     void StartEmmiter()
@@ -110,5 +134,14 @@ void Update(){
     public void SetInput(Vector2 inputs)
     {
         input = inputs;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(driftRotationStatistics.slideAngle, Vector3.up) * Vector3.forward * 2);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(driftRotationStatistics.driftAngle, Vector3.up) * Vector3.forward * 2);
     }
 }

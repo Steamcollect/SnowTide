@@ -2171,6 +2171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -2255,6 +2256,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &731242373
 GameObject:
   m_ObjectHideFlags: 0
@@ -2990,17 +3014,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122300798}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1133295217 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4891297907329580029, guid: 0d8079813394a6845bb43780d313e5aa, type: 3}
-  m_PrefabInstance: {fileID: 2855151415407344040}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1191982928
 GameObject:
   m_ObjectHideFlags: 0
@@ -5521,11 +5534,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101876537}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &543450653234409999 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6012877175400775901, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
-  m_PrefabInstance: {fileID: 7741472034131402773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2045976897796135473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5581,7 +5589,7 @@ PrefabInstance:
     - target: {fileID: 5252208531344736008, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 543450653234409999}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5695,7 +5703,7 @@ PrefabInstance:
     - target: {fileID: 4266565681297591026, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
       propertyPath: joystick
       value: 
-      objectReference: {fileID: 1133295217}
+      objectReference: {fileID: 0}
     - target: {fileID: 6012877175400775901, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5743,7 +5751,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 652195041766286620, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 63f7ed93e61e8b9469544e5f9fd60175, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
