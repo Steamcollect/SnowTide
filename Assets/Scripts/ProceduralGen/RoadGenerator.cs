@@ -8,7 +8,8 @@ public class RoadGenerator : MonoBehaviour
     [SerializeField] private UnloaderRoadChunk unloaderRoadChunk;
     [SerializeField] private LoaderRoadChunk loaderRoadChunk;
 
-    [Header("References")]
+    [Header("References")] 
+    [SerializeField] private GameObject roadChunkMenu;
     [SerializeField] private List<GameObject> roadChunkT = new List<GameObject>();
     [SerializeField] private SettingsRoadGeneration scoRoadGen;
     
