@@ -36,16 +36,9 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField, Tooltip("TyreMarksReferences")] TrailRenderer[] tyreMarks;
     float currentDriftAngle;
 
-    [Header("Drift score")]
-    [SerializeField] float driftScore;
-    [SerializeField] float scoreGivenDelay;
-    [SerializeField] float comboTime;
-    float currentDriftTime;
-
-    [SerializeField] RSE_IntEvent rse_AddScore;
-
     [Space(10), Header("References")]
     [SerializeField] Rigidbody rb;
+    [SerializeField] VehicleDriftingScore vehicleDriftScore;
 
     Vector2 input;
 
@@ -115,15 +108,12 @@ public class VehicleMovement : MonoBehaviour
         if (currentDriftAngle >= driftRotationStatistics.slideAngle)
         {
             StartEmmiter();
-
-            //currentDriftTime += Time.deltaTime;
-            //if (currentDriftTime > driftRotationStatistics.slideAngle) ;
+            vehicleDriftScore.SetDriftState(true);
         }
         else
         {
             StopEmmiter();
-
-            currentDriftTime = 0;
+            vehicleDriftScore.SetDriftState(false);
         }
     }
     void StartEmmiter()

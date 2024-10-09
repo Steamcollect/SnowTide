@@ -593,6 +593,7 @@ GameObject:
   - component: {fileID: 7042727323065621962}
   - component: {fileID: 1461435253858308654}
   - component: {fileID: 7608850567575051620}
+  - component: {fileID: 5883322156005370449}
   m_Layer: 0
   m_Name: Vehicle_3
   m_TagString: Player
@@ -729,7 +730,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  scoreTxt: {fileID: 0}
+  scoreTxt: {fileID: 2261881164303107419}
+  _RSE_IntEvent: {fileID: 11400000, guid: bbd2197f20605c54b82864586fc7892c, type: 2}
+--- !u!114 &5883322156005370449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542779473799922666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df62f6202b4bb54ea55a0eeb9db0324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  driftScoreGiven: 0
+  miniComboTime: 0
+  bigComboTime: 0
+  rse_AddScore: {fileID: 0}
 --- !u!1 &4874789122322815823
 GameObject:
   m_ObjectHideFlags: 0
