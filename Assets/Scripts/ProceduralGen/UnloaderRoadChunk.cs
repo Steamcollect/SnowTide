@@ -10,6 +10,10 @@ public class UnloaderRoadChunk : MonoBehaviour
     public void UnloadChunk(GameObject chunk)
     {
         chunksWaitUnload.Enqueue(chunk);
-        if(chunksWaitUnload.Count > 1) chunksWaitUnload.Dequeue().SetActive(false);
+        if (chunksWaitUnload.Count > 1)
+        {
+            
+            chunksWaitUnload.Dequeue().SetActive(false);
+        }
     }
 }

@@ -9,6 +9,11 @@ public class People : Interactible
 
     [SerializeField] RSE_IntEvent rse_AddScore;
 
+    public override void ResetComponent()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void OnPlayerCollision(Transform player)
     {
         if (player.TryGetComponent(out VehicleMovement vehicleMovement))
