@@ -22,15 +22,7 @@ public class ScoreManager : MonoBehaviour
         score += scoreGiven;
         SetTextVisual();
 
-        BumpVisual();
-    }
-
-    void BumpVisual()
-    {
-        scoreTxt.transform.DOScale(1.1f, .06f).OnComplete(() =>
-        {
-            scoreTxt.transform.DOScale(1, .08f);
-        });
+        scoreTxt.transform.BumpVisual();
     }
 
     void SetTextVisual()
