@@ -21,4 +21,9 @@ public static class Utils
             t.DOScale(1, .08f);
         });
     }
+
+    public static Vector3 Clamp(Vector3 current, Vector3 min, Vector3 max)
+    {
+        return current;
+    }
 }
