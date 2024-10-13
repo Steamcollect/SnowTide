@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 
-public class ImageFade : Image
+public class InvertFade : Image
 {
     public override Material materialForRendering
     {

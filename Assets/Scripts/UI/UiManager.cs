@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class UiManager : MonoBehaviour
 {
     [Header("UI Elements")]
-    [SerializeField] private GameObject panelHome;
+    [SerializeField] private GameObject canvasMenu;
     [SerializeField] private GameObject panelSettings;
     [SerializeField] private GameObject panelPause;
     [SerializeField] private GameObject panelEnd;
@@ -18,7 +18,7 @@ public class UiManager : MonoBehaviour
 
     private void Start()
     {
-        panelHome.SetActive(true);
+        canvasMenu.SetActive(true);
         panelSettings.SetActive(false);
         panelPause.SetActive(false);
         panelEnd.SetActive(false);
@@ -27,7 +27,7 @@ public class UiManager : MonoBehaviour
     
     public void Play()
     {
-        panelHome.SetActive(false);
+        canvasMenu.SetActive(false);
         rse_callbackAction.Call(UiActionGame.Play, () => { });
         panelHUD.SetActive(true);
     }
@@ -41,7 +41,7 @@ public class UiManager : MonoBehaviour
     public void PauseButton(bool open)
     {
         panelHUD.SetActive(!open);
-        panelHome.SetActive(open);
+        panelPause.SetActive(open);
     }
 
     public void SettingsButton(bool open)
@@ -52,6 +52,8 @@ public class UiManager : MonoBehaviour
     
     public void ReplayButton()
     {
+        panelEnd.SetActive(false);
+        panelPause.SetActive(false);
         panelHUD.SetActive(false);
         rse_callbackAction.Call(UiActionGame.Play, () => { });
         panelHUD.SetActive(true);
@@ -60,8 +62,9 @@ public class UiManager : MonoBehaviour
     public void BackHomeButton()
     {
         panelEnd.SetActive(false);
+        panelPause.SetActive(false);
         rse_callbackAction.Call(UiActionGame.BackMenu, () => { });
-        panelHome.SetActive(true);
+        canvasMenu.SetActive(true);
     }
     
 }
