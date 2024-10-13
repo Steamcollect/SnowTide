@@ -1,36 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PageSwiper : MonoBehaviour,IDragHandler,IEndDragHandler
+public class PageSwiper : MonoBehaviour,IEndDragHandler, IDragHandler
 {
-    private Vector3 panelLocation;
-    public float sizeThreashold;
+    [SerializeField][Tooltip("Page in order left to right")] private List<GameObject> panels;
+    [SerializeField]private int _pageActive;
+    [SerializeField] private float sizeThreashold = 0.2f;
+    
+    [Header("Settings Effects")]
+    [SerializeField] private float punchEffect = 10f;
+    [SerializeField] private float duration = 0.2f;
 
-    private void Start() => panelLocation = transform.position;
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        float difference = eventData.pressPosition.x - eventData.position.x;
-        transform.position = panelLocation + new Vector3(difference, 0, 0);
-    }
+    private void Start() => SwapPage();
 
     public void OnEndDrag(PointerEventData eventData)
     {
         float percentage = (eventData.pressPosition.x - eventData.position.x) / Screen.width;
         if (Mathf.Abs(percentage) > sizeThreashold)
         {
-            Vector3 newPos = panelLocation;
-            if (percentage > 0) newPos += new Vector3(-Screen.width,0,0);
-            else if (percentage < 0) newPos += new Vector3(Screen.width,0,0);
-            transform.position = newPos;
-            panelLocation = newPos;
-        }
-        else
-        {
-            transform.position = panelLocation;
+            _pageActive = Math.Clamp(_pageActive + (percentage > 0 ? 1 : -1) , 0, panels.Count-1);
+            SwapPage();
+            panels[_pageActive].transform.DOPunchPosition(new Vector3((percentage > 0 ? 1 : -1) * punchEffect, 0), duration);
         }
     }
+    
+    public void OnDrag(PointerEventData eventData){}
+
+    private void SwapPage()
+    {
+        for (int i = 0; i < panels.Count; i++) panels[i].SetActive(_pageActive == i);
+    }
+
 }
