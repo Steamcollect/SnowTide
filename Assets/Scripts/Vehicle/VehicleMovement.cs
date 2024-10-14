@@ -9,10 +9,8 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField, Tooltip("Forward movement speed")] float moveMaximumSpeed = 10;
 
     float speedVelocity;
-    float speed;
     [SerializeField, Tooltip("Time to reach the max speed")] float accelerationTime;
 
-    Vector3 velocity;
     Vector3 rotationVelocity;
 
     [Space(10), Header("Rotation")]
@@ -24,6 +22,8 @@ public class VehicleMovement : MonoBehaviour
 
     [Space(10), Header("Drift")]
     [SerializeField] DriftFrictionStatistics driftFrictionStatistics;
+	    float currentDriftAngle;
+
     [System.Serializable]
     struct DriftFrictionStatistics
     {
@@ -39,7 +39,6 @@ public class VehicleMovement : MonoBehaviour
     }
 
     [SerializeField, Tooltip("TyreMarksReferences")] TrailRenderer[] tyreMarks;
-    float currentDriftAngle;
 
     [Space(10), Header("References")]
     [SerializeField] Rigidbody rb;
@@ -80,13 +79,19 @@ public class VehicleMovement : MonoBehaviour
         // Get Move speed
         float targetSpeed = Mathf.Lerp(driftminimumSpeed, moveMaximumSpeed, 1 - Mathf.Clamp(currentDriftAngle, 0, 90) / 90);
 
+float speed = targetSpeed;
         if (speed < targetSpeed) speed = Mathf.SmoothDamp(speed, targetSpeed, ref speedVelocity, accelerationTime);
         else speed = targetSpeed;
 
         // Set velocity
-        Vector3 forward = Utils.Clamp(transform.forward, negMaxRotationDir, posMaxRotationDir);
-        velocity = Vector3.SmoothDamp(velocity.normalized, forward, ref rotationVelocity, friction / currentDriftAngle) * speed;
-
+        // Vector3 forward = Utils.Clamp(transform.forward, negMaxRotationDir, posMaxRotationDir);
+		
+		if(currentDriftAngle < .1f) currentDriftAngle = friction;
+		
+		Vector3 velocity = rb.velocity;
+        velocity = Vector3.SmoothDamp(velocity.normalized, transform.forward, ref rotationVelocity, friction / currentDriftAngle) * speed;
+	
+		print(velocity);
         velocity.y = 0;
         return velocity;
     }
