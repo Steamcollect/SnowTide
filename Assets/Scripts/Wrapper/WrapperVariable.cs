@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ScriptablesObjects
+namespace ScriptablesObject
 {
     public class WrapperVariable<T> : ScriptableObject
     {
