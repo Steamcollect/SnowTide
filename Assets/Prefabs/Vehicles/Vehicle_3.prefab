@@ -594,6 +594,7 @@ GameObject:
   - component: {fileID: 1461435253858308654}
   - component: {fileID: 7608850567575051620}
   - component: {fileID: 5883322156005370449}
+  - component: {fileID: 5445247044608870081}
   m_Layer: 0
   m_Name: Vehicle_3
   m_TagString: Player
@@ -643,7 +644,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 2
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!114 &4442092909455636787
 MonoBehaviour:
@@ -675,12 +676,13 @@ MonoBehaviour:
   moveMaximumSpeed: 28
   accelerationTime: 0.3
   turnSmoothTime: 0.38
-  driftRotationStatistics:
-    turnRotationSpeed: 4
-    slideAngle: 28
-    slideRotationSpeed: 20
-    driftAngle: 55
-    driftRotationSpeed: 50
+  maxRotation: 55.5
+  driftFrictionStatistics:
+    turnFriction: 4
+    slideAngle: 25
+    slideFriction: 30
+    driftAngle: 50
+    driftFriction: 60
   tyreMarks:
   - {fileID: 7556485232449684549}
   - {fileID: 3003505250717470929}
@@ -752,6 +754,20 @@ MonoBehaviour:
   maxDelayBetweenDrift: 0.3
   comboCountTxt: {fileID: 2499493334944460685}
   rse_AddScore: {fileID: 11400000, guid: bbd2197f20605c54b82864586fc7892c, type: 2}
+--- !u!114 &5445247044608870081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4542779473799922666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f323777f3effd3a4da181e7aaffe1c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  peopleCount: 0
+  currentWeight: 0
 --- !u!1 &4874789122322815823
 GameObject:
   m_ObjectHideFlags: 0
