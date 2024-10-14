@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5434153723320684485, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
       propertyPath: m_fontSize
-      value: 86.9
+      value: 70.85
       objectReference: {fileID: 0}
     - target: {fileID: 5764585452411919517, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
       propertyPath: m_Pivot.x
@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5764585452411919517, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -670
+      value: -620
       objectReference: {fileID: 0}
     - target: {fileID: 5764585452411919517, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
       propertyPath: m_SizeDelta.y
