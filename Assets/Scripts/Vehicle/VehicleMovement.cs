@@ -9,6 +9,7 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField, Tooltip("Forward movement speed")] float moveMaximumSpeed = 10;
 
     float speedVelocity;
+    Vector3 velocity;
     [SerializeField, Tooltip("Time to reach the max speed")] float accelerationTime;
 
     Vector3 rotationVelocity;
@@ -76,24 +77,30 @@ public class VehicleMovement : MonoBehaviour
         else if (currentDriftAngle > driftFrictionStatistics.slideAngle) friction = driftFrictionStatistics.slideFriction;
         else friction = driftFrictionStatistics.turnFriction;
 
+        // if there is no drift angle
+		if(currentDriftAngle < .1f) currentDriftAngle = friction;
+
         // Get Move speed
         float targetSpeed = Mathf.Lerp(driftminimumSpeed, moveMaximumSpeed, 1 - Mathf.Clamp(currentDriftAngle, 0, 90) / 90);
 
-float speed = targetSpeed;
+        float speed = targetSpeed;
         if (speed < targetSpeed) speed = Mathf.SmoothDamp(speed, targetSpeed, ref speedVelocity, accelerationTime);
         else speed = targetSpeed;
 
         // Set velocity
-        // Vector3 forward = Utils.Clamp(transform.forward, negMaxRotationDir, posMaxRotationDir);
+        Vector3 direction = GetForwardDirection();
 		
-		if(currentDriftAngle < .1f) currentDriftAngle = friction;
-		
-		Vector3 velocity = rb.velocity;
-        velocity = Vector3.SmoothDamp(velocity.normalized, transform.forward, ref rotationVelocity, friction / currentDriftAngle) * speed;
+		velocity = Vector3.SmoothDamp(velocity.normalized, direction, ref rotationVelocity, friction / currentDriftAngle) * speed;
 	
-		print(velocity);
         velocity.y = 0;
         return velocity;
+    }
+
+    Vector3 GetForwardDirection()
+    {
+        //if(Vector3.Angle(Vector3.forward, transform.forward) > )
+
+        return transform.forward;
     }
 
     void Rotate()
