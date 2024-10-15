@@ -18,12 +18,12 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField, Tooltip("Time to reach the target angle")] float turnSmoothTime = .3f;
     float turnSmoothVelocity;
 
-    [SerializeField, Range(0, 180)] float maxRotation;
-    Vector3 posMaxRotationDir, negMaxRotationDir;
+    [SerializeField, Range(0, 180)] float maxRotationAngle;
+    [SerializeField, Range(0, 180)] float maxVelocityAngle;
 
     [Space(10), Header("Drift")]
     [SerializeField] DriftFrictionStatistics driftFrictionStatistics;
-	    float currentDriftAngle;
+	float currentDriftAngle;
 
     [System.Serializable]
     struct DriftFrictionStatistics
@@ -31,11 +31,11 @@ public class VehicleMovement : MonoBehaviour
         public float turnFriction;
 
         [Space(5)]
-        public float slideAngle;
+        [Range(0, 180)] public float slideAngle;
         public float slideFriction;
 
         [Space(5)]
-        public float driftAngle;
+        [Range(0, 180)] public float driftAngle;
         public float driftFriction;
     }
 
@@ -46,11 +46,6 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] VehicleDriftingScore vehicleDriftScore;
 
     Vector2 input;
-
-    private void Start()
-    {
-        OnValidate();
-    }
 
     void Update()
     {
@@ -98,9 +93,15 @@ public class VehicleMovement : MonoBehaviour
 
     Vector3 GetForwardDirection()
     {
-        //if(Vector3.Angle(Vector3.forward, transform.forward) > )
+        Vector3 forward = transform.forward;
 
-        return transform.forward;
+        if(Vector3.Angle(Vector3.forward, transform.forward) > maxVelocityAngle)
+        {
+            //float rotation = Vector3.Cross(Vector3.forward, transform.forward).y < 0 ? -maxRotation : maxRotation;
+            forward = Quaternion.AngleAxis(maxVelocityAngle, Vector3.up) * Vector3.forward;
+        }
+
+        return forward;
     }
 
     void Rotate()
@@ -108,9 +109,9 @@ public class VehicleMovement : MonoBehaviour
         float currentAngle = transform.eulerAngles.y;
         float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
 
-        //targetAngle = Mathf.Clamp(targetAngle, currentAngle - maxRotationAngle, currentAngle + maxRotationAngle);
+        targetAngle = Mathf.Clamp(targetAngle, -maxRotationAngle, maxRotationAngle);
 
-        float angle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        float angle = Mathf.SmoothDamp(currentAngle, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
         rb.rotation = Quaternion.Euler(0, angle, 0);
     }
@@ -157,12 +158,6 @@ public class VehicleMovement : MonoBehaviour
         input = inputs;
     }
 
-    private void OnValidate()
-    {
-        posMaxRotationDir = Quaternion.AngleAxis(maxRotation, Vector3.up) * Vector3.forward;
-        negMaxRotationDir = Quaternion.AngleAxis(-maxRotation, Vector3.up) * Vector3.forward;
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
@@ -170,10 +165,14 @@ public class VehicleMovement : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(driftFrictionStatistics.driftAngle, Vector3.up) * Vector3.forward * 2);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(-maxRotation, Vector3.up) * Vector3.forward * 2);
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(maxRotation, Vector3.up) * Vector3.forward * 2);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(-maxVelocityAngle, Vector3.up) * Vector3.forward * 2);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(maxVelocityAngle, Vector3.up) * Vector3.forward * 2);
 
-        if(rb)
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(-maxRotationAngle, Vector3.up) * Vector3.forward * 2);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(maxRotationAngle, Vector3.up) * Vector3.forward * 2);
+
+        if (rb)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, transform.position + rb.velocity.normalized * 2);

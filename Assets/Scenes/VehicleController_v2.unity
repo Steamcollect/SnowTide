@@ -1852,11 +1852,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489597058}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &491965918 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4542779473799922666, guid: 1a62050213fcd954595640bb0820137c, type: 3}
-  m_PrefabInstance: {fileID: 582315342}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &501268432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,41 +2153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle_2
       objectReference: {fileID: 0}
-    - target: {fileID: 4728610599482719473, guid: 1a62050213fcd954595640bb0820137c, type: 3}
-      propertyPath: maxRotation
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4728610599482719473, guid: 1a62050213fcd954595640bb0820137c, type: 3}
-      propertyPath: driftFrictionStatistics.driftAngle
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4728610599482719473, guid: 1a62050213fcd954595640bb0820137c, type: 3}
-      propertyPath: driftFrictionStatistics.slideAngle
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4728610599482719473, guid: 1a62050213fcd954595640bb0820137c, type: 3}
-      propertyPath: driftFrictionStatistics.turnFriction
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4728610599482719473, guid: 1a62050213fcd954595640bb0820137c, type: 3}
-      propertyPath: driftFrictionStatistics.driftFriction
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4728610599482719473, guid: 1a62050213fcd954595640bb0820137c, type: 3}
-      propertyPath: driftFrictionStatistics.slideFriction
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 7177819690224778224, guid: 1a62050213fcd954595640bb0820137c, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4542779473799922666, guid: 1a62050213fcd954595640bb0820137c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1861098976}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a62050213fcd954595640bb0820137c, type: 3}
 --- !u!1 &617771528
 GameObject:
@@ -7131,20 +7095,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2757134928406636632, guid: 1a62050213fcd954595640bb0820137c, type: 3}
   m_PrefabInstance: {fileID: 582315342}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1861098976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491965918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f323777f3effd3a4da181e7aaffe1c7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  peopleCount: 0
-  currentWeight: 0
 --- !u!1 &1870490804
 GameObject:
   m_ObjectHideFlags: 0
@@ -8781,6 +8731,22 @@ PrefabInstance:
     - target: {fileID: 5252208531344736008, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
       propertyPath: posOffset.z
       value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183003498180748219, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183003498180748219, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183003498180748219, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183003498180748219, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
