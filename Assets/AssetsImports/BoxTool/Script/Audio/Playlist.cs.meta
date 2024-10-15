@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: a83ba66aba23be041b35000f63c90d5d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - <OnCallAudioPlay>k__BackingField: {fileID: 11400000, guid: 201995073dd11c54b8e3f84440adb911, type: 2}
+  - <OnCallAudioStop>k__BackingField: {fileID: 11400000, guid: c52b6812e08fe05419d61f4abc41f515, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

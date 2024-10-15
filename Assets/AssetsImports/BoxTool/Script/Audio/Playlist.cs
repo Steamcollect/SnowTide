@@ -16,7 +16,7 @@ namespace BT.Audio
         [field:Header("Parameters")]
         [Tooltip("If value equal \"-1\" so infinite loop")]
         [field: SerializeField][field:Min(-1)]public int maxLoop { get; private set; } = -1;
-        [SerializeField][Min(0)] private float transitionTimeClip;
+        [SerializeField][Min(0)] private float transitionTimeClip = 0.2f;
         [field:SerializeField] public SoundType SoundType { get; set; }
         
         public AudioSource AudioSourcePlaying { get; set; }

@@ -4,6 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RSE_UiCallback", menuName = "RSE/UiCallback")]
-public class RSE_UiCallback : ScriptablesObject.WrapperAction<UiActionGame, Action>
+public class RSE_UiCallback : BT.ScriptablesObject.WrapperAction<UiActionGame, Action>
 {
 }
