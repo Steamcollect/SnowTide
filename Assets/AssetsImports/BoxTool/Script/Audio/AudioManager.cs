@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 namespace BT.Audio
 {
@@ -13,9 +14,10 @@ namespace BT.Audio
         [Space(5)]
         [SerializeField] private AudioMixerGroup musicMixerGroup;
         [SerializeField] private AudioMixerGroup soundMixerGroup;
-        [field:Space(5)]
-        [field: SerializeField] private RSE_AudioEvent OnCallAudioPlay;
-        [field: SerializeField] private RSE_AudioEvent OnCallAudioStop;
+        [Space(5)]
+        [SerializeField] private RSE_AudioEvent OnCallAudioPlay;
+        [SerializeField] private RSE_AudioEvent OnCallAudioStop;
+        [SerializeField] private RSE_ModifyVolume OnModifyVolume;
 
         [Header("Parameter")]
         [SerializeField, Tooltip("Number of GameObject create on start for audio sound clip")] private int startingAudioObjectsCount = 30;
@@ -23,7 +25,6 @@ namespace BT.Audio
         private Queue<AudioSource> _queueSoundAudioSource = new Queue<AudioSource>();
         private Queue<AudioSource> _queueMusicAudioSource = new Queue<AudioSource>();
         private Transform _musicGameObjectParent, _soundsGameObjectParent;
-        
         
         #region Initialization
         private void Awake() //Create objects need to play audio
@@ -46,12 +47,14 @@ namespace BT.Audio
         {
             OnCallAudioPlay.action += PlayClip;
             OnCallAudioStop.action += StopClip;
+            OnModifyVolume.action += ModifyVolume;
         }
         //Assign and Unassigne event to communicate with audio component
         private void OnDisable()
         {
             OnCallAudioPlay.action -= PlayClip;
             OnCallAudioStop.action -= StopClip;
+            OnModifyVolume.action -= ModifyVolume;
         }
         #endregion
         
@@ -142,6 +145,26 @@ namespace BT.Audio
             EnqueueAudioSource(audioComponent.AudioSourcePlaying);
             audioComponent.CallbackAudioStop();
         }
+        #endregion
+
+        #region VolumeMixers
+
+        private void ModifyVolume(float value,SoundType soundType)
+        {
+            var nameParameter = "";
+            switch (soundType)
+            {
+                case SoundType.Sound:
+                    nameParameter = "SoundVolume";
+                    break;
+                case SoundType.Music:
+                    nameParameter = "MusicVolume";
+                    break;
+            }
+            if (nameParameter == "") return;
+            audioMixer.SetFloat(nameParameter, value == 0 ?-144.0f:Mathf.Log10(value) * 20f);
+        }
+
         #endregion
     }
 }
