@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc847517113d75649aadf71d93a884af, type: 3}
-  m_Name: RSE_OnDeath
+  m_Script: {fileID: 11500000, guid: e64f01fdf05e23b48b3f6dae2cb483df, type: 3}
+  m_Name: RSE_OnPlayerTakeDamage
   m_EditorClassIdentifier: 

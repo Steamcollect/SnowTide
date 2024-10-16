@@ -44,4 +44,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ed4145cbb54ca48a70088d2143cc2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPlayerTakeDamage: {fileID: 11400000, guid: 5fe46e0f2dc21904b8937b7b9fdeb693, type: 2}
   OnCommandSave: {fileID: 11400000, guid: b9b98c83cb66fa24594ba5ee1df92141, type: 2}
+  BackgroundMusicEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: BT.Audio.Playlist, Assembly-CSharp
+        m_MethodName: LaunchPlaylist
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
