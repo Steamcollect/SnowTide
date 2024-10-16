@@ -151,18 +151,14 @@ namespace BT.Audio
 
         private void ModifyVolume(float value,SoundType soundType)
         {
-            var nameParameter = "";
-            switch (soundType)
+            var nameParameter = soundType switch
             {
-                case SoundType.Sound:
-                    nameParameter = "SoundVolume";
-                    break;
-                case SoundType.Music:
-                    nameParameter = "MusicVolume";
-                    break;
-            }
+                SoundType.Sound => "SoundVolume",
+                SoundType.Music => "MusicVolume",
+                _ => ""
+            };
             if (nameParameter == "") return;
-            audioMixer.SetFloat(nameParameter, value == 0 ?-144.0f:Mathf.Log10(value) * 20f);
+            audioMixer.SetFloat(nameParameter, value == 0 ?-80.0f:Mathf.Log10(value) * 20f);
         }
 
         #endregion
