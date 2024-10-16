@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BT.Audio
 {
-    public class SoundPlayer : MonoBehaviour, IAudioComponent
+    public class SoundLauncher : MonoBehaviour, IAudioComponent
     {
         [field:Header("Reference")]
         [SerializeField] private ClipData clip;
@@ -13,7 +13,6 @@ namespace BT.Audio
         [field:SerializeField] public RSE_AudioEvent OnCallAudioStop { get; set; }
         
         
-
         public AudioSource AudioSourcePlaying  { get; set; }
         public Coroutine CoroutineAudioPlaying { get; set; }
 

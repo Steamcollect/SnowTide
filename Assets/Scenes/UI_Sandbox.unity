@@ -458,6 +458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Playlist
       objectReference: {fileID: 0}
+    - target: {fileID: 5046181888283938820, guid: 070f995c9cbc0844b9cc1d73645ab0b6, type: 3}
+      propertyPath: clipsPlaylist.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6668278247817748764, guid: 070f995c9cbc0844b9cc1d73645ab0b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

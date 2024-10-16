@@ -19,7 +19,6 @@ namespace BT.Audio
 
         [Header("Parameter")]
         [SerializeField, Tooltip("Number of GameObject create on start for audio sound clip")] private int startingAudioObjectsCount = 30;
-        [SerializeField][Min(0)]private float timeBetweenAudioMusic = 0.5f;
         
         private Queue<AudioSource> _queueSoundAudioSource = new Queue<AudioSource>();
         private Queue<AudioSource> _queueMusicAudioSource = new Queue<AudioSource>();
