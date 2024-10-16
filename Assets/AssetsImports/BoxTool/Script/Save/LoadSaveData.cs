@@ -31,7 +31,7 @@ namespace BT.Save
 
         private void Start()
         {
-            filepath = Application.persistentDataPath + "/InfoToLoad.json";
+            filepath = Application.persistentDataPath + "/Save.json";
 
             if (FileAlreadyExist()) LoadFromJson();
             else SaveToJson();
@@ -40,7 +40,7 @@ namespace BT.Save
         private void SaveToJson()
         {
             string infoData = JsonUtility.ToJson(contentSaved);
-            System.IO.File.WriteAllText(filepath, infoData);
+            File.WriteAllText(filepath, infoData);
         }
 
         private void LoadFromJson()
