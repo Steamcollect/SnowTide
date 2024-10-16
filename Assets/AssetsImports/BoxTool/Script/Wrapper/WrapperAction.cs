@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ScriptablesObject
+namespace BT.ScriptablesObject
 {
     public class WrapperAction : ScriptableObject
     {
