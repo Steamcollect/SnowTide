@@ -18,25 +18,34 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField, Tooltip("Time to reach the target angle")] float turnSmoothTime = .3f;
     float turnSmoothVelocity;
 
-    [SerializeField, Range(0, 180)] float maxRotation;
-    Vector3 posMaxRotationDir, negMaxRotationDir;
+    [SerializeField, Range(0, 180)] float maxVelocityAngle;
+    [SerializeField, Range(0, 180)] float maxRotationAngle;
 
     [Space(10), Header("Drift")]
     [SerializeField] DriftFrictionStatistics driftFrictionStatistics;
 	    float currentDriftAngle;
 
     [System.Serializable]
-    struct DriftFrictionStatistics
+    public class DriftFrictionStatistics
     {
         public float turnFriction;
 
         [Space(5)]
-        public float slideAngle;
+        [SerializeField, Range(0, 180)] public float slideAngle;
         public float slideFriction;
 
         [Space(5)]
-        public float driftAngle;
+        [SerializeField, Range(0, 180)] public float driftAngle;
         public float driftFriction;
+
+        public DriftFrictionStatistics(float turnFriction, float slideAngle, float slideFriction, float driftAngle, float driftFriction)
+        {
+            this.turnFriction = turnFriction;
+            this.slideAngle = slideAngle;
+            this.slideFriction = slideFriction;
+            this.driftAngle = driftAngle;
+            this.driftFriction = driftFriction;
+        }
     }
 
     [SerializeField, Tooltip("TyreMarksReferences")] TrailRenderer[] tyreMarks;
@@ -47,11 +56,6 @@ public class VehicleMovement : MonoBehaviour
 
     Vector2 input;
 
-    private void Start()
-    {
-        OnValidate();
-    }
-
     void Update()
     {
         CheckDrift();
@@ -59,8 +63,8 @@ public class VehicleMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
         Rotate();
+        Move();
     }
 
     #region Movement
@@ -98,17 +102,23 @@ public class VehicleMovement : MonoBehaviour
 
     Vector3 GetForwardDirection()
     {
-        //if(Vector3.Angle(Vector3.forward, transform.forward) > )
+        Vector3 forward = transform.forward;
+        float angle = Vector3.SignedAngle(Vector3.forward, forward, Vector3.up);
 
-        return transform.forward;
+        if(Mathf.Abs(angle) > maxVelocityAngle)
+        {
+            angle = angle < 0 ? -maxVelocityAngle : maxVelocityAngle;
+            forward = Quaternion.AngleAxis(angle, Vector3.up) * Vector3.forward;
+        }
+
+        return forward;
     }
 
     void Rotate()
     {
         float currentAngle = transform.eulerAngles.y;
         float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
-
-        //targetAngle = Mathf.Clamp(targetAngle, currentAngle - maxRotationAngle, currentAngle + maxRotationAngle);
+        targetAngle = Mathf.Clamp(targetAngle, -maxRotationAngle, maxRotationAngle);
 
         float angle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
@@ -116,9 +126,14 @@ public class VehicleMovement : MonoBehaviour
     }
     #endregion
 
-    public void AddFriction(float _friction)
+    public void AddFriction(DriftFrictionStatistics frictionToAdd)
     {
-        //friction += friction;
+        driftFrictionStatistics.turnFriction += frictionToAdd.turnFriction;
+        driftFrictionStatistics.driftFriction += frictionToAdd.driftFriction;
+        driftFrictionStatistics.slideFriction += frictionToAdd.slideFriction;
+
+        driftFrictionStatistics.driftAngle += frictionToAdd.driftAngle;
+        driftFrictionStatistics.slideAngle += frictionToAdd.slideAngle;
     }
 
     #region Drift
@@ -157,12 +172,6 @@ public class VehicleMovement : MonoBehaviour
         input = inputs;
     }
 
-    private void OnValidate()
-    {
-        posMaxRotationDir = Quaternion.AngleAxis(maxRotation, Vector3.up) * Vector3.forward;
-        negMaxRotationDir = Quaternion.AngleAxis(-maxRotation, Vector3.up) * Vector3.forward;
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
@@ -170,8 +179,12 @@ public class VehicleMovement : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(driftFrictionStatistics.driftAngle, Vector3.up) * Vector3.forward * 2);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(-maxRotation, Vector3.up) * Vector3.forward * 2);
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(maxRotation, Vector3.up) * Vector3.forward * 2);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(-maxVelocityAngle, Vector3.up) * Vector3.forward * 2);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(maxVelocityAngle, Vector3.up) * Vector3.forward * 2);
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(-maxRotationAngle, Vector3.up) * Vector3.forward * 2);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(maxRotationAngle, Vector3.up) * Vector3.forward * 2);
 
         if(rb)
         {

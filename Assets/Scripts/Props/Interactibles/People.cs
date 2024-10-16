@@ -20,7 +20,7 @@ public class People : Interactible
         {
             rse_AddScore.Call(scoreGiven);
 
-            vehicleMovement.AddFriction(frictionToAdd);
+            vehicleMovement.AddFriction(default);
             gameObject.SetActive(false);
         }
     }
