@@ -126,7 +126,7 @@ MonoBehaviour:
   maxHealth: 2
   healtRegenTime: 15
   OnTakeDamage: {fileID: 11400000, guid: 5fe46e0f2dc21904b8937b7b9fdeb693, type: 2}
-  OnPlayerDeath: {fileID: 0}
+  OnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
   avalancheFollow: {fileID: 0}
 --- !u!114 &878435352481346775
 MonoBehaviour:

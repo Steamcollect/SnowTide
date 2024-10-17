@@ -14,6 +14,8 @@ public class ChunkRoad : MonoBehaviour
     [field:SerializeField] public Vector3 sizeColliderExit { get; private set; } = new Vector3(1, 1, 1);
 
     private List<Interactible> interactiblesProps  = new List<Interactible>();
+    [HideInInspector] public bool chunkActive = true; 
+    
     
     private void OnValidate()
     {
@@ -24,6 +26,7 @@ public class ChunkRoad : MonoBehaviour
 
     public void ResetChunk()
     {
+        chunkActive = true;
         if (interactiblesProps.Count <= 0) return;
         foreach (Interactible interactibleProp in interactiblesProps)
         {

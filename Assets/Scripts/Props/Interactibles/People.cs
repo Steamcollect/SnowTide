@@ -19,8 +19,7 @@ public class People : Interactible
         if (player.TryGetComponent(out VehicleMovement vehicleMovement))
         {
             rse_AddScore.Call(scoreGiven);
-
-            vehicleMovement.AddFriction(default);
+            // vehicleMovement.AddFriction(default);
             gameObject.SetActive(false);
         }
     }

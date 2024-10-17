@@ -49,12 +49,12 @@ public class VehicleHealth : MonoBehaviour
             regenCoroutine = StartCoroutine(Regen());
         }
 
-        if(currentHeath >= maxHealth /2) avalancheFollow.Hide();
+        if(currentHeath >= maxHealth /2) avalancheFollow?.Hide();
     }
 
     private void Die()
     {
-        // avalancheFollow.Bury();
+        avalancheFollow?.Bury();
         OnPlayerDeath.Call();
         gameObject.SetActive(false);
     }
