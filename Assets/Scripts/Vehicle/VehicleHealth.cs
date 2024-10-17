@@ -6,15 +6,18 @@ using UnityEngine.Serialization;
 
 public class VehicleHealth : MonoBehaviour
 {
-    [SerializeField] int maxHealth;
-    int currentHeath;
+    [Header("Parameters")]
+    [SerializeField] private int maxHealth;
+    [SerializeField] private float healtRegenTime;
+    
+    private int currentHeath;
+    private Coroutine regenCoroutine;
 
-    [SerializeField] float healtRegenTime;
+    [Header("References")]
+    [SerializeField] private RSE_IntEvent OnTakeDamage;
+    [SerializeField] private RSE_Event OnPlayerDeath;
+    [SerializeField] private AvalancheFollow avalancheFollow;
 
-    [SerializeField] RSE_IntEvent OnTakeDamage;
-    [SerializeField] AvalancheFollow avalancheFollow;
-
-    Coroutine regenCoroutine;
 
     private void Start()
     {
@@ -34,7 +37,7 @@ public class VehicleHealth : MonoBehaviour
         }
     }
 
-    public void TakeHealth(int health)
+    private void TakeHealth(int health)
     {
         currentHeath += health;
         if (currentHeath > maxHealth)
@@ -49,10 +52,10 @@ public class VehicleHealth : MonoBehaviour
         if(currentHeath >= maxHealth /2) avalancheFollow.Hide();
     }
 
-    void Die()
+    private void Die()
     {
         // avalancheFollow.Bury();
-        OnTakeDamage.Call(currentHeath);
+        OnPlayerDeath.Call();
         gameObject.SetActive(false);
     }
 

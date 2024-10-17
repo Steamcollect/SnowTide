@@ -126,6 +126,7 @@ MonoBehaviour:
   maxHealth: 2
   healtRegenTime: 15
   OnTakeDamage: {fileID: 11400000, guid: 5fe46e0f2dc21904b8937b7b9fdeb693, type: 2}
+  OnPlayerDeath: {fileID: 0}
   avalancheFollow: {fileID: 0}
 --- !u!114 &878435352481346775
 MonoBehaviour:
@@ -141,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   scoreTxt: {fileID: 0}
-  _RSE_IntEvent: {fileID: 11400000, guid: bbd2197f20605c54b82864586fc7892c, type: 2}
+  rse_AddScore: {fileID: 11400000, guid: bbd2197f20605c54b82864586fc7892c, type: 2}
 --- !u!114 &4274004832069344096
 MonoBehaviour:
   m_ObjectHideFlags: 0

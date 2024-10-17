@@ -14,7 +14,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject panelHUD;
     
     [Header("References")]
-    [SerializeField] private RSE_UiCallback rse_callbackAction;
+    [SerializeField] private RSE_UiCallback callbackUiAction;
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class UiManager : MonoBehaviour
     public void Play()
     {
         canvasMenu.SetActive(false);
-        rse_callbackAction.Call(UiActionGame.Play, () => { });
+        callbackUiAction.Call(UiActionGame.Play, () => { });
         panelHUD.SetActive(true);
     }
 
@@ -55,7 +55,7 @@ public class UiManager : MonoBehaviour
         panelEnd.SetActive(false);
         panelPause.SetActive(false);
         panelHUD.SetActive(false);
-        rse_callbackAction.Call(UiActionGame.Play, () => { });
+        callbackUiAction.Call(UiActionGame.Play, () => { });
         panelHUD.SetActive(true);
     }
 
@@ -63,7 +63,7 @@ public class UiManager : MonoBehaviour
     {
         panelEnd.SetActive(false);
         panelPause.SetActive(false);
-        rse_callbackAction.Call(UiActionGame.BackMenu, () => { });
+        callbackUiAction.Call(UiActionGame.BackMenu, () => { });
         canvasMenu.SetActive(true);
     }
     

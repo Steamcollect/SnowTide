@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -8,9 +9,9 @@ public class ScoreManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] TMP_Text scoreTxt;
-
+    
     [Header("RSE")]
-    [SerializeField] RSE_IntEvent _RSE_IntEvent;
+    [SerializeField] RSE_IntEvent rse_AddScore;
 
     private void Start()
     {
@@ -32,10 +33,10 @@ public class ScoreManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _RSE_IntEvent.action += AddScore;
+        rse_AddScore.action += AddScore;
     }
     private void OnDisable()
     {
-        _RSE_IntEvent.action -= AddScore;
+        rse_AddScore.action -= AddScore;
     }
 }

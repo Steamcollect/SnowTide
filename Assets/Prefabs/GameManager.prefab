@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ed4145cbb54ca48a70088d2143cc2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPlayerTakeDamage: {fileID: 11400000, guid: 5fe46e0f2dc21904b8937b7b9fdeb693, type: 2}
+  OnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
   OnCommandSave: {fileID: 11400000, guid: b9b98c83cb66fa24594ba5ee1df92141, type: 2}
+  OnUIAction: {fileID: 11400000, guid: 2f4da7c3d07c3e243871ccb78a6178cf, type: 2}
   BackgroundMusicEvent:
     m_PersistentCalls:
       m_Calls:
