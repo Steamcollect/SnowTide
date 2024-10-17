@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3649434579646723481}
   - component: {fileID: 7371821359003062020}
   - component: {fileID: 8220310924695005341}
-  - component: {fileID: 2896573895009907569}
   - component: {fileID: 878435352481346775}
   - component: {fileID: 4274004832069344096}
   - component: {fileID: 960389742219074832}
@@ -128,20 +127,6 @@ MonoBehaviour:
   healtRegenTime: 15
   OnTakeDamage: {fileID: 11400000, guid: 5fe46e0f2dc21904b8937b7b9fdeb693, type: 2}
   avalancheFollow: {fileID: 0}
---- !u!114 &2896573895009907569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 607473937127288483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f323777f3effd3a4da181e7aaffe1c7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  peopleCount: 0
-  currentWeight: 0
 --- !u!114 &878435352481346775
 MonoBehaviour:
   m_ObjectHideFlags: 0

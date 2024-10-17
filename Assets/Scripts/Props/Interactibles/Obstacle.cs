@@ -8,7 +8,7 @@ public class Obstacle : Interactible
 
     public override void ResetComponent()
     {
-        throw new System.NotImplementedException();
+        gameObject.SetActive(true);
     }
 
     public override void OnPlayerCollision(Transform player)
