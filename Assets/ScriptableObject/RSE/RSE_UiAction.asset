@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 556b91cac4d1ce74eac8426d8348e2a0, type: 3}
-  m_Name: RSE_UiCallback
+  m_Name: RSE_UiAction
   m_EditorClassIdentifier: 

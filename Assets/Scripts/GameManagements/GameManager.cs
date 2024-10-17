@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private RSE_Event OnCommandSave;
-    [SerializeField] private RSE_UiCallback OnUIAction;
+    [SerializeField] private RSE_UIAction OnUIAction;
     [SerializeField] private UnityEvent BackgroundMusicEvent;
     
     

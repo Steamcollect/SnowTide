@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BT.Save;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,7 +15,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject panelHUD;
     
     [Header("References")]
-    [SerializeField] private RSE_UiCallback callbackUiAction;
+    [SerializeField] private RSE_UIAction onUIAction;
+    [SerializeField] private RSE_Event onPlayerDeath;
 
     private void Start()
     {
@@ -24,11 +26,15 @@ public class UiManager : MonoBehaviour
         panelEnd.SetActive(false);
         panelHUD.SetActive(false);
     }
-    
+
+    private void OnEnable() => onPlayerDeath.action += End;
+
+    private void OnDisable() => onPlayerDeath.action -= End;
+
     public void Play()
     {
         canvasMenu.SetActive(false);
-        callbackUiAction.Call(UiActionGame.Play, () => { });
+        onUIAction.Call(UiActionGame.Play, () => { });
         panelHUD.SetActive(true);
     }
 
@@ -55,7 +61,7 @@ public class UiManager : MonoBehaviour
         panelEnd.SetActive(false);
         panelPause.SetActive(false);
         panelHUD.SetActive(false);
-        callbackUiAction.Call(UiActionGame.Play, () => { });
+        onUIAction.Call(UiActionGame.Play, () => { });
         panelHUD.SetActive(true);
     }
 
@@ -63,7 +69,7 @@ public class UiManager : MonoBehaviour
     {
         panelEnd.SetActive(false);
         panelPause.SetActive(false);
-        callbackUiAction.Call(UiActionGame.BackMenu, () => { });
+        onUIAction.Call(UiActionGame.BackMenu, () => { });
         canvasMenu.SetActive(true);
     }
     
