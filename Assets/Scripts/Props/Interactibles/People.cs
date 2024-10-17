@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class People : Interactible
 {
-    [SerializeField, Range(.05f, 1)] float frictionToAdd;
     [SerializeField] int scoreGiven;
 
     [SerializeField] RSE_IntEvent rse_AddScore;
+    [SerializeField] private GameObject visual;
 
     public override void ResetComponent()
     {
@@ -16,11 +16,9 @@ public class People : Interactible
 
     public override void OnPlayerCollision(Transform player)
     {
-        if (player.TryGetComponent(out VehicleMovement vehicleMovement))
-        {
-            rse_AddScore.Call(scoreGiven);
-            // vehicleMovement.AddFriction(default);
-            gameObject.SetActive(false);
-        }
+        if (!player.TryGetComponent(out VehicleMovement vehicleMovement)) return;
+        rse_AddScore.Call(scoreGiven);
+        // vehicleMovement.AddFriction(default);
+        gameObject.SetActive(false);
     }
 }

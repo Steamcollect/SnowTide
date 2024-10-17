@@ -17,4 +17,9 @@ public class UnloaderRoadChunk : MonoBehaviour
             chunkDequeue.SetActive(false);
         }
     }
+
+    public void ResetUnloader()
+    {
+        chunksWaitUnload.Clear();
+    }
 }

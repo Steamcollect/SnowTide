@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Callback of ui, when an specific action is set, like restart or back menu
     /// </summary>
-    /// <param name="action"> Type of the acion</param>
+    /// <param name="action"> Type of the action</param>
     /// <param name="ev"> Event callback to ui</param>
     private void UIActionGame(UiActionGame actionUI, Action ev)
     {
