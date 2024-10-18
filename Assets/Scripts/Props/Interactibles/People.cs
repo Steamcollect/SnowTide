@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class People : Interactible
 {
+    [SerializeField] VehicleDriftFrictionStatistics frictionToAdd;
+
     [SerializeField] int scoreGiven;
 
     [SerializeField] RSE_IntEvent rse_AddScore;
@@ -16,9 +18,9 @@ public class People : Interactible
 
     public override void OnPlayerCollision(Transform player)
     {
-        if (!player.TryGetComponent(out VehicleMovement vehicleMovement)) return;
+        if (!player.TryGetComponent(out VehicleStatistics vehicleStatistics)) return;
         rse_AddScore.Call(scoreGiven);
-        // vehicleMovement.AddFriction(default);
+        vehicleStatistics.AddFriction(frictionToAdd);
         gameObject.SetActive(false);
     }
 }

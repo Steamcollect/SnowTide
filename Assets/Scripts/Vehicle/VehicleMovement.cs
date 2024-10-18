@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Mathematics;
 using UnityEditorInternal;
 using UnityEngine;
@@ -18,53 +19,40 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField, Tooltip("Time to reach the target angle")] float turnSmoothTime = .3f;
     float turnSmoothVelocity;
 
-    [SerializeField, Range(0, 180)] float maxVelocityAngle;
-    [SerializeField, Range(0, 180)] float maxRotationAngle;
+    [SerializeField, Range(0, 180), Tooltip("Max angle possible to reach")] float maxVelocityAngle;
+    [SerializeField, Range(0, 180), Tooltip("Max angle possible to rotate the car visual")] float maxRotationAngle;
 
     [Space(10), Header("Drift")]
-    [SerializeField] DriftFrictionStatistics driftFrictionStatistics;
-	    float currentDriftAngle;
-
-    [System.Serializable]
-    public class DriftFrictionStatistics
-    {
-        public float turnFriction;
-
-        [Space(5)]
-        [SerializeField, Range(0, 180)] public float slideAngle;
-        public float slideFriction;
-
-        [Space(5)]
-        [SerializeField, Range(0, 180)] public float driftAngle;
-        public float driftFriction;
-
-        public DriftFrictionStatistics(float turnFriction, float slideAngle, float slideFriction, float driftAngle, float driftFriction)
-        {
-            this.turnFriction = turnFriction;
-            this.slideAngle = slideAngle;
-            this.slideFriction = slideFriction;
-            this.driftAngle = driftAngle;
-            this.driftFriction = driftFriction;
-        }
-    }
+	float currentDriftAngle;    
 
     [SerializeField, Tooltip("TyreMarksReferences")] TrailRenderer[] tyreMarks;
+
+    [Space(10), Header("Others")]
+   [SerializeField] float impactBumpForce;
 
     [Space(10), Header("References")]
     [SerializeField] Rigidbody rb;
     [SerializeField] VehicleDriftingScore vehicleDriftScore;
+    [SerializeField] VehicleStatistics statistics;
 
     Vector2 input;
 
+    bool canMove = true;
+    bool canRotate = true;
+    bool isMoving = true;
+
     void Update()
     {
-        CheckDrift();
+        if(isMoving) CheckDrift();
     }
 
     private void FixedUpdate()
     {
-        Rotate();
-        Move();
+        if (isMoving)
+        {
+            if(canRotate) Rotate();
+            if(canMove) Move();
+        }            
     }
 
     #region Movement
@@ -77,9 +65,9 @@ public class VehicleMovement : MonoBehaviour
     {
         // Get current friction
         float friction;
-        if (currentDriftAngle > driftFrictionStatistics.driftAngle) friction = driftFrictionStatistics.driftFriction;
-        else if (currentDriftAngle > driftFrictionStatistics.slideAngle) friction = driftFrictionStatistics.slideFriction;
-        else friction = driftFrictionStatistics.turnFriction;
+        if (currentDriftAngle > statistics.Friciton.driftAngle) friction = statistics.Friciton.driftFriction;
+        else if (currentDriftAngle > statistics.Friciton.slideAngle) friction = statistics.Friciton.slideFriction;
+        else friction = statistics.Friciton.turnFriction;
 
         // if there is no drift angle
 		if(currentDriftAngle < .1f) currentDriftAngle = friction;
@@ -114,6 +102,31 @@ public class VehicleMovement : MonoBehaviour
         return forward;
     }
 
+    public void ToggleMovement()
+    {
+        isMoving = !isMoving;
+        if (!isMoving)
+        {
+            rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionY;
+        }
+    }
+    public void ToggleMovement(bool isMoving)
+    {
+        this.isMoving = isMoving;
+        if (!isMoving)
+        {
+            rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionY;
+        }
+    }
+
     void Rotate()
     {
         float currentAngle = transform.eulerAngles.y;
@@ -124,23 +137,26 @@ public class VehicleMovement : MonoBehaviour
 
         rb.rotation = Quaternion.Euler(0, angle, 0);
     }
-    #endregion
 
-    public void AddFriction(DriftFrictionStatistics frictionToAdd)
+    IEnumerator LockMovement(float delay)
     {
-        driftFrictionStatistics.turnFriction += frictionToAdd.turnFriction;
-        driftFrictionStatistics.driftFriction += frictionToAdd.driftFriction;
-        driftFrictionStatistics.slideFriction += frictionToAdd.slideFriction;
-
-        driftFrictionStatistics.driftAngle += frictionToAdd.driftAngle;
-        driftFrictionStatistics.slideAngle += frictionToAdd.slideAngle;
+        canMove = false;
+        yield return new WaitForSeconds(delay);
+        canMove = true;
     }
+    IEnumerator LockRotation(float delay)
+    {
+        canRotate = false;
+        yield return new WaitForSeconds(delay);
+        canRotate = true;
+    }
+    #endregion
 
     #region Drift
     void CheckDrift()
     {
         currentDriftAngle = Vector3.Angle(transform.forward, rb.velocity.normalized);
-        if (currentDriftAngle >= driftFrictionStatistics.slideAngle)
+        if (currentDriftAngle >= statistics.Friciton.slideAngle)
         {
             StartEmmiter();
             vehicleDriftScore.SetDriftState(true);
@@ -172,11 +188,26 @@ public class VehicleMovement : MonoBehaviour
         input = inputs;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("pass");
+        Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collision.contacts[0].normal * impactBumpForce, Color.blue, 10);
+
+        StartCoroutine(LockMovement(.4f));
+        StartCoroutine(LockRotation(.4f));
+
+        Vector3 bumpDir = (collision.contacts[0].point - transform.position).normalized;
+        rb.AddForce(collision.contacts[0].normal * impactBumpForce, ForceMode.Impulse);
+    }
+
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(driftFrictionStatistics.slideAngle, Vector3.up) * Vector3.forward * 2);
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(driftFrictionStatistics.driftAngle, Vector3.up) * Vector3.forward * 2);
+        if (statistics)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(statistics.Friciton.slideAngle, Vector3.up) * Vector3.forward * 2);
+            Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(statistics.Friciton.driftAngle, Vector3.up) * Vector3.forward * 2);
+        }        
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(-maxVelocityAngle, Vector3.up) * Vector3.forward * 2);
