@@ -133,7 +133,12 @@ public class VehicleMovement : MonoBehaviour
         float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
         targetAngle = Mathf.Clamp(targetAngle, -maxRotationAngle, maxRotationAngle);
 
-        float angle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+        if(currentAngle > 180)
+        {
+            currentAngle = -(180 - (currentAngle - 180));
+        }
+
+        float angle = Mathf.SmoothDamp(currentAngle, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
         rb.rotation = Quaternion.Euler(0, angle, 0);
     }
@@ -202,7 +207,7 @@ public class VehicleMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (statistics)
+        if (statistics != null)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.position, transform.position + Quaternion.AngleAxis(statistics.Friciton.slideAngle, Vector3.up) * Vector3.forward * 2);

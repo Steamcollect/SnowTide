@@ -980,7 +980,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 2
-  m_Constraints: 4
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &9142107714138864891
 MonoBehaviour:
@@ -1019,6 +1019,7 @@ MonoBehaviour:
   - {fileID: 7393679330498570280}
   - {fileID: 5279385981250782294}
   - {fileID: 2160056374009477511}
+  impactBumpForce: 1.69
   rb: {fileID: 837687545921577164}
   vehicleDriftScore: {fileID: 2340657120261254109}
   statistics: {fileID: 3520671360094562413}
