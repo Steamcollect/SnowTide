@@ -98,19 +98,16 @@ MonoBehaviour:
   turnSmoothTime: 0.38
   maxVelocityAngle: 90
   maxRotationAngle: 110
-  driftFrictionStatistics:
-    turnFriction: 4
-    slideAngle: 30
-    slideFriction: 20
-    driftAngle: 65
-    driftFriction: 50
   tyreMarks:
   - {fileID: 4440622544129898101}
   - {fileID: 3310979281707311191}
   - {fileID: 556960532958276789}
   - {fileID: 3446743222603786844}
+  impactBumpForce: 0
   rb: {fileID: 8630834979338840130}
   vehicleDriftScore: {fileID: 4274004832069344096}
+  statistics: {fileID: 960389742219074832}
+  rsoVehicleMovement: {fileID: 11400000, guid: 49dda69a21fe3f74eac26930c7eddd27, type: 2}
 --- !u!114 &8220310924695005341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,8 +171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f323777f3effd3a4da181e7aaffe1c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  peopleCount: 0
-  currentWeight: 0
+  driftFrictionStatistics:
+    turnFriction: 0
+    slideAngle: 0
+    slideFriction: 0
+    driftAngle: 0
+    driftFriction: 0
 --- !u!1 &1176125098107546599
 GameObject:
   m_ObjectHideFlags: 0

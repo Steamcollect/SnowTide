@@ -47,6 +47,7 @@ MonoBehaviour:
   OnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
   OnCommandSave: {fileID: 11400000, guid: b9b98c83cb66fa24594ba5ee1df92141, type: 2}
   OnUIAction: {fileID: 11400000, guid: 2f4da7c3d07c3e243871ccb78a6178cf, type: 2}
+  rsoVehicleMovement: {fileID: 11400000, guid: 49dda69a21fe3f74eac26930c7eddd27, type: 2}
   BackgroundMusicEvent:
     m_PersistentCalls:
       m_Calls:

@@ -9,6 +9,7 @@ public class RoadGenerator : MonoBehaviour
     [Header("Parameter")] 
     [SerializeField] private bool startBuildAutoAtStart;
     
+    
     [Header("Components Generator")]
     [SerializeField] private UnloaderRoadChunk unloaderRoadChunk;
     [SerializeField] private LoaderRoadChunk loaderRoadChunk;
@@ -27,9 +28,14 @@ public class RoadGenerator : MonoBehaviour
 
     private void Awake()
     {
-        roadGm = new GameObject("Road");
-        roadGm.transform.parent = transform;
-        roadGm.transform.position = Vector3.zero;
+        roadGm = new GameObject("Road")
+        {
+            transform =
+            {
+                parent = transform,
+                position = Vector3.zero
+            }
+        };
     }
     
     private void OnEnable()
@@ -104,7 +110,7 @@ public class RoadGenerator : MonoBehaviour
             chunk.SetActive(false);
             chunk.GetComponent<TriggerExitChunk>().OnChunkExit += NotifyExitChunk;
             _loadedRoadChunks.Add(chunk.GetComponent<ChunkRoad>());
-            if (roadGm) chunk.transform.SetParent(roadGm.transform);
+            chunk.transform.SetParent(roadGm.transform);
         }
         if (_loadedRoadChunks.Count == (scoRoadGen.chunksVisibe + 1) * roadChunkT.Count) InitializationRoad();
     }

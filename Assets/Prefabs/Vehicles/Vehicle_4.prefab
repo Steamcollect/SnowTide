@@ -1023,6 +1023,7 @@ MonoBehaviour:
   rb: {fileID: 837687545921577164}
   vehicleDriftScore: {fileID: 2340657120261254109}
   statistics: {fileID: 3520671360094562413}
+  rsoVehicleMovement: {fileID: 11400000, guid: 49dda69a21fe3f74eac26930c7eddd27, type: 2}
 --- !u!114 &3520671360094562413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,8 +1056,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2
   healtRegenTime: 15
-  OnTakeDamage: {fileID: 0}
-  OnPlayerDeath: {fileID: 0}
+  OnTakeDamage: {fileID: 11400000, guid: 5fe46e0f2dc21904b8937b7b9fdeb693, type: 2}
+  OnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
   avalancheFollow: {fileID: 0}
 --- !u!114 &2340657120261254109
 MonoBehaviour:

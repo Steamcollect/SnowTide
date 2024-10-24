@@ -12,7 +12,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RSO_VehicleMovement rsoVehicleMovement;
     [SerializeField] private UnityEvent BackgroundMusicEvent;
     
-    private void Start() => BackgroundMusicEvent.Invoke();
+    private void Start()
+    {
+        rsoVehicleMovement.Value.ToggleMovement(false);
+        BackgroundMusicEvent.Invoke();
+    }
 
     private void OnEnable()
     {
