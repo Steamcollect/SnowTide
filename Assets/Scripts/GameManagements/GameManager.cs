@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private bool vehicleStopAtStart;
+    
     [Header("References")]
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private RSE_Event OnCommandSave;
@@ -14,7 +16,7 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        rsoVehicleMovement.Value.ToggleMovement(false);
+        if (vehicleStopAtStart) rsoVehicleMovement.Value.ToggleMovement(false);
         BackgroundMusicEvent.Invoke();
     }
 
