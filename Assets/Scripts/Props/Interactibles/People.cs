@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class People : Interactible
 {
@@ -9,7 +11,7 @@ public class People : Interactible
     [SerializeField] int scoreGiven;
 
     [SerializeField] RSE_IntEvent rse_AddScore;
-    [SerializeField] private GameObject visual;
+    [SerializeField] private UnityEvent OnPickedUp;
 
     public override void ResetComponent()
     {
@@ -19,6 +21,7 @@ public class People : Interactible
     public override void OnPlayerCollision(Transform player)
     {
         if (!player.TryGetComponent(out VehicleStatistics vehicleStatistics)) return;
+        OnPickedUp?.Invoke();
         rse_AddScore.Call(scoreGiven);
         vehicleStatistics.AddFriction(frictionToAdd);
         gameObject.SetActive(false);
