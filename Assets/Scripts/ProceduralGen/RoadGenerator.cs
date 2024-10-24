@@ -9,7 +9,6 @@ public class RoadGenerator : MonoBehaviour
     [Header("Parameter")] 
     [SerializeField] private bool startBuildAutoAtStart;
     
-    
     [Header("Components Generator")]
     [SerializeField] private UnloaderRoadChunk unloaderRoadChunk;
     [SerializeField] private LoaderRoadChunk loaderRoadChunk;
@@ -40,14 +39,12 @@ public class RoadGenerator : MonoBehaviour
     
     private void OnEnable()
     {
-        if (loaderRoadChunk) loaderRoadChunk.OnChunkLoaded += NotifyLoadComplete;
         rse_StartBuildAuto.action += StartBuildAuto;
         rse_StopBuildAuto.action += StopBuildAuto;
     }
 
     private void OnDisable()
     {
-        if (loaderRoadChunk) loaderRoadChunk.OnChunkLoaded -= NotifyLoadComplete;
         rse_StartBuildAuto.action -= StartBuildAuto;
         rse_StopBuildAuto.action -= StopBuildAuto;
     }
@@ -72,7 +69,6 @@ public class RoadGenerator : MonoBehaviour
                 loaderRoadChunk.LoadChunk(chunkT, scoRoadGen.chunksVisibe + 1);
             }
         }
-        if (!roadGm) Debug.LogWarning(message: "No road assigned");
     }
 
     private void InitializationRoad()
@@ -99,21 +95,10 @@ public class RoadGenerator : MonoBehaviour
     
     private void NotifyExitChunk(ChunkRoad chunk)
     {
-        if (unloaderRoadChunk) unloaderRoadChunk.UnloadChunk(chunk.gameObject);
+        unloaderRoadChunk.UnloadChunk(chunk.gameObject);
         BuildRoad();
     }
     
-    private void NotifyLoadComplete(GameObject[] chunks)
-    {
-        foreach (var chunk in chunks)
-        {
-            chunk.SetActive(false);
-            chunk.GetComponent<TriggerExitChunk>().OnChunkExit += NotifyExitChunk;
-            _loadedRoadChunks.Add(chunk.GetComponent<ChunkRoad>());
-            chunk.transform.SetParent(roadGm.transform);
-        }
-        if (_loadedRoadChunks.Count == (scoRoadGen.chunksVisibe + 1) * roadChunkT.Count) InitializationRoad();
-    }
     
     private ChunkRoad SelectionChunk()
     {
