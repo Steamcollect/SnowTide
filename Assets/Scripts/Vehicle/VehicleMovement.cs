@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Mathematics;
 using UnityEditorInternal;
@@ -34,12 +35,23 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] VehicleDriftingScore vehicleDriftScore;
     [SerializeField] VehicleStatistics statistics;
-
+    [SerializeField] private RSO_VehicleMovement rsoVehicleMovement;
+    
     Vector2 input;
 
     bool canMove = true;
     bool canRotate = true;
     bool isMoving = true;
+
+    private void Start() => rsoVehicleMovement.Value = this;
+
+    private void OnDestroy()
+    {
+        if (rsoVehicleMovement.Value == this)
+        {
+            rsoVehicleMovement.Value = null;
+        }
+    }
 
     void Update()
     {
