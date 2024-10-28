@@ -11,13 +11,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private RSE_Event OnCommandSave;
     [SerializeField] private RSE_UIAction OnUIAction;
+    [SerializeField] private RSE_SetStateActive rseSetStateJoystick;
     [SerializeField] private RSO_VehicleMovement rsoVehicleMovement;
     [SerializeField] private UnityEvent BackgroundMusicEvent;
     
     private void Start()
     {
-        if (vehicleStopAtStart) rsoVehicleMovement.Value.ToggleMovement(false);
+        if (vehicleStopAtStart)
+        {
+            rsoVehicleMovement.Value.ToggleMovement(false);
+        }
         BackgroundMusicEvent.Invoke();
+        rseSetStateJoystick.Call(false);
     }
 
     private void OnEnable()
