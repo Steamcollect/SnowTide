@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
         rse_SwapChunk.Call(GameState.Menu);
         rse_StopBuildAuto.Call();
         rse_StartBuildAuto.Call();
+        rso_VehicleMovement.Value.ToggleMovement(true);
     }
 
     private void Pause()
@@ -98,10 +99,14 @@ public class GameManager : MonoBehaviour
             case UiActionGame.Resume:
                 Resume();
                 break;
+            case UiActionGame.Restart:
+                BackMenu();
+                Play();
+                break;
         }
         ev?.Invoke();
     }
-    
+
     private void OnApplicationQuit()
     {
         OnCommandSave.Call();

@@ -62,7 +62,7 @@ public class UiManager : MonoBehaviour
         panelEnd.SetActive(false);
         panelPause.SetActive(false);
         panelHUD.SetActive(false);
-        onUIAction.Call(UiActionGame.Play, () => { });
+        onUIAction.Call(UiActionGame.Restart, () => { });
         panelHUD.SetActive(true);
     }
 
@@ -82,5 +82,6 @@ public enum UiActionGame
     BackMenu,
     Pause,
     Resume,
-    Play
+    Play,
+    Restart
 }
