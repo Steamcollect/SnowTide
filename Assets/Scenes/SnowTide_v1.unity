@@ -667,30 +667,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2000682684}
     m_Modifications:
-    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
-      propertyPath: roadChunkMenuT
-      value: 
-      objectReference: {fileID: 1271070144976020458, guid: 3833938a0db6f304ebf4f94c64e4f4e5, type: 3}
-    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
-      propertyPath: roadChunkT.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
-      propertyPath: startBuildAutoAtStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
-      propertyPath: roadChunkT.Array.data[0]
-      value: 
-      objectReference: {fileID: 1271070144976020458, guid: 3115af5c9c072cc40b4886fc9cd9db5b, type: 3}
-    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
-      propertyPath: roadChunkT.Array.data[1]
-      value: 
-      objectReference: {fileID: 1271070144976020458, guid: 4abe8fb3923bb02468e86d2a8c195ead, type: 3}
-    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
-      propertyPath: roadChunkT.Array.data[2]
-      value: 
-      objectReference: {fileID: 1271070144976020458, guid: 843d5878083b9ba44a13e59f3cef63d9, type: 3}
     - target: {fileID: 6188283500091550504, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
       propertyPath: m_Name
       value: RoadGenerator
