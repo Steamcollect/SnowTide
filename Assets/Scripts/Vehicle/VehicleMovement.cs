@@ -56,14 +56,16 @@ public class VehicleMovement : MonoBehaviour
     void Update()
     {
         if(isMoving) CheckDrift();
+
+        print(rb.velocity);
     }
 
     private void FixedUpdate()
     {
         if (isMoving)
         {
-            if(canRotate) Rotate();
-            if(canMove) Move();
+            Rotate();
+            Move();
         }            
     }
 
@@ -143,6 +145,7 @@ public class VehicleMovement : MonoBehaviour
     {
         float currentAngle = transform.eulerAngles.y;
         float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
+
         targetAngle = Mathf.Clamp(targetAngle, -maxRotationAngle, maxRotationAngle);
 
         if(currentAngle > 180)
@@ -202,19 +205,19 @@ public class VehicleMovement : MonoBehaviour
 
     public void SetInput(Vector2 inputs)
     {
-        input = inputs;
+        if (canRotate) input = inputs;
+        else input = Vector2.up;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        print("pass");
-        Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collision.contacts[0].normal * impactBumpForce, Color.blue, 10);
-
         StartCoroutine(LockMovement(.4f));
         StartCoroutine(LockRotation(.4f));
 
-        Vector3 bumpDir = (collision.contacts[0].point - transform.position).normalized;
-        rb.AddForce(collision.contacts[0].normal * impactBumpForce, ForceMode.Impulse);
+        Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collision.contacts[0].normal, Color.blue, 10);
+
+        Vector3 bumpDir = collision.contacts[0].normal;
+        rb.AddForce(bumpDir * impactBumpForce, ForceMode.VelocityChange);
     }
 
     private void OnDrawGizmosSelected()
