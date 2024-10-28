@@ -15,17 +15,20 @@ public class RoadGenerator : MonoBehaviour
     [SerializeField] private LoaderRoadChunk loaderRoadChunk;
 
     [Header("References")] 
-    [SerializeField] private GameObject roadChunkMenu;
-    [SerializeField] private List<GameObject> roadChunkT = new List<GameObject>();
+    [SerializeField] private GameObject roadChunkMenuT;
+    [SerializeField] private List<GameObject> roadChunkT = new ();
     [SerializeField] private SettingsRoadGeneration scoRoadGen;
     [Space(10)] 
     [SerializeField] private RSE_Event rse_StartBuildAuto;
     [SerializeField] private RSE_Event rse_StopBuildAuto;
     
     private GameObject roadGm;
-    private List<ChunkRoad> _loadedRoadChunks = new List<ChunkRoad>();
-    private ChunkRoad _frontChunk = null;
-
+    private List<ChunkRoad> _loadedRoadChunks = new();
+    private List<ChunkRoad> _loadedMenuChunk = new();
+    private ChunkRoad _frontChunk;
+    private List<ChunkRoad> _currentsChunks = new();
+    
+    
     private void Awake()
     {
         roadGm = new GameObject("Road")
@@ -36,18 +39,17 @@ public class RoadGenerator : MonoBehaviour
                 position = Vector3.zero
             }
         };
+        SwapChunkSelection(GameState.Menu);
     }
     
     private void OnEnable()
     {
-        if (loaderRoadChunk) loaderRoadChunk.OnChunkLoaded += NotifyLoadComplete;
         rse_StartBuildAuto.action += StartBuildAuto;
         rse_StopBuildAuto.action += StopBuildAuto;
     }
 
     private void OnDisable()
     {
-        if (loaderRoadChunk) loaderRoadChunk.OnChunkLoaded -= NotifyLoadComplete;
         rse_StartBuildAuto.action -= StartBuildAuto;
         rse_StopBuildAuto.action -= StopBuildAuto;
     }
@@ -65,14 +67,13 @@ public class RoadGenerator : MonoBehaviour
 
     private void Start()
     {
-        if (loaderRoadChunk)
+        
+        loaderRoadChunk.LoadChunk(roadChunkMenuT, scoRoadGen.chunksVisibe + 1,chunks=>NotifyLoadComplete(chunks,_loadedMenuChunk));
+        
+        foreach (var chunkT in roadChunkT)
         {
-            foreach (var chunkT in roadChunkT)
-            {
-                loaderRoadChunk.LoadChunk(chunkT, scoRoadGen.chunksVisibe + 1);
-            }
+            loaderRoadChunk.LoadChunk(chunkT, scoRoadGen.chunksVisibe + 1,chunks=>NotifyLoadComplete(chunks,_loadedRoadChunks));
         }
-        if (!roadGm) Debug.LogWarning(message: "No road assigned");
     }
 
     private void InitializationRoad()
@@ -99,25 +100,45 @@ public class RoadGenerator : MonoBehaviour
     
     private void NotifyExitChunk(ChunkRoad chunk)
     {
-        if (unloaderRoadChunk) unloaderRoadChunk.UnloadChunk(chunk.gameObject);
+        unloaderRoadChunk.UnloadChunk(chunk.gameObject);
         BuildRoad();
     }
     
-    private void NotifyLoadComplete(GameObject[] chunks)
+    private void NotifyLoadComplete(GameObject[] chunks, List<ChunkRoad> targetSampler)
     {
         foreach (var chunk in chunks)
         {
             chunk.SetActive(false);
             chunk.GetComponent<TriggerExitChunk>().OnChunkExit += NotifyExitChunk;
-            _loadedRoadChunks.Add(chunk.GetComponent<ChunkRoad>());
+            targetSampler.Add(chunk.GetComponent<ChunkRoad>());
             chunk.transform.SetParent(roadGm.transform);
         }
-        if (_loadedRoadChunks.Count == (scoRoadGen.chunksVisibe + 1) * roadChunkT.Count) InitializationRoad();
+        if (targetSampler == _loadedMenuChunk) InitializationRoad();
     }
     
     private ChunkRoad SelectionChunk()
     {
-        return _loadedRoadChunks.FindAll(o => !o.gameObject.activeSelf).GetRandom();
+        return _currentsChunks.FindAll(o => !o.gameObject.activeSelf).GetRandom();
+    }
+
+    public void SwapChunkSelection(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.Road:
+                _currentsChunks = _loadedRoadChunks;
+                break;
+            case GameState.Menu:
+                _currentsChunks = _loadedMenuChunk;
+                break;
+        }
     }
     
+}
+
+[Serializable]
+public enum GameState
+{
+    Menu,
+    Road
 }
