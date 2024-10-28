@@ -45,7 +45,7 @@ public class VehicleMovement : MonoBehaviour
     bool canRotate = true;
     bool isMoving = true;
 
-    private void Start() => rsoVehicleMovement.Value = this;
+    private void Awake() => rsoVehicleMovement.Value = this;
 
     private void OnDestroy()
     {
@@ -55,6 +55,17 @@ public class VehicleMovement : MonoBehaviour
         }
     }
 
+    public void SnapPositon(Vector3 position)
+    {
+        transform.position = position;
+    }
+
+    public void ResetVehicle(Vector3 position)
+    {
+        SnapPositon(position);
+        //Reset other properties here
+    }
+    
     void Update()
     {
         if(isMoving) CheckDrift();
