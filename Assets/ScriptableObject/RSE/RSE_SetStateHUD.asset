@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c74e0c6873d48ba87f21e3f8fbc9a7c, type: 3}
-  m_Name: RSE_SetStateJoystick
+  m_Name: RSE_SetStateHUD
   m_EditorClassIdentifier: 

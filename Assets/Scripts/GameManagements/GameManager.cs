@@ -2,12 +2,15 @@ using System;
 using BT.Save;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private bool vehicleStopAtStart;
     
+    
     [Header("References")]
+    [SerializeField] private RSE_SwapChunk rseSwapChunk;
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private RSE_Event OnCommandSave;
     [SerializeField] private RSE_UIAction OnUIAction;
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        OnPlayerDeath.action+= GameOver;
+        OnPlayerDeath.action += GameOver;
         OnUIAction.action += UIActionGame;
     }
 
@@ -39,19 +42,33 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        
+        rseSetStateJoystick.Call(false);
     }
 
     private void Play()
     {
-        
+        rseSetStateJoystick.Call(true);
+        rseSwapChunk.Call(GameState.Road);
     }
 
     private void BackMenu()
     {
-        
+        rseSetStateJoystick.Call(false);
+        rseSwapChunk.Call(GameState.Menu);
     }
 
+    private void Pause()
+    {
+        rseSetStateJoystick.Call(false);
+        rsoVehicleMovement.Value.ToggleMovement(false);
+    }
+
+    private void Resume()
+    {
+        rseSetStateJoystick.Call(true);
+        rsoVehicleMovement.Value.ToggleMovement(true);
+    }
+    
     /// <summary>
     /// Callback of ui, when an specific action is set, like restart or back menu
     /// </summary>
@@ -67,7 +84,14 @@ public class GameManager : MonoBehaviour
             case UiActionGame.BackMenu:
                 BackMenu();
                 break;
+            case UiActionGame.Pause:
+                Pause();
+                break;
+            case UiActionGame.Resume:
+                Resume();
+                break;
         }
+        ev?.Invoke();
     }
     
     private void OnApplicationQuit()

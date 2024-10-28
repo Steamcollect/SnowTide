@@ -18,6 +18,6 @@ public class JoystickManager : MonoBehaviour
 
     private void SetActiveJoystick(bool active)
     {
-        joystick.enabled = active;
+        joystick.gameObject.SetActive(active);
     }
 }
