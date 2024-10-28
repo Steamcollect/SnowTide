@@ -24,7 +24,9 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField, Range(0, 180), Tooltip("Max angle possible to rotate the car visual")] float maxRotationAngle;
 
     [Space(10), Header("Drift")]
-	float currentDriftAngle;    
+	float currentDriftAngle;
+    bool isDrifting = false;
+    [SerializeField] ParticleSystem[] driftParticles;
 
     [SerializeField, Tooltip("TyreMarksReferences")] TrailRenderer[] tyreMarks;
 
@@ -178,15 +180,32 @@ public class VehicleMovement : MonoBehaviour
         currentDriftAngle = Vector3.Angle(transform.forward, rb.velocity.normalized);
         if (currentDriftAngle >= statistics.Friciton.slideAngle)
         {
+            if (currentDriftAngle >= statistics.Friciton.driftAngle && !isDrifting) SetDriftParticle(true);
+            else if(currentDriftAngle < statistics.Friciton.driftAngle) SetDriftParticle(false);
+
+
             StartEmmiter();
             vehicleDriftScore.SetDriftState(true);
         }
         else
         {
+            if (isDrifting) SetDriftParticle(false);              
+
             StopEmmiter();
             vehicleDriftScore.SetDriftState(false);
         }
     }
+
+    void SetDriftParticle(bool active)
+    {
+        isDrifting = active;
+        foreach (ParticleSystem particle in driftParticles)
+        {
+            if(active) particle.Play();
+            else particle.Stop();
+        }
+    }
+
     void StartEmmiter()
     {
         foreach (TrailRenderer T in tyreMarks)
@@ -217,7 +236,7 @@ public class VehicleMovement : MonoBehaviour
         Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collision.contacts[0].normal, Color.blue, 10);
 
         Vector3 bumpDir = collision.contacts[0].normal;
-        rb.AddForce(bumpDir * impactBumpForce, ForceMode.VelocityChange);
+        rb.AddForce(bumpDir * impactBumpForce, ForceMode.Force);
     }
 
     private void OnDrawGizmosSelected()
