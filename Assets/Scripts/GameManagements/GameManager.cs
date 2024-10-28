@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private bool vehicleStopAtStart;
+    [SerializeField] private Transform vehicleSpawnPoint;
     
     [Header("References")]
     [SerializeField] private RSE_Event rse_StartBuildAuto;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         }
         BackgroundMusicEvent.Invoke();
         rse_SetStateJoystick.Call(false);
+        rso_VehicleMovement.Value.SnapPositon(vehicleSpawnPoint.position);
     }
 
     private void OnEnable()
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
     private void BackMenu()
     {
         rse_SetStateJoystick.Call(false);
+        rso_VehicleMovement.Value.ResetVehicle(vehicleSpawnPoint.position);
         rse_SwapChunk.Call(GameState.Menu);
         rse_StopBuildAuto.Call();
         rse_StartBuildAuto.Call();
