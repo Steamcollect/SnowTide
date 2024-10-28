@@ -6,26 +6,31 @@ using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Parameters")]
     [SerializeField] private bool vehicleStopAtStart;
     
-    
     [Header("References")]
-    [SerializeField] private RSE_SwapChunk rseSwapChunk;
+    [SerializeField] private RSE_Event rse_StartBuildAuto;
+    [SerializeField] private RSE_Event rse_StopBuildAuto;
+    [SerializeField] private RSE_SwapChunk rse_SwapChunk;
+    [Space(10)]
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private RSE_Event OnCommandSave;
     [SerializeField] private RSE_UIAction OnUIAction;
-    [SerializeField] private RSE_SetStateActive rseSetStateJoystick;
-    [SerializeField] private RSO_VehicleMovement rsoVehicleMovement;
+    [Space(10)]
+    [SerializeField] private RSE_SetStateActive rse_SetStateJoystick;
+    [SerializeField] private RSO_VehicleMovement rso_VehicleMovement;
+    [Space(10)]
     [SerializeField] private UnityEvent BackgroundMusicEvent;
     
     private void Start()
     {
         if (vehicleStopAtStart)
         {
-            rsoVehicleMovement.Value.ToggleMovement(false);
+            rso_VehicleMovement.Value.ToggleMovement(false);
         }
         BackgroundMusicEvent.Invoke();
-        rseSetStateJoystick.Call(false);
+        rse_SetStateJoystick.Call(false);
     }
 
     private void OnEnable()
@@ -42,31 +47,34 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        rseSetStateJoystick.Call(false);
+        rse_SetStateJoystick.Call(false);
+        rse_StopBuildAuto.Call();
     }
 
     private void Play()
     {
-        rseSetStateJoystick.Call(true);
-        rseSwapChunk.Call(GameState.Road);
+        rse_SetStateJoystick.Call(true);
+        rse_SwapChunk.Call(GameState.Road);
     }
 
     private void BackMenu()
     {
-        rseSetStateJoystick.Call(false);
-        rseSwapChunk.Call(GameState.Menu);
+        rse_SetStateJoystick.Call(false);
+        rse_SwapChunk.Call(GameState.Menu);
+        rse_StopBuildAuto.Call();
+        rse_StartBuildAuto.Call();
     }
 
     private void Pause()
     {
-        rseSetStateJoystick.Call(false);
-        rsoVehicleMovement.Value.ToggleMovement(false);
+        rse_SetStateJoystick.Call(false);
+        rso_VehicleMovement.Value.ToggleMovement(false);
     }
 
     private void Resume()
     {
-        rseSetStateJoystick.Call(true);
-        rsoVehicleMovement.Value.ToggleMovement(true);
+        rse_SetStateJoystick.Call(true);
+        rso_VehicleMovement.Value.ToggleMovement(true);
     }
     
     /// <summary>
