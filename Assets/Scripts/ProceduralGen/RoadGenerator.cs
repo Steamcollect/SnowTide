@@ -21,6 +21,7 @@ public class RoadGenerator : MonoBehaviour
     [Space(10)] 
     [SerializeField] private RSE_Event rse_StartBuildAuto;
     [SerializeField] private RSE_Event rse_StopBuildAuto;
+    [SerializeField] private RSE_SwapChunk rse_SwapChunk;
     
     private GameObject roadGm;
     private List<ChunkRoad> _loadedRoadChunks = new();
@@ -46,17 +47,20 @@ public class RoadGenerator : MonoBehaviour
     {
         rse_StartBuildAuto.action += StartBuildAuto;
         rse_StopBuildAuto.action += StopBuildAuto;
+        rse_SwapChunk.action += SwapChunkSelection;
     }
 
     private void OnDisable()
     {
         rse_StartBuildAuto.action -= StartBuildAuto;
         rse_StopBuildAuto.action -= StopBuildAuto;
+        rse_SwapChunk.action -= SwapChunkSelection;
     }
 
     private void StopBuildAuto()
     {
         for (int i = 0; i < _loadedRoadChunks.Count; ++i) _loadedRoadChunks[i].gameObject.SetActive(false);
+        for (int i = 0; i < _loadedMenuChunk.Count; ++i) _loadedMenuChunk[i].gameObject.SetActive(false);
         unloaderRoadChunk.ResetUnloader();
     }
 
@@ -121,17 +125,14 @@ public class RoadGenerator : MonoBehaviour
         return _currentsChunks.FindAll(o => !o.gameObject.activeSelf).GetRandom();
     }
 
-    public void SwapChunkSelection(GameState gameState)
+    private void SwapChunkSelection(GameState gameState)
     {
-        switch (gameState)
+        _currentsChunks = gameState switch
         {
-            case GameState.Road:
-                _currentsChunks = _loadedRoadChunks;
-                break;
-            case GameState.Menu:
-                _currentsChunks = _loadedMenuChunk;
-                break;
-        }
+            GameState.Road => _loadedRoadChunks,
+            GameState.Menu => _loadedMenuChunk,
+            _ => _currentsChunks
+        };
     }
     
 }

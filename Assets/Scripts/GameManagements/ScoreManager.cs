@@ -12,13 +12,14 @@ public class ScoreManager : MonoBehaviour
     
     [Header("RSE")]
     [SerializeField] RSE_IntEvent rse_AddScore;
-
+    [SerializeField] RSE_SetStateActive rseSetStateActive;
+    
     private void Start()
     {
         SetTextVisual();
     }
 
-    public void AddScore(int scoreGiven)
+    private void AddScore(int scoreGiven)
     {
         score += scoreGiven;
         SetTextVisual();
@@ -31,12 +32,19 @@ public class ScoreManager : MonoBehaviour
         scoreTxt.text = score.ToString();
     }
 
+    private void SetActiveVisual(bool active)
+    {
+        scoreTxt.gameObject.SetActive(active);
+    }
+
     private void OnEnable()
     {
         rse_AddScore.action += AddScore;
+        rseSetStateActive.action += SetActiveVisual;
     }
     private void OnDisable()
     {
         rse_AddScore.action -= AddScore;
+        rseSetStateActive.action -= SetActiveVisual;
     }
 }
