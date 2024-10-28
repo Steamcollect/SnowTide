@@ -59,8 +59,15 @@ public class RoadGenerator : MonoBehaviour
 
     private void StopBuildAuto()
     {
-        for (int i = 0; i < _loadedRoadChunks.Count; ++i) _loadedRoadChunks[i].gameObject.SetActive(false);
-        for (int i = 0; i < _loadedMenuChunk.Count; ++i) _loadedMenuChunk[i].gameObject.SetActive(false);
+        for (int i = 0; i < _loadedRoadChunks.Count; ++i)
+        {
+            unloaderRoadChunk.DisableChunk(_loadedRoadChunks[i]);
+        }
+
+        for (int i = 0; i < _loadedMenuChunk.Count; ++i)
+        {
+            unloaderRoadChunk.DisableChunk(_loadedMenuChunk[i]);
+        }
         unloaderRoadChunk.ResetUnloader();
     }
 
@@ -82,7 +89,6 @@ public class RoadGenerator : MonoBehaviour
 
     private void InitializationRoad()
     {
-        if (!startBuildAutoAtStart) return;
         _frontChunk = SelectionChunk();
         _frontChunk.transform.position = -_frontChunk.anchorEnd.position;
         _frontChunk.gameObject.SetActive(true);
@@ -117,7 +123,7 @@ public class RoadGenerator : MonoBehaviour
             targetSampler.Add(chunk.GetComponent<ChunkRoad>());
             chunk.transform.SetParent(roadGm.transform);
         }
-        if (targetSampler == _loadedMenuChunk) InitializationRoad();
+        if (targetSampler == _loadedMenuChunk && startBuildAutoAtStart) InitializationRoad();
     }
     
     private ChunkRoad SelectionChunk()
