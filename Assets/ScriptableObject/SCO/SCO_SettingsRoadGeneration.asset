@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7f77ffc521cf2448cda68a3a1352bc, type: 3}
   m_Name: SCO_SettingsRoadGeneration
   m_EditorClassIdentifier: 
-  <chunksVisibe>k__BackingField: 3
-  <sizeChunk>k__BackingField: {x: 1, y: 1, z: 1}
+  <chunksVisibe>k__BackingField: 6
