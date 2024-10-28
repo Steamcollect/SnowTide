@@ -9,5 +9,6 @@ public class VehicleMotor : MonoBehaviour
     private void Update()
     {
         vehicleMovement.SetInput(joystick.Direction);
+        print(joystick.Direction);
     }
 }

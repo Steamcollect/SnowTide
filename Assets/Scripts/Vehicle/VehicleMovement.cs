@@ -58,16 +58,14 @@ public class VehicleMovement : MonoBehaviour
     void Update()
     {
         if(isMoving) CheckDrift();
-
-        print(rb.velocity);
     }
 
     private void FixedUpdate()
     {
         if (isMoving)
         {
-            Rotate();
-            Move();
+            if(canRotate)Rotate();
+            if (canMove) Move();
         }            
     }
 
@@ -230,13 +228,19 @@ public class VehicleMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        velocity = Vector3.zero;
+        rotationVelocity = Vector3.zero;
+
         StartCoroutine(LockMovement(.4f));
         StartCoroutine(LockRotation(.4f));
 
-        Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collision.contacts[0].normal, Color.blue, 10);
+        //Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collision.contacts[0].normal, Color.blue, 10);
 
         Vector3 bumpDir = collision.contacts[0].normal;
-        rb.AddForce(bumpDir * impactBumpForce, ForceMode.Force);
+
+        Debug.DrawLine(transform.position, transform.position + bumpDir * 5);
+
+        rb.AddForce(bumpDir * impactBumpForce, ForceMode.Impulse);
     }
 
     private void OnDrawGizmosSelected()
@@ -261,7 +265,7 @@ public class VehicleMovement : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, transform.position + rb.velocity.normalized * 2);
             Gizmos.color = Color.black;
-            Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2);
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward * 10);
         }
     }
 }
