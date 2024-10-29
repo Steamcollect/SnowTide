@@ -154,10 +154,6 @@ public class VehicleMovement : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezePositionY;
         }
     }
-    public void SnapPositon(Vector3 position)
-    {
-        transform.position = position;
-    }
 
     IEnumerator LockMovement(float delay)
     {
@@ -210,17 +206,6 @@ public class VehicleMovement : MonoBehaviour
         transform.rotation = targetRot;
     }
     #endregion
-
-    public void ResetVehicle(Vector3 position)
-    {
-        SnapPositon(position);
-        speedVelocity = 0;
-        velocity = Vector3.zero;
-        rotationVelocity = Vector3.zero;
-        rb.rotation = Quaternion.Euler(0, 0, 0);
-        rb.velocity = velocity;
-        //Reset other properties here
-    }
 
     #region Drift
     void CheckDrift()

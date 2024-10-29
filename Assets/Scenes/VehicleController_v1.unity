@@ -2373,25 +2373,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634454779}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &636884952 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 952266992575053663, guid: 0d8079813394a6845bb43780d313e5aa, type: 3}
-  m_PrefabInstance: {fileID: 2258279465967086782}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &636884958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 636884952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2ecf40abbaa92a4fb12db0684b6c648, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joystick: {fileID: 0}
-  rseSetStateActive: {fileID: 0}
 --- !u!1 &641299675
 GameObject:
   m_ObjectHideFlags: 0
@@ -8825,10 +8806,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2160056374009477511, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+      propertyPath: m_Time
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242133616402034231, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+      propertyPath: m_Time
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2340657120261254109, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
       propertyPath: comboCountTxt
       value: 
       objectReference: {fileID: 2499493334301816371}
+    - target: {fileID: 5279385981250782294, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+      propertyPath: m_Time
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5461000963252465114, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -8876,6 +8869,10 @@ PrefabInstance:
     - target: {fileID: 7220064509602456800, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
       propertyPath: impactLockMovementDelay
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393679330498570280, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+      propertyPath: m_Time
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8581354344173175107, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
       propertyPath: m_Name
@@ -9073,10 +9070,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 952266992575053663, guid: 0d8079813394a6845bb43780d313e5aa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 636884958}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d8079813394a6845bb43780d313e5aa, type: 3}
 --- !u!114 &2499493334301816371 stripped
 MonoBehaviour:
