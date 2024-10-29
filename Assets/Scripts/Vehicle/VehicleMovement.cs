@@ -63,6 +63,11 @@ public class VehicleMovement : MonoBehaviour
     public void ResetVehicle(Vector3 position)
     {
         SnapPositon(position);
+        speedVelocity = 0;
+        velocity = Vector3.zero;
+        rotationVelocity = Vector3.zero;
+        rb.rotation = Quaternion.Euler(0,0,0);
+        rb.velocity = velocity;
         //Reset other properties here
     }
     
@@ -241,6 +246,7 @@ public class VehicleMovement : MonoBehaviour
     {
         velocity = Vector3.zero;
         rotationVelocity = Vector3.zero;
+        speedVelocity = 0;
 
         StartCoroutine(LockMovement(.4f));
         StartCoroutine(LockRotation(.4f));

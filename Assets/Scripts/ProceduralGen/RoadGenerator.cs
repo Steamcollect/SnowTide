@@ -69,6 +69,7 @@ public class RoadGenerator : MonoBehaviour
             unloaderRoadChunk.DisableChunk(_loadedMenuChunk[i]);
         }
         unloaderRoadChunk.ResetUnloader();
+        _frontChunk = null;
     }
 
     private void StartBuildAuto()
