@@ -57,17 +57,17 @@ public class VehicleMovement : MonoBehaviour
 
     public void SnapPositon(Vector3 position)
     {
-        transform.position = position;
+        rb.position = position;
     }
 
     public void ResetVehicle(Vector3 position)
     {
-        SnapPositon(position);
         speedVelocity = 0;
         velocity = Vector3.zero;
         rotationVelocity = Vector3.zero;
         rb.rotation = Quaternion.Euler(0,0,0);
         rb.velocity = velocity;
+        SnapPositon(position);
         //Reset other properties here
     }
     

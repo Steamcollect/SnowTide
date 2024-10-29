@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using BT.Save;
 using UnityEngine;
 using UnityEngine.Events;
@@ -59,13 +60,15 @@ public class GameManager : MonoBehaviour
         rse_SwapChunk.Call(GameState.Road);
     }
 
-    private void BackMenu()
+    private IEnumerator BackMenu()
     {
         rse_SetStateJoystick.Call(false);
         rso_VehicleMovement.Value.ResetVehicle(vehicleSpawnPoint.position);
         rse_SwapChunk.Call(GameState.Menu);
         rse_StopBuildAuto.Call();
+        yield return new WaitForSeconds(0.2f);
         rse_StartBuildAuto.Call();
+        yield return new WaitForSeconds(0.2f);
         rso_VehicleMovement.Value.ToggleMovement(true);
     }
 
@@ -79,6 +82,13 @@ public class GameManager : MonoBehaviour
     {
         rse_SetStateJoystick.Call(true);
         rso_VehicleMovement.Value.ToggleMovement(true);
+    }
+
+    private IEnumerator RestartGame()
+    {
+        yield return StartCoroutine(BackMenu());
+        yield return new WaitForSeconds(0.2f);
+        Play();
     }
     
     /// <summary>
@@ -94,7 +104,7 @@ public class GameManager : MonoBehaviour
                 Play();
                 break;
             case UiActionGame.BackMenu:
-                BackMenu();
+                StartCoroutine(BackMenu());
                 break;
             case UiActionGame.Pause:
                 Pause();
@@ -103,8 +113,7 @@ public class GameManager : MonoBehaviour
                 Resume();
                 break;
             case UiActionGame.Restart:
-                BackMenu();
-                Play();
+                StartCoroutine(RestartGame());
                 break;
         }
         ev?.Invoke();

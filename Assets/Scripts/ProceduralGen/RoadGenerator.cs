@@ -91,6 +91,7 @@ public class RoadGenerator : MonoBehaviour
     private void InitializationRoad()
     {
         _frontChunk = SelectionChunk();
+        _frontChunk.transform.position = Vector3.zero;
         _frontChunk.transform.position = -_frontChunk.anchorEnd.position;
         _frontChunk.gameObject.SetActive(true);
         unloaderRoadChunk.UnloadChunk(_frontChunk.gameObject);
