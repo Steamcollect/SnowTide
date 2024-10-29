@@ -1,0 +1,6 @@
+using UnityEngine;
+
+    #ROOTNAMESPACEBEGIN#
+[CreateAssetMenu(fileName = "RSE_#SCRIPTNAME#", menuName = "RSE/_/#SCRIPTNAME#")]
+public class #SCRIPTNAME# : BT.ScriptablesObject.WrapperAction<>{}
+#ROOTNAMESPACEEND#
