@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private RSE_Event OnCommandSave;
     [SerializeField] private RSE_UIAction OnUIAction;
+    [Space(10)] 
+    [SerializeField] private RSE_FadeInOut rseFadeInOut;
     [Space(10)]
     [SerializeField] private RSE_SetStateActive rse_SetStateJoystick;
     [SerializeField] private RSO_VehicleMovement rso_VehicleMovement;
@@ -62,14 +64,16 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator BackMenu()
     {
+        rseFadeInOut.Call(true);
         rse_SetStateJoystick.Call(false);
         rso_VehicleMovement.Value.ResetVehicle(vehicleSpawnPoint.position);
         rse_SwapChunk.Call(GameState.Menu);
         rse_StopBuildAuto.Call();
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(2f);
         rse_StartBuildAuto.Call();
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         rso_VehicleMovement.Value.ToggleMovement(true);
+        rseFadeInOut.Call(false);
     }
 
     private void Pause()
@@ -87,7 +91,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RestartGame()
     {
         yield return StartCoroutine(BackMenu());
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         Play();
     }
     
