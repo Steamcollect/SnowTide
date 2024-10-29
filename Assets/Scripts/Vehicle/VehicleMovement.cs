@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using Unity.Mathematics;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class VehicleMovement : MonoBehaviour
@@ -30,8 +28,9 @@ public class VehicleMovement : MonoBehaviour
 
     [SerializeField, Tooltip("TyreMarksReferences")] TrailRenderer[] tyreMarks;
 
-    [Space(10), Header("Others")]
-   [SerializeField] float impactBumpForce;
+    [Space(10), Header("Impact")]
+    [SerializeField] float impactBumpForce;
+    [SerializeField] float impactLockMovementDelay;
 
     [Space(10), Header("References")]
     [SerializeField] Rigidbody rb;
@@ -54,22 +53,6 @@ public class VehicleMovement : MonoBehaviour
             rsoVehicleMovement.Value = null;
         }
     }
-
-    public void SnapPositon(Vector3 position)
-    {
-        transform.position = position;
-    }
-
-    public void ResetVehicle(Vector3 position)
-    {
-        SnapPositon(position);
-        speedVelocity = 0;
-        velocity = Vector3.zero;
-        rotationVelocity = Vector3.zero;
-        rb.rotation = Quaternion.Euler(0,0,0);
-        rb.velocity = velocity;
-        //Reset other properties here
-    }
     
     void Update()
     {
@@ -80,7 +63,7 @@ public class VehicleMovement : MonoBehaviour
     {
         if (isMoving)
         {
-            if(canRotate)Rotate();
+            if(canRotate) Rotate();
             if (canMove) Move();
         }            
     }
@@ -117,7 +100,6 @@ public class VehicleMovement : MonoBehaviour
         velocity.y = 0;
         return velocity;
     }
-
     Vector3 GetForwardDirection()
     {
         Vector3 forward = transform.forward;
@@ -131,7 +113,6 @@ public class VehicleMovement : MonoBehaviour
 
         return forward;
     }
-
     public void ToggleMovement()
     {
         isMoving = !isMoving;
@@ -141,9 +122,10 @@ public class VehicleMovement : MonoBehaviour
         }
         else
         {
-            rb.constraints = RigidbodyConstraints.FreezePositionY;
+            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         }
     }
+
     public void ToggleMovement(bool isMoving)
     {
         this.isMoving = isMoving;
@@ -156,10 +138,24 @@ public class VehicleMovement : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezePositionY;
         }
     }
+    public void SnapPositon(Vector3 position)
+    {
+        transform.position = position;
+    }
 
+    IEnumerator LockMovement(float delay)
+    {
+        canMove = false;
+        yield return new WaitForSeconds(delay);
+        canMove = true;
+    }
+    #endregion
+
+    #region Rotation
     void Rotate()
     {
         float currentAngle = transform.eulerAngles.y;
+
         float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
 
         targetAngle = Mathf.Clamp(targetAngle, -maxRotationAngle, maxRotationAngle);
@@ -173,20 +169,42 @@ public class VehicleMovement : MonoBehaviour
 
         rb.rotation = Quaternion.Euler(0, angle, 0);
     }
-
-    IEnumerator LockMovement(float delay)
-    {
-        canMove = false;
-        yield return new WaitForSeconds(delay);
-        canMove = true;
-    }
     IEnumerator LockRotation(float delay)
     {
         canRotate = false;
         yield return new WaitForSeconds(delay);
         canRotate = true;
     }
+
+    IEnumerator ResetRotation(Quaternion targetRot, float delay)
+    {
+        print(targetRot);
+
+        float time = 0;
+
+        Quaternion initRot = transform.rotation;
+
+        while (time < delay)
+        {
+            transform.rotation = Quaternion.Slerp(initRot, targetRot, time / delay);
+
+            yield return null;
+            time += Time.deltaTime;
+        }
+        transform.rotation = targetRot;
+    }
     #endregion
+
+    public void ResetVehicle(Vector3 position)
+    {
+        SnapPositon(position);
+        speedVelocity = 0;
+        velocity = Vector3.zero;
+        rotationVelocity = Vector3.zero;
+        rb.rotation = Quaternion.Euler(0, 0, 0);
+        rb.velocity = velocity;
+        //Reset other properties here
+    }
 
     #region Drift
     void CheckDrift()
@@ -244,20 +262,33 @@ public class VehicleMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        StartCoroutine(OnWallCollision(collision));
+    }
+
+    IEnumerator OnWallCollision(Collision collision)
+    {
+        // Lock movement
+        StartCoroutine(LockMovement(impactLockMovementDelay));
+        StartCoroutine(LockRotation(impactLockMovementDelay));
+
+        // Reset velocity
         velocity = Vector3.zero;
         rotationVelocity = Vector3.zero;
+        turnSmoothVelocity = 0;
         speedVelocity = 0;
 
-        StartCoroutine(LockMovement(.4f));
-        StartCoroutine(LockRotation(.4f));
+        Quaternion reflectRotation = Quaternion.LookRotation(Vector3.Reflect(transform.forward, collision.contacts[0].normal), Vector3.up);
 
-        //Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collision.contacts[0].normal, Color.blue, 10);
-
+        // Add force
         Vector3 bumpDir = collision.contacts[0].normal;
+        rb.velocity = bumpDir * impactBumpForce;
 
-        Debug.DrawLine(transform.position, transform.position + bumpDir * 5);
+        yield return StartCoroutine(ResetRotation(reflectRotation, impactLockMovementDelay));
 
-        rb.AddForce(bumpDir * impactBumpForce, ForceMode.Impulse);
+        // Set constraints
+        rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+        yield return new WaitForSeconds(.1f);
+        rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     private void OnDrawGizmosSelected()
@@ -282,7 +313,7 @@ public class VehicleMovement : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, transform.position + rb.velocity.normalized * 2);
             Gizmos.color = Color.black;
-            Gizmos.DrawLine(transform.position, transform.position + transform.forward * 10);
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2);
         }
     }
 }
