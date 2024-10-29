@@ -38,7 +38,7 @@ public class UiManager : MonoBehaviour
         panelHUD.SetActive(true);
     }
 
-    public void End()
+    private void End()
     {
         panelHUD.SetActive(false);
         panelEnd.SetActive(true);
@@ -47,6 +47,7 @@ public class UiManager : MonoBehaviour
     public void PauseButton(bool open)
     {
         panelHUD.SetActive(!open);
+        onUIAction.Call(open ? UiActionGame.Pause : UiActionGame.Resume, () => { });
         panelPause.SetActive(open);
     }
 
@@ -61,7 +62,7 @@ public class UiManager : MonoBehaviour
         panelEnd.SetActive(false);
         panelPause.SetActive(false);
         panelHUD.SetActive(false);
-        onUIAction.Call(UiActionGame.Play, () => { });
+        onUIAction.Call(UiActionGame.Restart, () => { });
         panelHUD.SetActive(true);
     }
 
@@ -79,5 +80,8 @@ public class UiManager : MonoBehaviour
 public enum UiActionGame
 {
     BackMenu,
-    Play
+    Pause,
+    Resume,
+    Play,
+    Restart
 }

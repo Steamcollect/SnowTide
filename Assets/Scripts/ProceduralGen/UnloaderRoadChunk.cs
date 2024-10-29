@@ -12,12 +12,22 @@ public class UnloaderRoadChunk : MonoBehaviour
         chunksWaitUnload.Enqueue(chunk);
         if (chunksWaitUnload.Count > 1)
         {
-            var chunkDequeue = chunksWaitUnload.Dequeue();
-            chunkDequeue.GetComponent<ChunkRoad>().ResetChunk();
-            chunkDequeue.SetActive(false);
+            DisableChunk(chunksWaitUnload.Dequeue());
         }
     }
 
+    public void DisableChunk(GameObject chunk)
+    {
+        chunk.GetComponent<ChunkRoad>().ResetChunk();
+        chunk.SetActive(false);
+    }
+
+    public void DisableChunk(ChunkRoad chunk)
+    {
+        chunk.ResetChunk();
+        chunk.gameObject.SetActive(false);
+    }
+    
     public void ResetUnloader()
     {
         chunksWaitUnload.Clear();

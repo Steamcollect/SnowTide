@@ -1,13 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class JoystickManager : MonoBehaviour
 {
-    public GameObject joystick;
+    [Header("Parameters")]
+    [SerializeField] private Joystick joystick;
+    
+    [Header("References")]
+    [SerializeField] private RSE_SetStateActive rseSetStateActive;
 
-    public void SetActiveJoystick(bool active)
+    private void OnEnable() => rseSetStateActive.action += SetActiveJoystick;
+    private void OnDisable() => rseSetStateActive.action -= SetActiveJoystick;
+
+
+    private void SetActiveJoystick(bool active)
     {
-        joystick.SetActive(active);
+        joystick.gameObject.SetActive(active);
     }
 }
