@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using BT.Save;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private RSE_Event OnCommandSave;
     [SerializeField] private RSE_UIAction OnUIAction;
+    [Space(10)] 
+    [SerializeField] private RSE_FadeInOut rseFadeInOut;
     [Space(10)]
     [SerializeField] private RSE_SetStateActive rse_SetStateJoystick;
     [SerializeField] private RSO_VehicleMovement rso_VehicleMovement;
@@ -59,14 +62,18 @@ public class GameManager : MonoBehaviour
         rse_SwapChunk.Call(GameState.Road);
     }
 
-    private void BackMenu()
+    private IEnumerator BackMenu()
     {
+        rseFadeInOut.Call(true);
         rse_SetStateJoystick.Call(false);
         rso_VehicleMovement.Value.ResetVehicle(vehicleSpawnPoint.position);
         rse_SwapChunk.Call(GameState.Menu);
         rse_StopBuildAuto.Call();
+        yield return new WaitForSeconds(2f);
         rse_StartBuildAuto.Call();
+        yield return new WaitForSeconds(1f);
         rso_VehicleMovement.Value.ToggleMovement(true);
+        rseFadeInOut.Call(false);
     }
 
     private void Pause()
@@ -79,6 +86,13 @@ public class GameManager : MonoBehaviour
     {
         rse_SetStateJoystick.Call(true);
         rso_VehicleMovement.Value.ToggleMovement(true);
+    }
+
+    private IEnumerator RestartGame()
+    {
+        yield return StartCoroutine(BackMenu());
+        yield return new WaitForSeconds(0.1f);
+        Play();
     }
     
     /// <summary>
@@ -94,7 +108,7 @@ public class GameManager : MonoBehaviour
                 Play();
                 break;
             case UiActionGame.BackMenu:
-                BackMenu();
+                StartCoroutine(BackMenu());
                 break;
             case UiActionGame.Pause:
                 Pause();
@@ -103,8 +117,7 @@ public class GameManager : MonoBehaviour
                 Resume();
                 break;
             case UiActionGame.Restart:
-                BackMenu();
-                Play();
+                StartCoroutine(RestartGame());
                 break;
         }
         ev?.Invoke();

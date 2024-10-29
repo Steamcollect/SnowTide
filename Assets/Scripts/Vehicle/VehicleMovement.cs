@@ -53,6 +53,22 @@ public class VehicleMovement : MonoBehaviour
             rsoVehicleMovement.Value = null;
         }
     }
+
+    public void SnapPositon(Vector3 position)
+    {
+        rb.position = position;
+    }
+
+    public void ResetVehicle(Vector3 position)
+    {
+        speedVelocity = 0;
+        velocity = Vector3.zero;
+        rotationVelocity = Vector3.zero;
+        rb.rotation = Quaternion.Euler(0,0,0);
+        rb.velocity = velocity;
+        SnapPositon(position);
+        //Reset other properties here
+    }
     
     void Update()
     {
