@@ -48,8 +48,8 @@ MonoBehaviour:
   target: {fileID: 0}
   rsoLife: {fileID: 11400000, guid: 992560e98af77114ebcd9fe802993f24, type: 2}
   hidenPos: {x: 0, y: 0, z: -55}
-  showPos: {x: 0, y: 0, z: -20}
-  destroyPos: {x: 0, y: 0, z: 0.35}
+  showPos: {x: 0, y: 0, z: -18}
+  destroyPos: {x: 0, y: 0, z: 15}
   timeOffset: 0.2
 --- !u!1 &9081810499929099310
 GameObject:
@@ -91,6 +91,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6459651899617173253}
     m_Modifications:
+    - target: {fileID: 58402548899034416, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1797706446962150520, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -101,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1797706446962150520, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -46
       objectReference: {fileID: 0}
     - target: {fileID: 1797706446962150520, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -131,9 +135,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6781101626600739521, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781101626600739521, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7418617731946630812, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7954099287162474469, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
       propertyPath: m_Name
       value: Snow_Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818365236357457692, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 46.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

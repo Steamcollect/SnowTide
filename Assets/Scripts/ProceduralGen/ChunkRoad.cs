@@ -8,7 +8,7 @@ public class ChunkRoad : MonoBehaviour
 {
     [field:Header("Components")]
     [field:SerializeField] public Transform anchorEnd { get; private set; }
-    [SerializeField] private new BoxCollider collider;
+    [SerializeField] private BoxCollider collider;
 
     [field:Header("Settings")]
     [field:SerializeField] public Vector3 sizeColliderExit { get; private set; } = new Vector3(1, 1, 1);

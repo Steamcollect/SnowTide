@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Scene_Proto/Proto.unity
     guid: 9b1ea7d14addc2e458cdb81cf18f5451
+  - enabled: 1
+    path: Assets/Scenes/SnowTide_v1.unity
+    guid: 7e262e58e0e09ab4b817411446d9568f
   m_configObjects: {}

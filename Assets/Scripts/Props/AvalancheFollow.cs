@@ -35,7 +35,6 @@ public class AvalancheFollow : MonoBehaviour
         if (rsoLife.Value.health <= 0) Bury();
         else if (!rsoLife.Value.isRegen) Show();
         else if(rsoLife.Value.health >= rsoLife.Value.maxHealth /2) Hide();
-        print(posOffset);
     }
     
     private void Start()

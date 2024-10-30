@@ -21,4 +21,11 @@ public static class Utils
             t.DOScale(1, .08f);
         });
     }
+
+    public static IEnumerator Delay(Action callback, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        callback?.Invoke();
+    } 
+    
 }
