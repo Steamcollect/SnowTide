@@ -58,8 +58,8 @@ public class GameManager : MonoBehaviour
 
     private void Play()
     {
-        rse_SetStateJoystick.Call(true);
         rse_SwapChunk.Call(GameState.Road);
+        rse_SetStateJoystick.Call(true);
     }
 
     private IEnumerator BackMenu()
