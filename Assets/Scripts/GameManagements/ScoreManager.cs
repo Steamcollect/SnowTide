@@ -6,15 +6,14 @@ using UnityEngine.Serialization;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] int score;
-
-    [Header("References")]
-    [SerializeField] TMP_Text scoreTxt;
-    
+        
     [Header("RSE")]
     [SerializeField] RSE_IntEvent rse_AddScore;
     [SerializeField] RSE_SetStateActive rseSetStateActive;
+
     [Header("RSO")]
     [SerializeField] RSO_IntValue rsoScore;
+    [SerializeField] RSO_TxtSet rsoTxtSet;
     
     private void Start()
     {
@@ -26,18 +25,17 @@ public class ScoreManager : MonoBehaviour
         score += scoreGiven;
         rsoScore.Value = score;
         SetTextVisual();
-
-        scoreTxt.transform.BumpVisual();
     }
 
     void SetTextVisual()
     {
-        scoreTxt.text = score.ToString();
+        rsoTxtSet.Value.text = score.ToString();
+        rsoTxtSet.Value.transform.BumpVisual();
     }
 
     private void SetActiveVisual(bool active)
     {
-        scoreTxt.gameObject.SetActive(active);
+        rsoTxtSet.Value.gameObject.SetActive(active);
     }
 
     private void OnEnable()

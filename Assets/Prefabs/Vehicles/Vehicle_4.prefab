@@ -109,7 +109,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 100
+  m_Time: 3
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -411,7 +411,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 100
+  m_Time: 3
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -630,7 +630,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 100
+  m_Time: 3
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleMovement: {fileID: 7220064509602456800}
-  joystick: {fileID: 0}
+  rsoFloatingJoystick: {fileID: 11400000, guid: 06310b7029f45324e86f1a42bfc1f1ed, type: 2}
 --- !u!114 &7220064509602456800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1028,8 +1028,8 @@ MonoBehaviour:
   - {fileID: 7393679330498570280}
   - {fileID: 5279385981250782294}
   - {fileID: 2160056374009477511}
-  impactBumpForce: 10
-  impactLockMovementDelay: 0.4
+  impactBumpForce: 40
+  impactLockMovementDelay: 0.15
   rb: {fileID: 837687545921577164}
   vehicleDriftScore: {fileID: 2340657120261254109}
   statistics: {fileID: 3520671360094562413}
@@ -1164,7 +1164,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 100
+  m_Time: 3
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
