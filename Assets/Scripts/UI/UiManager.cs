@@ -17,6 +17,7 @@ public class UiManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private RSE_UIAction onUIAction;
     [SerializeField] private RSE_Event onPlayerDeath;
+    [SerializeField] RSE_BasicEvent rse_SetupDeathPanel;
 
     private void Start()
     {
@@ -42,6 +43,7 @@ public class UiManager : MonoBehaviour
     {
         panelHUD.SetActive(false);
         panelEnd.SetActive(true);
+        rse_SetupDeathPanel.Call();
     }
     
     public void PauseButton(bool open)

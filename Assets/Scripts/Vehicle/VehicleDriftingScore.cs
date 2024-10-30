@@ -25,7 +25,7 @@ public class VehicleDriftingScore : MonoBehaviour
     [Header("References")]
     [SerializeField] TMP_Text comboCountTxt;
     [SerializeField] RSE_IntEvent rse_AddScore;
-    [SerializeField] RSO_IntValue rsoScoreAmount;
+    [SerializeField] RSO_IntValue rsoComboAmount;
 
     private void Start()
     {
@@ -45,7 +45,7 @@ public class VehicleDriftingScore : MonoBehaviour
                 if(maxCombo < currentBigCombo)
                 {
                     maxCombo = currentBigCombo;
-                    rsoScoreAmount.Value = maxCombo;
+                    rsoComboAmount.Value = maxCombo;
                 }
 
                 comboCountTxt.DOKill();
