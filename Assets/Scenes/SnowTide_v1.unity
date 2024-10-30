@@ -146,10 +146,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 937129806}
     m_Modifications:
+    - target: {fileID: 2160056374009477511, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+      propertyPath: m_Time
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242133616402034231, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+      propertyPath: m_Time
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2340657120261254109, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
       propertyPath: comboCountTxt
       value: 
       objectReference: {fileID: 2015163103}
+    - target: {fileID: 5279385981250782294, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+      propertyPath: m_Time
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5461000963252465114, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -189,6 +201,10 @@ PrefabInstance:
     - target: {fileID: 5461000963252465114, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393679330498570280, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+      propertyPath: m_Time
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8581354344173175107, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
       propertyPath: m_Name
@@ -1151,18 +1167,6 @@ PrefabInstance:
     - target: {fileID: 271486185426791528, guid: e81474df3780cc143b2124437a849878, type: 3}
       propertyPath: m_Name
       value: Canvas_Fade
-      objectReference: {fileID: 0}
-    - target: {fileID: 3869223589969804978, guid: e81474df3780cc143b2124437a849878, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3869223589969804978, guid: e81474df3780cc143b2124437a849878, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3869223589969804978, guid: e81474df3780cc143b2124437a849878, type: 3}
-      propertyPath: m_Color.r
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4772001108899296653, guid: e81474df3780cc143b2124437a849878, type: 3}
       propertyPath: m_Pivot.x
