@@ -6,6 +6,7 @@ public class VehicleStatistics : MonoBehaviour
 {
     [SerializeField] VehicleDriftFrictionStatistics driftFrictionStatistics;
     VehicleDriftFrictionStatistics currentFriction;
+    [SerializeField] RSO_IntValue rsoPeopleAmount;
 
     int peopleCount;
 
@@ -46,5 +47,6 @@ public class VehicleStatistics : MonoBehaviour
         driftFrictionStatistics.slideAngle += frictionToAdd.slideAngle;
 
         peopleCount++;
+        rsoPeopleAmount.Value = peopleCount;
     }
 }

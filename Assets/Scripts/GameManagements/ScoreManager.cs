@@ -13,6 +13,8 @@ public class ScoreManager : MonoBehaviour
     [Header("RSE")]
     [SerializeField] RSE_IntEvent rse_AddScore;
     [SerializeField] RSE_SetStateActive rseSetStateActive;
+    [Header("RSO")]
+    [SerializeField] RSO_IntValue rsoScore;
     
     private void Start()
     {
@@ -22,6 +24,7 @@ public class ScoreManager : MonoBehaviour
     private void AddScore(int scoreGiven)
     {
         score += scoreGiven;
+        rsoScore.Value = score;
         SetTextVisual();
 
         scoreTxt.transform.BumpVisual();

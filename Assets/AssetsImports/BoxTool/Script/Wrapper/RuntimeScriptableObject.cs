@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BT.ScriptablesObject
 {
-    public class WrapperVariable<T> : ScriptableObject
+    public class RuntimeScriptableObject<T> : ScriptableObject
     {
         private T _value;
         public T Value

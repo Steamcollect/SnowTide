@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1220867119505754219}
   - component: {fileID: 3188411592920713759}
   - component: {fileID: 8218254611645226556}
-  - component: {fileID: 5522998603163157670}
   - component: {fileID: 251476227371003727}
   m_Layer: 5
   m_Name: JoystickCanvas
@@ -106,22 +105,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5522998603163157670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952266992575053663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a24eeb848d81014e87156780ffa3a00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  scoreTxt: {fileID: 9182634384650301178}
-  rse_AddScore: {fileID: 11400000, guid: bbd2197f20605c54b82864586fc7892c, type: 2}
-  rseSetStateActive: {fileID: 11400000, guid: 1f55bf9fcaa8d9e4e902872c0b492deb, type: 2}
 --- !u!114 &251476227371003727
 MonoBehaviour:
   m_ObjectHideFlags: 0

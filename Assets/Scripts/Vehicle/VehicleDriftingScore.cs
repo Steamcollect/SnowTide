@@ -13,6 +13,7 @@ public class VehicleDriftingScore : MonoBehaviour
     [SerializeField] float bigComboTime;
     float currentDriftTime;
     int currentMiniCombo, currentBigCombo;
+    int maxCombo = 0;
 
     [Space(10)]
     float noDriftDelay;
@@ -24,6 +25,7 @@ public class VehicleDriftingScore : MonoBehaviour
     [Header("References")]
     [SerializeField] TMP_Text comboCountTxt;
     [SerializeField] RSE_IntEvent rse_AddScore;
+    [SerializeField] RSO_IntValue rsoScoreAmount;
 
     private void Start()
     {
@@ -40,6 +42,11 @@ public class VehicleDriftingScore : MonoBehaviour
             if (currentDriftTime >= (bigComboTime * currentBigCombo))
             {
                 currentBigCombo++;
+                if(maxCombo < currentBigCombo)
+                {
+                    maxCombo = currentBigCombo;
+                    rsoScoreAmount.Value = maxCombo;
+                }
 
                 comboCountTxt.DOKill();
                 comboCountTxt.DOFade(1, .1f);
