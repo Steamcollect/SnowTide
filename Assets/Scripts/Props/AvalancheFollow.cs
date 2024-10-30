@@ -32,10 +32,10 @@ public class AvalancheFollow : MonoBehaviour
 
     private void ChangePosOffset()
     {
-        print("enter");
         if (rsoLife.Value.health <= 0) Bury();
+        else if (!rsoLife.Value.isRegen) Show();
         else if(rsoLife.Value.health >= rsoLife.Value.maxHealth /2) Hide();
-        else Show();
+        print(posOffset);
     }
     
     private void Start()

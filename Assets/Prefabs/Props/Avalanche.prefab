@@ -47,9 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   rsoLife: {fileID: 11400000, guid: 992560e98af77114ebcd9fe802993f24, type: 2}
-  hidenPos: {x: 0, y: 0, z: -20}
-  showPos: {x: 0, y: 0, z: -10}
-  destroyPos: {x: 0, y: 0, z: 130}
+  hidenPos: {x: 0, y: 0, z: -55}
+  showPos: {x: 0, y: 0, z: -20}
+  destroyPos: {x: 0, y: 0, z: 0.35}
   timeOffset: 0.2
 --- !u!1 &9081810499929099310
 GameObject:
@@ -76,7 +76,7 @@ Transform:
   m_GameObject: {fileID: 9081810499929099310}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -80}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
