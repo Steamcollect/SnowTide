@@ -34,6 +34,7 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] float impactLockMovementDelay;
 
     [Space(10), Header("References")]
+    [SerializeField] private VehicleHealth vehicleHealth;
     [SerializeField] Rigidbody rb;
     [SerializeField] VehicleDriftingScore vehicleDriftScore;
     [SerializeField] VehicleStatistics statistics;
@@ -68,6 +69,7 @@ public class VehicleMovement : MonoBehaviour
     public void ResetVehicle(Vector3 position)
     {
         ShowHideRender(true);
+        vehicleHealth.Start();
         speedVelocity = 0;
         velocity = Vector3.zero;
         rotationVelocity = Vector3.zero;
