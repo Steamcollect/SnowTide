@@ -10,6 +10,8 @@ public abstract class Interactible : MonoBehaviour
         if(collision.transform.CompareTag("Player")) OnPlayerCollision(collision.transform);
     }
 
+    public abstract void ResetComponent();
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Player")) OnPlayerCollision(other.attachedRigidbody.transform);

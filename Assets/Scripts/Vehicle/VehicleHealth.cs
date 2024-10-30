@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using BT.Save;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class VehicleHealth : MonoBehaviour
 {
-    [SerializeField] int maxHealth;
-    int currentHeath;
+    [Header("Parameters")]
+    [SerializeField] private int maxHealth;
+    [SerializeField] private float healtRegenTime;
+    
+    private int currentHeath;
+    private Coroutine regenCoroutine;
 
-    [SerializeField] float healtRegenTime;
+    [Header("References")]
+    [SerializeField] private RSE_IntEvent OnTakeDamage;
+    [SerializeField] private RSE_Event OnPlayerDeath;
+    [SerializeField] private AvalancheFollow avalancheFollow;
 
-    [SerializeField] RSE_EventBasic rse_onDeath;
-    [SerializeField] AvalancheFollow avalancheFollow;
-
-    Coroutine regenCoroutine;
 
     private void Start()
     {
@@ -27,12 +32,12 @@ public class VehicleHealth : MonoBehaviour
         if (currentHeath <= 0) Die();
         else
         {
-            if(currentHeath <= maxHealth /2) avalancheFollow.Show();
+            if(currentHeath <= maxHealth /2) OnTakeDamage.Call(currentHeath);
             regenCoroutine = StartCoroutine(Regen());
         }
     }
 
-    public void TakeHealth(int health)
+    private void TakeHealth(int health)
     {
         currentHeath += health;
         if (currentHeath > maxHealth)
@@ -44,13 +49,13 @@ public class VehicleHealth : MonoBehaviour
             regenCoroutine = StartCoroutine(Regen());
         }
 
-        if(currentHeath >= maxHealth /2) avalancheFollow.Hide();
+        if(currentHeath >= maxHealth /2) avalancheFollow?.Hide();
     }
 
-    void Die()
+    private void Die()
     {
-        avalancheFollow.Bury();
-        rse_onDeath.Call();
+        avalancheFollow?.Bury();
+        OnPlayerDeath.Call();
         gameObject.SetActive(false);
     }
 

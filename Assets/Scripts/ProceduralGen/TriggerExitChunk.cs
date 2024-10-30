@@ -7,12 +7,14 @@ public class TriggerExitChunk : MonoBehaviour
 {
     public event Action<ChunkRoad> OnChunkExit;
     [SerializeField] private ChunkRoad chunk;
-    
+
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (chunk.chunkActive && other.CompareTag("Player"))
         {
             OnChunkExit?.Invoke(chunk);
+            chunk.chunkActive = false;
         }
     }
 }
