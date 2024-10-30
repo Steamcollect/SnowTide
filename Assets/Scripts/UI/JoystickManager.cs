@@ -11,10 +11,15 @@ public class JoystickManager : MonoBehaviour
     
     [Header("References")]
     [SerializeField] private RSE_SetStateActive rseSetStateActive;
+    [SerializeField] RSO_FloatingJoystick rso_FloatingJoystick;
 
     private void OnEnable() => rseSetStateActive.action += SetActiveJoystick;
     private void OnDisable() => rseSetStateActive.action -= SetActiveJoystick;
 
+    private void Awake()
+    {
+        rso_FloatingJoystick.Value = joystick as FloatingJoystick;
+    }
 
     private void SetActiveJoystick(bool active)
     {

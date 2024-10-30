@@ -119,6 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 9199489516767938478}
   rseSetStateActive: {fileID: 11400000, guid: 1f55bf9fcaa8d9e4e902872c0b492deb, type: 2}
+  rso_FloatingJoystick: {fileID: 11400000, guid: 06310b7029f45324e86f1a42bfc1f1ed, type: 2}
 --- !u!1 &2941715717114667788
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,6 +131,7 @@ GameObject:
   - component: {fileID: 4179369800714263832}
   - component: {fileID: 8422868865091896008}
   - component: {fileID: 9182634384650301178}
+  - component: {fileID: 8221470779482117148}
   m_Layer: 5
   m_Name: ScoreTXT
   m_TagString: Untagged
@@ -253,6 +255,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8221470779482117148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2941715717114667788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566987e97dac28443a12de176c8d3b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 9182634384650301178}
+  textSet: {fileID: 11400000, guid: 0d40e326b40588c469cee8d0e8081aab, type: 2}
 --- !u!1 &7150038734277821109
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +280,7 @@ GameObject:
   - component: {fileID: 2569663056435267038}
   - component: {fileID: 6061681978737686520}
   - component: {fileID: 6159869480975930860}
+  - component: {fileID: 2674080016137694483}
   m_Layer: 5
   m_Name: ComboTXT
   m_TagString: Untagged
@@ -387,6 +404,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2674080016137694483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7150038734277821109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566987e97dac28443a12de176c8d3b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 6159869480975930860}
+  textSet: {fileID: 11400000, guid: 5c1145f38d5cd314395a39dcf36171b1, type: 2}
 --- !u!1 &7562169827676690939
 GameObject:
   m_ObjectHideFlags: 0
