@@ -10,51 +10,48 @@ public class VehicleHealth : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private float healtRegenTime;
     
-    private int currentHeath;
     private Coroutine regenCoroutine;
 
     [Header("References")]
-    [SerializeField] private RSE_IntEvent OnTakeDamage;
+    [SerializeField] private RSO_Life rsoLife;
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private AvalancheFollow avalancheFollow;
 
 
     private void Start()
     {
-        currentHeath = maxHealth;
+        rsoLife.Value = new HealthData{maxHealth = maxHealth, health = maxHealth};
     }
 
     public void TakeDamage(int damage)
     {
-        currentHeath -= damage;
+        rsoLife.Value = new HealthData{maxHealth = maxHealth, health = rsoLife.Value.health - damage};
         if (regenCoroutine != null) StopCoroutine(regenCoroutine);
 
-        if (currentHeath <= 0) Die();
+        if (rsoLife.Value.health <= 0) Die();
         else
         {
-            if(currentHeath <= maxHealth /2) OnTakeDamage.Call(currentHeath);
             regenCoroutine = StartCoroutine(Regen());
         }
     }
 
     private void TakeHealth(int health)
     {
-        currentHeath += health;
-        if (currentHeath > maxHealth)
+        rsoLife.Value = new HealthData{maxHealth = maxHealth, health = rsoLife.Value.health + health};
+        if (rsoLife.Value.health > maxHealth)
         {
-            currentHeath = maxHealth;
+            rsoLife.Value = new HealthData{maxHealth = maxHealth, health = maxHealth};
         }
-        else if (currentHeath < maxHealth)
+        else if (rsoLife.Value.health < maxHealth)
         {
             regenCoroutine = StartCoroutine(Regen());
         }
 
-        if(currentHeath >= maxHealth /2) avalancheFollow?.Hide();
+        // if(currentHeath >= maxHealth /2) avalancheFollow?.Hide();
     }
 
     private void Die()
     {
-        avalancheFollow?.Bury();
         OnPlayerDeath.Call();
     }
 
@@ -63,4 +60,11 @@ public class VehicleHealth : MonoBehaviour
         yield return new WaitForSeconds(healtRegenTime);
         TakeHealth(1);
     }
+}
+
+[System.Serializable]
+public struct HealthData
+{
+    public int health;
+    public int maxHealth;
 }

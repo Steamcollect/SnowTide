@@ -1,17 +1,43 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using BT.Save;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AvalancheFollow : MonoBehaviour
 {
-    public Transform player;
+    [Header("References")]
+    [SerializeField] private Transform target;
+    [SerializeField] private RSO_Life rsoLife;
+    
+    [Header("Parameters")]
+    [SerializeField] private Vector3 hidenPos, showPos, destroyPos;
+    [SerializeField] private float timeOffset;
+    
+    private Vector3 posOffset;
+    private Vector3 velocity = Vector3.zero;
 
-    public Vector3 hidenPos, showPos, destroyPos;
-    Vector3 posOffset;
 
-    public float timeOffset;
-    Vector3 velocity = Vector3.zero;
+    private void OnEnable()
+    {
+        rsoLife.OnChanged += ChangePosOffset;
+    }
 
+    private void OnDisable()
+    {
+        rsoLife.OnChanged -= ChangePosOffset;
+    }
+
+
+    private void ChangePosOffset()
+    {
+        print("enter");
+        if (rsoLife.Value.health <= 0) Bury();
+        else if(rsoLife.Value.health >= rsoLife.Value.maxHealth /2) Hide();
+        else Show();
+    }
+    
     private void Start()
     {
         Hide();
@@ -19,23 +45,23 @@ public class AvalancheFollow : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, player.position + posOffset, ref velocity, timeOffset);
+        transform.position = Vector3.SmoothDamp(transform.position, target.position + posOffset, ref velocity, timeOffset);
     }
 
-    public void Hide() => posOffset = hidenPos;
-    public void Show() => posOffset = showPos;
-    public void Bury() => posOffset = destroyPos;
+    private void Hide() => posOffset = hidenPos;
+    private void Show() => posOffset = showPos;
+    private void Bury() => posOffset = destroyPos;
 
     private void OnDrawGizmosSelected()
     {
-        if (!player) return;
+        if (!target) return;
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(player.position + hidenPos, .3f);
+        Gizmos.DrawSphere(target.position + hidenPos, .5f);
         
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(player.position + showPos, .3f);
+        Gizmos.DrawSphere(target.position + showPos, .3f);
         
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(player.position + destroyPos, .3f);
+        Gizmos.DrawSphere(target.position + destroyPos, .3f);
     }
 }
