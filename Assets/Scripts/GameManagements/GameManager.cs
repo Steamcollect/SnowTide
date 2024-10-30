@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         }
         BackgroundMusicEvent.Invoke();
         rse_SetStateJoystick.Call(false);
-        rso_VehicleMovement.Value.SnapPositon(vehicleSpawnPoint.position);
+        rso_VehicleMovement.Value.SnapPosition(vehicleSpawnPoint.position);
     }
 
     private void OnEnable()

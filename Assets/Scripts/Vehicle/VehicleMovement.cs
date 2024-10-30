@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using BT.Save;
 using UnityEngine;
 
 public class VehicleMovement : MonoBehaviour
@@ -37,6 +38,8 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] VehicleDriftingScore vehicleDriftScore;
     [SerializeField] VehicleStatistics statistics;
     [SerializeField] private RSO_VehicleMovement rsoVehicleMovement;
+    [SerializeField] private RSE_Event OnPlayerDeath;
+    [SerializeField] private GameObject renderPlayer;
     
     Vector2 input;
 
@@ -54,21 +57,27 @@ public class VehicleMovement : MonoBehaviour
         }
     }
 
-    public void SnapPositon(Vector3 position)
+    private void OnEnable() => OnPlayerDeath.action += ShowHideRender;
+    private void OnDisable() => OnPlayerDeath.action -= ShowHideRender;
+
+    public void SnapPosition(Vector3 position)
     {
         rb.position = position;
     }
 
     public void ResetVehicle(Vector3 position)
     {
+        ShowHideRender(true);
         speedVelocity = 0;
         velocity = Vector3.zero;
         rotationVelocity = Vector3.zero;
         rb.rotation = Quaternion.Euler(0,0,0);
         rb.velocity = velocity;
-        SnapPositon(position);
-        //Reset other properties here
+        SnapPosition(position);
     }
+
+    private void ShowHideRender(bool showed) => renderPlayer.SetActive(showed);
+    private void ShowHideRender() => renderPlayer.SetActive(false);
     
     void Update()
     {
