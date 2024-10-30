@@ -64,14 +64,15 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator BackMenu()
     {
-        rseFadeInOut.Call(true);
         rse_SetStateJoystick.Call(false);
+        rseFadeInOut.Call(true);
+        yield return new WaitForSeconds(0.30f);
         rso_VehicleMovement.Value.ResetVehicle(vehicleSpawnPoint.position);
         rse_SwapChunk.Call(GameState.Menu);
         rse_StopBuildAuto.Call();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.2f);
         rse_StartBuildAuto.Call();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         rso_VehicleMovement.Value.ToggleMovement(true);
         rseFadeInOut.Call(false);
     }
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RestartGame()
     {
         yield return StartCoroutine(BackMenu());
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         Play();
     }
     
