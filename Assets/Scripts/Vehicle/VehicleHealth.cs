@@ -56,7 +56,6 @@ public class VehicleHealth : MonoBehaviour
     {
         avalancheFollow?.Bury();
         OnPlayerDeath.Call();
-        gameObject.SetActive(false);
     }
 
     IEnumerator Regen()

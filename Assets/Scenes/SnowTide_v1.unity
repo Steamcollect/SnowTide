@@ -621,6 +621,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6281153717888520738, guid: 66e39aec2e720c347b6e98a50c8fb411, type: 3}
+      propertyPath: scoreTxt
+      value: 
+      objectReference: {fileID: 2082171568}
     - target: {fileID: 8288694933284992951, guid: 66e39aec2e720c347b6e98a50c8fb411, type: 3}
       propertyPath: BackgroundMusicEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1059,6 +1063,17 @@ Transform:
   - {fileID: 2710036463891848139}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2082171568 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9182634384650301178, guid: 0d8079813394a6845bb43780d313e5aa, type: 3}
+  m_PrefabInstance: {fileID: 2083272766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2083272766
 PrefabInstance:
   m_ObjectHideFlags: 0
