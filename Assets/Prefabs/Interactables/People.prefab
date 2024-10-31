@@ -72,7 +72,7 @@ MonoBehaviour:
     turnFriction: 0.1
     slideAngle: -0.1
     slideFriction: 0.1
-    driftAngle: -0.3
+    driftAngle: -0.2
     driftFriction: 0.1
   scoreGiven: 5
   fadeDuration: 0.5
