@@ -27,7 +27,7 @@ public class PeoplesRender : MonoBehaviour
     {
         for (int i = 0; i < peoplesPlace.Length; i++)
         {
-            if (i < rsePeopleAmount.Value)
+            if (i < rsePeopleAmount.Value && rsePeopleAmount.Value > 0)
             {
                 if (peoplesPlace[i].activeSelf) continue;
                 peoplesPlace[i].SetActive(true);
