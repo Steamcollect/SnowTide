@@ -32,6 +32,7 @@ public class VehicleMovement : MonoBehaviour
     [Space(10), Header("Impact")]
     [SerializeField] float impactBumpForce;
     [SerializeField] float impactLockMovementDelay;
+    [SerializeField] float minAngleReflection;
 
     [Space(10), Header("References")]
     [SerializeField] private VehicleHealth vehicleHealth;
@@ -201,8 +202,6 @@ public class VehicleMovement : MonoBehaviour
 
     IEnumerator ResetRotation(Quaternion targetRot, float delay)
     {
-        print(targetRot);
-
         float time = 0;
 
         Quaternion initRot = transform.rotation;
@@ -279,6 +278,14 @@ public class VehicleMovement : MonoBehaviour
 
     IEnumerator OnWallCollision(Collision collision)
     {
+
+        Vector3 normal = collision.contacts[0].normal;
+        Vector3 reflectDir = Vector3.Reflect(transform.forward, normal);
+        //if(Vector3.Angle(normal, -transform.forward) <= minAngleReflection)
+        //{
+        //    reflectDir = normal;
+        //}
+
         // Lock movement
         StartCoroutine(LockMovement(impactLockMovementDelay));
         StartCoroutine(LockRotation(impactLockMovementDelay));
@@ -289,13 +296,24 @@ public class VehicleMovement : MonoBehaviour
         turnSmoothVelocity = 0;
         speedVelocity = 0;
 
-        Quaternion reflectRotation = Quaternion.LookRotation(Vector3.Reflect(transform.forward, collision.contacts[0].normal), Vector3.up);
+        
 
-        // Add force
-        Vector3 bumpDir = collision.contacts[0].normal;
-        rb.velocity = bumpDir * impactBumpForce;
+        //float inAngle = Vector3.Angle(transform.forward, normal);
+        //if (90 - inAngle < minImpactForceAngle)
+        //{
+        //    print("htrdrdffdfdfd");
+        //    reflectDir = Quaternion.AngleAxis(inAngle - (90 - minImpactForceAngle), Vector3.up) * reflectDir;
 
-        yield return StartCoroutine(ResetRotation(reflectRotation, impactLockMovementDelay));
+        //    Vector3 wallForward = Quaternion.AngleAxis(90, normal) * Vector3.up;
+        //    reflectDir = Vector3.Lerp(normal, wallForward, inAngle / 90);
+        //}
+
+        Quaternion bumpRot = Quaternion.LookRotation(reflectDir, Vector3.up);
+
+
+        rb.AddForce(reflectDir * impactBumpForce, ForceMode.Impulse);
+
+        yield return StartCoroutine(ResetRotation(bumpRot, impactLockMovementDelay));
 
         // Set constraints
         rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
