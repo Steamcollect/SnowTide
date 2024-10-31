@@ -20,13 +20,14 @@ public class CurveMovementController : MonoBehaviour
     private void Update()
     {
         var rotationDirection = Vector3.Cross(Vector3.up, _velocity.normalized);
+        rotationDirection.x = 0;
         
         _targetRotation.eulerAngles = rotationDirection * rotationRange;
         
 
-        for (int i = 0; i < jointObjects.Length; ++i)
+        foreach (var o in jointObjects)
         {
-            jointObjects[i].transform.rotation = Quaternion.Slerp(jointObjects[i].transform.rotation,_targetRotation, Time.deltaTime * strenghtRotation);
+            o.transform.localRotation  = Quaternion.Slerp(o.transform.localRotation,_targetRotation, Time.deltaTime * strenghtRotation);
         }
         
     }

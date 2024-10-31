@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9164993088315869727}
   - component: {fileID: 8288694933284992951}
-  - component: {fileID: 7690045438688877880}
   - component: {fileID: 6281153717888520738}
   m_Layer: 0
   m_Name: GameManager
@@ -73,22 +72,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7690045438688877880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659196630718728112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a7d35ecb4a42a4bab92e3a0f5abcfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rsoScore: {fileID: 11400000, guid: 9418c3233b344a3498a5f8b0769d8dd9, type: 2}
-  rsoMaxCombo: {fileID: 11400000, guid: fe6763d45b3b5c549849fd4d0c2a8396, type: 2}
-  rsoPeopleAmount: {fileID: 11400000, guid: 32824d6091b876c4aa7466c216d827c2, type: 2}
-  rsoBestScore: {fileID: 11400000, guid: 1f52053a6c9953c48a83ce5edadd4ba6, type: 2}
 --- !u!114 &6281153717888520738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 2428918376698254543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 8}
+  m_LocalPosition: {x: 0, y: 1.6, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
