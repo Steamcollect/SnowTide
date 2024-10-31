@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c45ded95fc3a844f8b8b69c51f08f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnCommandLoad: {fileID: 11400000, guid: ae005b2543f51e543a7f95a8e21a07ff, type: 2}
-  OnCommandSave: {fileID: 11400000, guid: b9b98c83cb66fa24594ba5ee1df92141, type: 2}
-  OnCommandClear: {fileID: 11400000, guid: e44b75ba0cb36944694f2178aba4ac6d, type: 2}
-  OnGetDataSave: {fileID: 11400000, guid: e3462e1116f12ce48a27d0ae90d28291, type: 2}
+  rseCommandLoad: {fileID: 11400000, guid: ae005b2543f51e543a7f95a8e21a07ff, type: 2}
+  rseCommandSave: {fileID: 11400000, guid: b9b98c83cb66fa24594ba5ee1df92141, type: 2}
+  rseCommandClear: {fileID: 11400000, guid: e44b75ba0cb36944694f2178aba4ac6d, type: 2}
+  rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
