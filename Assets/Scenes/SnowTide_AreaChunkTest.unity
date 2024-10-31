@@ -967,8 +967,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
       propertyPath: roadChunkT.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
+      propertyPath: roadChunkT.Array.data[0]
+      value: 
+      objectReference: {fileID: 3613890569510702629, guid: 90ecebb39ed28a64dafd2ec8bf1f4b84, type: 3}
+    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
+      propertyPath: roadChunkT.Array.data[1]
+      value: 
+      objectReference: {fileID: 473667395256441948, guid: 1b31d5fb01f36f64d98ebbbb174657f7, type: 3}
+    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
+      propertyPath: roadChunkT.Array.data[2]
+      value: 
+      objectReference: {fileID: 6483059175585469599, guid: e3a2c7d5cd6474f4b8794a8d670eab5d, type: 3}
     - target: {fileID: 6188283500091550504, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
       propertyPath: m_Name
       value: RoadGenerator
