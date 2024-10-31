@@ -6,11 +6,11 @@ public class VehicleDriftFrictionStatistics
     public float turnFriction;
 
     [Space(5)]
-    [SerializeField, Range(0, 180)] public float slideAngle;
+    [SerializeField] public float slideAngle;
     public float slideFriction;
 
     [Space(5)]
-    [SerializeField, Range(0, 180)] public float driftAngle;
+    [SerializeField] public float driftAngle;
     public float driftFriction;
 
     public VehicleDriftFrictionStatistics(float turnFriction, float slideAngle, float slideFriction, float driftAngle, float driftFriction)
