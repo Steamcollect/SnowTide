@@ -72,7 +72,7 @@ MonoBehaviour:
     turnFriction: 0.1
     slideAngle: -0.1
     slideFriction: 0.1
-    driftAngle: -0.3
+    driftAngle: -0.2
     driftFriction: 0.1
   scoreGiven: 5
   rse_AddScore: {fileID: 11400000, guid: bbd2197f20605c54b82864586fc7892c, type: 2}
