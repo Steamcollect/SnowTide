@@ -553,18 +553,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 937129806}
     m_Modifications:
-    - target: {fileID: -7537875907571624011, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
-      propertyPath: m_Dithering
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7537875907571624011, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
-      propertyPath: m_Antialiasing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -7537875907571624011, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 418409423402022269, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -613,34 +601,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 539839664}
-    - target: {fileID: 5252208531344736008, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
-      propertyPath: posOffset.y
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 5252208531344736008, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
-      propertyPath: posOffset.z
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183003498180748219, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183003498180748219, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
-      propertyPath: m_BackGroundColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183003498180748219, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.9056604
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183003498180748219, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.9056604
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183003498180748219, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.9056604
-      objectReference: {fileID: 0}
+    - target: {fileID: 5785599413778172546, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 539839664}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1483,7 +1483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8686210928695757598, guid: 845d4e0b3107b3d4cb0416ddfa5df2c3, type: 3}
       propertyPath: m_text
-      value: Lose
+      value: Tided
       objectReference: {fileID: 0}
     - target: {fileID: 8686210928695757598, guid: 845d4e0b3107b3d4cb0416ddfa5df2c3, type: 3}
       propertyPath: m_fontSize
