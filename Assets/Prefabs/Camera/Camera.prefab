@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8540744382151767091}
   - component: {fileID: 5252208531344736008}
   - component: {fileID: -7537875907571624011}
+  - component: {fileID: 5785599413778172546}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -44,8 +45,8 @@ Camera:
   m_GameObject: {fileID: 3121223172535992835}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -107,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  posOffset: {x: 0, y: 19, z: -14}
+  posOffset: {x: 0, y: 18, z: -20}
   timeOffset: 0.2
 --- !u!114 &-7537875907571624011
 MonoBehaviour:
@@ -132,8 +133,8 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -153,3 +154,26 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &5785599413778172546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3121223172535992835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055258f884549a34fafaa23c5e51d25f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  Player: {fileID: 0}
+  Camera: {fileID: 8183003498180748219}
+  FadedAlpha: 0.33
+  FadingMode: 0
+  ChecksPerSecond: 2
+  FadeFPS: 30
+  FadeSpeed: 1
+  ObjectsBlockingView: []
