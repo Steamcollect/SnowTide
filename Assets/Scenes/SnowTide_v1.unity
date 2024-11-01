@@ -929,6 +929,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2000682684}
     m_Modifications:
+    - target: {fileID: 1516910931643943062, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
+      propertyPath: roadChunkT.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6188283500091550504, guid: 18e09fec3be08bb439ce5961a4b67555, type: 3}
       propertyPath: m_Name
       value: RoadGenerator
@@ -1303,6 +1307,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5269127235069708909, guid: 10b9f33a2909fc64395e46176418a264, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 18.250061
+      objectReference: {fileID: 0}
     - target: {fileID: 5573706732617626187, guid: 10b9f33a2909fc64395e46176418a264, type: 3}
       propertyPath: m_Name
       value: UI
@@ -1326,6 +1334,14 @@ PrefabInstance:
     - target: {fileID: 5673571167853234270, guid: 10b9f33a2909fc64395e46176418a264, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675812286828614483, guid: 10b9f33a2909fc64395e46176418a264, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5675812286828614483, guid: 10b9f33a2909fc64395e46176418a264, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -209
       objectReference: {fileID: 0}
     - target: {fileID: 5737174756169147533, guid: 10b9f33a2909fc64395e46176418a264, type: 3}
       propertyPath: m_AnchorMax.y
