@@ -13,6 +13,7 @@ public class VehicleStatistics : MonoBehaviour
     private void Start()
     {
         currentFriction = driftFrictionStatistics;
+        rsoPeopleAmount.Value = 0;
     }
 
     public int PeopleGet

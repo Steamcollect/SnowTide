@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 13, y: 6, z: 13}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 8, y: 5, z: 8}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!114 &5192682580864825195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,12 +69,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frictionToAdd:
-    turnFriction: 0.1
-    slideAngle: -0.1
-    slideFriction: 0.1
-    driftAngle: -0.2
-    driftFriction: 0.1
+    turnFriction: 0.2
+    slideAngle: 0.5
+    slideFriction: 0.5
+    driftAngle: 1
+    driftFriction: 0.8
   scoreGiven: 5
+  fadeDuration: 0.5
   rse_AddScore: {fileID: 11400000, guid: bbd2197f20605c54b82864586fc7892c, type: 2}
   OnPickedUp:
     m_PersistentCalls:
@@ -90,6 +91,57 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5588274088230136299}
+        m_TargetAssemblyTypeName: RenderMaterialFade, Assembly-CSharp
+        m_MethodName: FadeMaterial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3004167560189777088}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnReset:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5588274088230136299}
+        m_TargetAssemblyTypeName: RenderMaterialFade, Assembly-CSharp
+        m_MethodName: ResetFade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3004167560189777088}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1001 &226177777085717839
 PrefabInstance:
@@ -156,6 +208,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef0f7f6e9ef5919469fedabf8f820d8c, type: 3}
+--- !u!1 &3004167560189777088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3067928845456050575, guid: ef0f7f6e9ef5919469fedabf8f820d8c, type: 3}
+  m_PrefabInstance: {fileID: 226177777085717839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3427783687703029902 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3220747078059881921, guid: ef0f7f6e9ef5919469fedabf8f820d8c, type: 3}
@@ -224,6 +281,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4132312772176831909, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1969383390314219744}
+    - targetCorrespondingSourceObject: {fileID: 4132312772176831909, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5588274088230136299}
   m_SourcePrefab: {fileID: 100100000, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
 --- !u!1 &928331465786974211 stripped
 GameObject:
@@ -245,6 +305,22 @@ MonoBehaviour:
   animator: {fileID: 3040469014970811721}
   waitBeforeCheckRdnAnim: 3
   chancePlayAnimationRnd: 0.14
+--- !u!114 &5588274088230136299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928331465786974211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b290cf08baaa12b478db4c89f40ecb14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 6229812282695561486}
+  fadeDuration: 0.5
+  scrBlendMode: 5
+  dstBlendMode: 10
 --- !u!95 &3040469014970811721 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2272943885901545711, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
@@ -253,5 +329,10 @@ Animator:
 --- !u!4 &5022544633115873869 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8073086772555192299, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
+  m_PrefabInstance: {fileID: 3871675240209974694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6229812282695561486 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7191766321641239720, guid: 64b182395c0b6744a920c74bce3ece13, type: 3}
   m_PrefabInstance: {fileID: 3871675240209974694}
   m_PrefabAsset: {fileID: 0}
