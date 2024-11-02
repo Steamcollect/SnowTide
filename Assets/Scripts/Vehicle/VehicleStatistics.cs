@@ -53,4 +53,20 @@ public class VehicleStatistics : MonoBehaviour
         peopleCount++;
         rsoPeopleAmount.Value = peopleCount;
     }
+
+    [SerializeField] RSE_BasicEvent rse_OnGameStart;
+    private void OnEnable()
+    {
+        rse_OnGameStart.action += ResetPeopleAmount;
+    }
+    private void OnDisable()
+    {
+        rse_OnGameStart.action -= ResetPeopleAmount;
+    }
+
+    void ResetPeopleAmount()
+    {
+        peopleCount = 0;
+        rsoPeopleAmount.Value = 0;
+    }
 }

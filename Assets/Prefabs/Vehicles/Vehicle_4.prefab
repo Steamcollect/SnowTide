@@ -1058,6 +1058,7 @@ MonoBehaviour:
     driftAngle: 55
     driftFriction: 60
   rsoPeopleAmount: {fileID: 11400000, guid: 32824d6091b876c4aa7466c216d827c2, type: 2}
+  rse_OnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
 --- !u!114 &8848872729660146779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,7 +1095,8 @@ MonoBehaviour:
   maxDelayBetweenDrift: 0.3
   comboCountTxt: {fileID: 0}
   rse_AddScore: {fileID: 11400000, guid: bbd2197f20605c54b82864586fc7892c, type: 2}
-  rsoComboAmount: {fileID: 0}
+  rsoComboAmount: {fileID: 11400000, guid: fe6763d45b3b5c549849fd4d0c2a8396, type: 2}
+  rse_OnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
 --- !u!1 &8691058473805315709
 GameObject:
   m_ObjectHideFlags: 0

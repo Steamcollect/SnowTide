@@ -26,7 +26,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RSO_VehicleMovement rso_VehicleMovement;
     [Space(10)]
     [SerializeField] private UnityEvent BackgroundMusicEvent;
-    
+    [Space(10)]
+    [SerializeField] RSE_BasicEvent rse_OnGameStart;
+
     private void Start()
     {
         if (vehicleStopAtStart)
@@ -93,6 +95,7 @@ public class GameManager : MonoBehaviour
     {
         yield return StartCoroutine(BackMenu());
         yield return new WaitForSeconds(0.3f);
+        rse_OnGameStart.Call();
         Play();
     }
     

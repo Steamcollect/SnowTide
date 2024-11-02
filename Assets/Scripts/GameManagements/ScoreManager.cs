@@ -42,10 +42,19 @@ public class ScoreManager : MonoBehaviour
     {
         rse_AddScore.action += AddScore;
         rseSetStateActive.action += SetActiveVisual;
+        rse_OnGameStart.action += ResetPeopleAmount;
     }
     private void OnDisable()
     {
         rse_AddScore.action -= AddScore;
         rseSetStateActive.action -= SetActiveVisual;
+        rse_OnGameStart.action -= ResetPeopleAmount;
+    }
+
+    [SerializeField] RSE_BasicEvent rse_OnGameStart;
+    void ResetPeopleAmount()
+    {
+        score = 0;
+        rsoScore.Value = 0;
     }
 }
