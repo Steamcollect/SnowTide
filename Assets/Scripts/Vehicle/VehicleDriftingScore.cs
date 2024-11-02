@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -84,5 +83,21 @@ public class VehicleDriftingScore : MonoBehaviour
         canCountScore = false;
         yield return new WaitForSeconds(delay);
         canCountScore = true;
+    }
+
+    [SerializeField] RSE_BasicEvent rse_OnGameStart;
+    private void OnEnable()
+    {
+        rse_OnGameStart.action += ResetPeopleAmount;
+    }
+    private void OnDisable()
+    {
+        rse_OnGameStart.action -= ResetPeopleAmount;
+    }
+
+    void ResetPeopleAmount()
+    {
+        maxCombo = 0;
+        rsoComboAmount.Value = 0;
     }
 }
