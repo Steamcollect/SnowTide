@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class PageSwiper : MonoBehaviour,IEndDragHandler, IDragHandler
 {
+    [Header("Page Swiper Settings")]
     [SerializeField][Tooltip("Page in order left to right")] private List<GameObject> panels;
     [SerializeField]private int _pageActive;
     [SerializeField] private float sizeThreashold = 0.2f;
+    [SerializeField] private UnityEvent<int> onPageSwiped;
     
     [Header("Settings Effects")]
     [SerializeField] private float punchEffect = 10f;
@@ -32,7 +35,11 @@ public class PageSwiper : MonoBehaviour,IEndDragHandler, IDragHandler
 
     private void SwapPage()
     {
-        for (int i = 0; i < panels.Count; i++) panels[i].SetActive(_pageActive == i);
+        for (int i = 0; i < panels.Count; i++)
+        {
+            if (i == _pageActive) onPageSwiped?.Invoke(i);
+            panels[i].SetActive(_pageActive == i);
+        }
     }
 
 }

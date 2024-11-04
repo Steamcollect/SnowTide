@@ -1,3 +1,4 @@
+using BT.Save;
 using DG.Tweening;
 using System.Collections;
 using TMPro;
@@ -33,7 +34,7 @@ public class GameOverPanel : MonoBehaviour
     [SerializeField] RSO_IntValue rsoScore;
     [SerializeField] RSO_IntValue rsoMaxCombo;
     [SerializeField] RSO_IntValue rsoPeopleAmount;
-    [SerializeField] RSO_IntValue rsoBestScore;
+    [SerializeField] RSO_ContentSaved rsoContentSave;
 
     private void OnEnable()
     {
@@ -57,7 +58,9 @@ public class GameOverPanel : MonoBehaviour
         peopleAmount = rsoPeopleAmount.Value;
 
         finalScore = score + peopleAmount * peopleScoreGiven;
-        bestScore = rsoBestScore.Value;        
+
+        rsoContentSave.Value.AddScore(score);
+        bestScore = rsoContentSave.Value.highscores[0];
     }
 
     IEnumerator SetText()
