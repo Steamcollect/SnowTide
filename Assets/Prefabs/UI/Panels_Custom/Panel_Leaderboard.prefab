@@ -1349,9 +1349,9 @@ MonoBehaviour:
   background: {fileID: 6288620768172213489}
   content:
   - {fileID: 5949414499878527003}
-  normalColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 0.5568628, g: 0.47058824, b: 0.47058824, a: 1}
-  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  activeColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
 --- !u!1 &4981816684618337782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,9 +2572,9 @@ MonoBehaviour:
   background: {fileID: 3907010556843800461}
   content:
   - {fileID: 5096273493653710534}
-  normalColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 0.5566038, g: 0.46996263, b: 0.46996263, a: 1}
-  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  activeColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
 --- !u!1 &7173746970518704939
 GameObject:
   m_ObjectHideFlags: 0
@@ -4884,7 +4884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8686210928695757598, guid: 845d4e0b3107b3d4cb0416ddfa5df2c3, type: 3}
       propertyPath: m_fontSize
-      value: 49.6
+      value: 48.55
       objectReference: {fileID: 0}
     - target: {fileID: 8686210928695757598, guid: 845d4e0b3107b3d4cb0416ddfa5df2c3, type: 3}
       propertyPath: m_margin.w
@@ -6528,7 +6528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8686210928695757598, guid: 845d4e0b3107b3d4cb0416ddfa5df2c3, type: 3}
       propertyPath: m_fontSize
-      value: 46.05
+      value: 45.25
       objectReference: {fileID: 0}
     - target: {fileID: 8686210928695757598, guid: 845d4e0b3107b3d4cb0416ddfa5df2c3, type: 3}
       propertyPath: m_margin.w
