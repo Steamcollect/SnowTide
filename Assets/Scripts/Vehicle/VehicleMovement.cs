@@ -42,7 +42,9 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] private RSO_VehicleMovement rsoVehicleMovement;
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private GameObject renderPlayer;
-    
+    [Space(10)]
+    [SerializeField] RSE_FloatEvent rse_SetCameraRotation;
+
     Vector2 input;
 
     bool canMove = true;
@@ -184,10 +186,12 @@ public class VehicleMovement : MonoBehaviour
 
         targetAngle = Mathf.Clamp(targetAngle, -maxRotationAngle, maxRotationAngle);
 
+
         if(currentAngle > 180)
         {
             currentAngle = -(180 - (currentAngle - 180));
         }
+        rse_SetCameraRotation.Call(currentAngle / maxRotationAngle);
 
         float angle = Mathf.SmoothDamp(currentAngle, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
