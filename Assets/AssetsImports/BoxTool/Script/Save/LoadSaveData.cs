@@ -12,7 +12,7 @@ namespace BT.Save
         [SerializeField] private RSE_Event rseCommandSave;
         [SerializeField] private RSE_Event rseCommandClear;
         [SerializeField] private RSO_ContentSaved rsoContentSaved;
-        
+
         private string filepath;
 
         private void OnEnable()
