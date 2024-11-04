@@ -109,7 +109,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 3
+  m_Time: 4
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -411,7 +411,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 3
+  m_Time: 4
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -630,7 +630,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 3
+  m_Time: 4
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -1029,8 +1029,8 @@ MonoBehaviour:
   - {fileID: 7393679330498570280}
   - {fileID: 5279385981250782294}
   - {fileID: 2160056374009477511}
-  impactBumpForce: 40
-  impactLockMovementDelay: 0.15
+  impactBumpForce: 30
+  impactLockMovementDelay: 0.05
   minAngleReflection: 0
   vehicleHealth: {fileID: 8848872729660146779}
   rb: {fileID: 837687545921577164}
@@ -1039,6 +1039,7 @@ MonoBehaviour:
   rsoVehicleMovement: {fileID: 11400000, guid: 49dda69a21fe3f74eac26930c7eddd27, type: 2}
   OnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
   renderPlayer: {fileID: 7706981989544892937}
+  rse_SetCameraRotation: {fileID: 11400000, guid: 53fcb42100120ac4cad2a847fa64e7da, type: 2}
 --- !u!114 &3520671360094562413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1171,7 +1172,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 3
+  m_Time: 4
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
