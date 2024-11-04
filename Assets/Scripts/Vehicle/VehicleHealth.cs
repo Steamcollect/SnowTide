@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using BT.Save;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class VehicleHealth : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private int maxHealth;
     [SerializeField] private float healtRegenTime;
-    
+
+    [Space(5)]
+    [SerializeField] float invincibilityDelay;
+    bool isInvincible = false;
+    [SerializeField] float invincibilityFlahDelay;
+
     private Coroutine regenCoroutine;
 
     [Header("References")]
+    [SerializeField] GameObject graphics;
+    [Space(5)]
     [SerializeField] private RSO_Life rsoLife;
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private AvalancheFollow avalancheFollow;
@@ -24,12 +30,15 @@ public class VehicleHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (isInvincible) return;
+
         if (regenCoroutine != null) StopCoroutine(regenCoroutine);
         rsoLife.Value = new HealthData{maxHealth = maxHealth, health = rsoLife.Value.health - damage};
         if (rsoLife.Value.health <= 0) Die();
         else
         {
             regenCoroutine = StartCoroutine(Regen());
+            StartCoroutine(InvincibilityDelay());
         }
     }
 
@@ -40,6 +49,24 @@ public class VehicleHealth : MonoBehaviour
         {
             regenCoroutine = StartCoroutine(Regen());
         }
+    }
+
+    IEnumerator InvincibilityDelay()
+    {
+        StartCoroutine(InvincibilityFlash());
+
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibilityDelay);
+        isInvincible = false;
+    }
+    IEnumerator InvincibilityFlash()
+    {
+        graphics.SetActive(false);
+        yield return new WaitForSeconds(invincibilityFlahDelay);
+        graphics.SetActive(true);
+        yield return new WaitForSeconds(invincibilityFlahDelay);
+
+        if(isInvincible) StartCoroutine(InvincibilityFlash());
     }
 
     private void Die()
