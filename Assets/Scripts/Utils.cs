@@ -21,6 +21,14 @@ public static class Utils
             t.DOScale(1, .08f);
         });
     }
+    public static void BumpFieldOfView(this Camera cam)
+    {
+        cam.DOKill();
+        cam.DOFieldOfView(50, .06f).OnComplete(() =>
+        {
+            cam.DOFieldOfView(60, .08f);
+        });
+    }
 
     public static IEnumerator Delay(Action callback, float delay)
     {

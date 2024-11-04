@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BT.Save;
+using DG.Tweening;
 using UnityEngine;
 
 public class VehicleHealth : MonoBehaviour
@@ -22,7 +23,9 @@ public class VehicleHealth : MonoBehaviour
     [SerializeField] private RSO_Life rsoLife;
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] private AvalancheFollow avalancheFollow;
-    
+    [SerializeField] RSO_Camera rso_Cam;
+    [SerializeField] RSO_TakeDamageCrack rsoTakeDamageCrack;
+
     public void Start()
     {
         rsoLife.Value = new HealthData{maxHealth = maxHealth, health = maxHealth, isRegen = true};
@@ -37,6 +40,15 @@ public class VehicleHealth : MonoBehaviour
         if (rsoLife.Value.health <= 0) Die();
         else
         {
+            transform.BumpVisual();
+            rso_Cam.Value.BumpFieldOfView();
+
+            for (int i = 0; i < rsoTakeDamageCrack.Value.Length; i++)
+            {
+                rsoTakeDamageCrack.Value[i].DOKill();
+                rsoTakeDamageCrack.Value[i].DOFade(.7f, .04f);
+            }
+
             regenCoroutine = StartCoroutine(Regen());
             StartCoroutine(InvincibilityDelay());
         }
@@ -44,7 +56,13 @@ public class VehicleHealth : MonoBehaviour
 
     private void TakeHealth(int health)
     {
-        rsoLife.Value = new HealthData{maxHealth = maxHealth, health = Mathf.Clamp(0,rsoLife.Value.maxHealth,rsoLife.Value.health + health), isRegen = true};
+        rsoLife.Value = new HealthData
+        {
+            maxHealth = maxHealth, 
+            health = Mathf.Clamp(0,rsoLife.Value.maxHealth,rsoLife.Value.health + health), 
+            isRegen = true
+        };
+
         if (rsoLife.Value.health < maxHealth)
         {
             regenCoroutine = StartCoroutine(Regen());
@@ -78,6 +96,11 @@ public class VehicleHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(healtRegenTime);
         TakeHealth(1);
+        for (int i = 0; i < rsoTakeDamageCrack.Value.Length; i++)
+        {
+            rsoTakeDamageCrack.Value[i].DOKill();
+            rsoTakeDamageCrack.Value[i].DOFade(0, 1f);
+        }
     }
 }
 

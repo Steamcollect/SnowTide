@@ -171,6 +171,59 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!1 &1151558158640933789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3195879848820725367}
+  - component: {fileID: 7720325029589071439}
+  m_Layer: 0
+  m_Name: Collid
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3195879848820725367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151558158640933789}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8485035333990588850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7720325029589071439
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151558158640933789}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3190053, y: 1.2829053, z: 2.8410068}
+  m_Center: {x: 0, y: 0.5085473, z: -0.027248621}
 --- !u!1 &2269203326929350970
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +780,7 @@ Transform:
   - {fileID: 7264307474661926707}
   - {fileID: 1535899847214098894}
   - {fileID: 8143805477393071744}
+  - {fileID: 3195879848820725367}
   m_Father: {fileID: 5461000963252465114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8215748401644279743
@@ -1054,11 +1108,13 @@ MonoBehaviour:
   maxHealth: 2
   healtRegenTime: 15
   invincibilityDelay: 3
-  invincibilityFlahDelay: 0.3
+  invincibilityFlahDelay: 0.15
   graphics: {fileID: 8215748401644279743}
   rsoLife: {fileID: 11400000, guid: 992560e98af77114ebcd9fe802993f24, type: 2}
   OnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
   avalancheFollow: {fileID: 0}
+  rso_Cam: {fileID: 11400000, guid: 45f2a7d0da29f9f4d8b8c8219f12da16, type: 2}
+  rsoTakeDamageCrack: {fileID: 11400000, guid: 69bdfe226b664124ca4a7ea1478f6385, type: 2}
 --- !u!114 &2340657120261254109
 MonoBehaviour:
   m_ObjectHideFlags: 0
