@@ -1,5 +1,6 @@
 using BT.Save;
 using DG.Tweening;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -59,6 +60,11 @@ public class GameOverPanel : MonoBehaviour
 
         finalScore = score + peopleAmount * peopleScoreGiven;
 
+        rsoContentSave.Value.totalScore += score;
+        rsoContentSave.Value.totalPeopleSaved += peopleAmount;
+        if(rsoContentSave.Value.maxPeopleSaved < peopleAmount) rsoContentSave.Value.maxPeopleSaved = peopleAmount;
+        rsoContentSave.Value.totalDriftCombo += maxCombo;
+        if(rsoContentSave.Value.maxDriftCombo < maxCombo) rsoContentSave.Value.maxDriftCombo = maxCombo;
         rsoContentSave.Value.AddScore(score);
         bestScore = rsoContentSave.Value.highscores[0];
     }
