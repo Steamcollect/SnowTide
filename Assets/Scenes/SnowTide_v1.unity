@@ -1710,6 +1710,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2063428907}
     m_Modifications:
+    - target: {fileID: 251476227371003727, guid: 0d8079813394a6845bb43780d313e5aa, type: 3}
+      propertyPath: rse_OnStartEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
     - target: {fileID: 952266992575053663, guid: 0d8079813394a6845bb43780d313e5aa, type: 3}
       propertyPath: m_Name
       value: JoystickCanvas

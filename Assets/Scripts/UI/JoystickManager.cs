@@ -12,9 +12,18 @@ public class JoystickManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private RSE_SetStateActive rseSetStateActive;
     [SerializeField] RSO_FloatingJoystick rso_FloatingJoystick;
+    [SerializeField] RSE_BasicEvent rse_OnStartEvent;
 
-    private void OnEnable() => rseSetStateActive.action += SetActiveJoystick;
-    private void OnDisable() => rseSetStateActive.action -= SetActiveJoystick;
+    private void OnEnable()
+    {
+        rse_OnStartEvent.action += ResetJoystick;
+        rseSetStateActive.action += SetActiveJoystick;
+    }
+    private void OnDisable()
+    {
+        rse_OnStartEvent.action -= ResetJoystick;
+        rseSetStateActive.action -= SetActiveJoystick;
+    }
 
     private void Awake()
     {
@@ -23,6 +32,12 @@ public class JoystickManager : MonoBehaviour
 
     private void SetActiveJoystick(bool active)
     {
+        ResetJoystick();
         joystick.gameObject.SetActive(active);
+    }
+
+    void ResetJoystick()
+    {
+        joystick.OnReset();
     }
 }
