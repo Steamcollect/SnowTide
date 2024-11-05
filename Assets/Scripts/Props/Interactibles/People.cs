@@ -13,7 +13,8 @@ public class People : Interactible
 
     [Header("References")]
     [SerializeField] RSE_IntEvent rse_AddScore;
-    
+    [SerializeField] RSE_AddScoreNotif rseAddScoreNotif;
+
     [Header("Events")]
     [SerializeField] private UnityEvent OnPickedUp;
     [SerializeField] private UnityEvent OnReset;
@@ -29,6 +30,7 @@ public class People : Interactible
         if (!player.TryGetComponent(out VehicleStatistics vehicleStatistics)) return;
         OnPickedUp?.Invoke();
         rse_AddScore.Call(scoreGiven);
+        rseAddScoreNotif.Call(transform.position, scoreGiven);
         vehicleStatistics.AddFriction(frictionToAdd);
         StartCoroutine(Utils.Delay(()=> gameObject.SetActive(false),fadeDuration));
     }

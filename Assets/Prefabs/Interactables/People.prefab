@@ -77,6 +77,7 @@ MonoBehaviour:
   scoreGiven: 5
   fadeDuration: 0.3
   rse_AddScore: {fileID: 11400000, guid: bbd2197f20605c54b82864586fc7892c, type: 2}
+  rseAddScoreNotif: {fileID: 11400000, guid: e6fbfafb3ccd280408520df0c1d08d82, type: 2}
   OnPickedUp:
     m_PersistentCalls:
       m_Calls:
