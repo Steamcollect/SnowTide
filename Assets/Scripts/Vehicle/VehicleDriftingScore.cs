@@ -25,6 +25,15 @@ public class VehicleDriftingScore : MonoBehaviour
     [SerializeField] TMP_Text comboCountTxt;
     [SerializeField] RSE_IntEvent rse_AddScore;
     [SerializeField] RSO_IntValue rsoComboAmount;
+    [Space(10)]
+    [SerializeField] GameObject currentScorePrefab;
+    [SerializeField] RSO_ScoreCanvas rsoScoreCanvas;
+    [SerializeField] RSO_CurrentScorePosition rsoCurrentScorePosition;
+    [SerializeField] RSO_ScorePosition rsoScorePosition;
+
+    int currentScore;
+    TMP_Text currentScoreTxt;
+    bool isScoreReset = false;
 
     private void Start()
     {
@@ -35,6 +44,7 @@ public class VehicleDriftingScore : MonoBehaviour
     {
         if (isDrifting && canCountScore)
         {
+            isScoreReset = false;
             currentDriftTime += Time.deltaTime;
             noDriftDelay = 0;
 
@@ -55,23 +65,41 @@ public class VehicleDriftingScore : MonoBehaviour
 
             if (currentDriftTime >= (miniComboTime * currentMiniCombo))
             {
+                if(currentScoreTxt == null)
+                {
+                    currentScoreTxt = Instantiate(currentScorePrefab, rsoScoreCanvas.Value).GetComponent<TMP_Text>();
+                    currentScoreTxt.transform.position = rsoCurrentScorePosition.Value.position;
+                    currentScoreTxt.transform.rotation = Quaternion.Euler(0, 0, 15);
+                }
+
                 currentMiniCombo++;
-                rse_AddScore.Call(driftScoreGiven + comboScoreGiven * currentBigCombo);
+                currentScore = driftScoreGiven + comboScoreGiven * currentBigCombo;
+                currentScoreTxt.text = "+" + currentScore.ToString("#,0");
+                currentScoreTxt.transform.BumpVisual();
             }
         }
         else
         {
             noDriftDelay += Time.deltaTime;
 
-            if(noDriftDelay >= maxDelayBetweenDrift)
+            if(noDriftDelay >= maxDelayBetweenDrift && !isScoreReset)
             {
+                isScoreReset = true;
+
+                GameObject go = currentScoreTxt.gameObject;
+                currentScoreTxt = null;
+                go.transform.DOMove(rsoScorePosition.Value.position, .5f).SetEase(Ease.InOutCubic).OnComplete(()=>
+                {
+                    Destroy(go);
+                });
+
                 currentDriftTime = 0;
                 currentBigCombo = 0;
                 currentMiniCombo = 0;
 
                 comboCountTxt.DOKill();
                 comboCountTxt.DOFade(0, .1f);
-            }            
+            }
         }
     }
 
