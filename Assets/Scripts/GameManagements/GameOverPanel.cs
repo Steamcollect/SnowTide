@@ -65,7 +65,7 @@ public class GameOverPanel : MonoBehaviour
         if(rsoContentSave.Value.maxPeopleSaved < peopleAmount) rsoContentSave.Value.maxPeopleSaved = peopleAmount;
         rsoContentSave.Value.totalDriftCombo += maxCombo;
         if(rsoContentSave.Value.maxDriftCombo < maxCombo) rsoContentSave.Value.maxDriftCombo = maxCombo;
-        rsoContentSave.Value.AddScore(score);
+        rsoContentSave.Value.AddScore(finalScore);
         bestScore = rsoContentSave.Value.highscores[0];
     }
 
