@@ -67,12 +67,7 @@ public class VehicleDriftingScore : MonoBehaviour
                 comboCountTxt.DOFade(1, .1f);
                 comboCountTxt.text = "Combo x" + currentBigCombo;
                 comboCountTxt.transform.BumpVisual();
-            }
-
-            if(currentScoreTxt != null)
-            {
-                currentScoreTxt.transform.position = (Vector2)Camera.main.WorldToScreenPoint(transform.position) + currentScorePosOffset;
-            }
+            }            
 
             if (currentDriftTime >= (miniComboTime * currentMiniCombo))
             {
@@ -116,6 +111,10 @@ public class VehicleDriftingScore : MonoBehaviour
         }
 
         rsoComboPosition.Value.position = (Vector2)Camera.main.WorldToScreenPoint(transform.position) + comboPosOffset;
+        if (currentScoreTxt != null)
+        {
+            currentScoreTxt.transform.position = (Vector2)Camera.main.WorldToScreenPoint(transform.position) + currentScorePosOffset;
+        }
     }
 
     public void SetDriftState(bool _isDrifting) => isDrifting = _isDrifting;

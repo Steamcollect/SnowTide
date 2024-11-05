@@ -1008,7 +1008,7 @@ MonoBehaviour:
   - {fileID: 7393679330498570280}
   - {fileID: 5279385981250782294}
   - {fileID: 2160056374009477511}
-  impactBumpForce: 40
+  impactBumpForce: 15
   impactLockMovementDelay: 0.15
   minAngleReflection: 0
   vehicleHealth: {fileID: 8848872729660146779}

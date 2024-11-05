@@ -286,7 +286,7 @@ public class VehicleMovement : MonoBehaviour
     {
 
         Vector3 normal = collision.contacts[0].normal;
-        Vector3 reflectDir = Vector3.Reflect(transform.forward, normal);
+        Vector3 reflectDir = normal;
         //if(Vector3.Angle(normal, -transform.forward) <= minAngleReflection)
         //{
         //    reflectDir = normal;
