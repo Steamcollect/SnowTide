@@ -1,6 +1,8 @@
+using BT.Save;
 using DG.Tweening;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class VehicleDriftingScore : MonoBehaviour
@@ -30,6 +32,10 @@ public class VehicleDriftingScore : MonoBehaviour
     [SerializeField] RSO_ScoreCanvas rsoScoreCanvas;
     [SerializeField] Vector2 currentScorePosOffset;
     [SerializeField] RSO_ScorePosition rsoScorePosition;
+    [SerializeField] RSO_ComboPosition rsoComboPosition;
+    [SerializeField] Vector2 comboPosOffset;
+    [Space(10)]
+    [SerializeField] RSE_Event rseOnPlayerDeath;
 
     int currentScore;
     TMP_Text currentScoreTxt;
@@ -108,6 +114,8 @@ public class VehicleDriftingScore : MonoBehaviour
                 comboCountTxt.DOFade(0, .1f);
             }
         }
+
+        rsoComboPosition.Value.position = (Vector2)Camera.main.WorldToScreenPoint(transform.position) + comboPosOffset;
     }
 
     public void SetDriftState(bool _isDrifting) => isDrifting = _isDrifting;
@@ -124,15 +132,23 @@ public class VehicleDriftingScore : MonoBehaviour
     private void OnEnable()
     {
         rse_OnGameStart.action += ResetPeopleAmount;
+        rseOnPlayerDeath.action += OnPlayerDeath;
     }
     private void OnDisable()
     {
         rse_OnGameStart.action -= ResetPeopleAmount;
+        rseOnPlayerDeath.action -= OnPlayerDeath;
     }
 
     void ResetPeopleAmount()
     {
         maxCombo = 0;
         rsoComboAmount.Value = 0;
+    }
+    void OnPlayerDeath()
+    {
+        canCountScore = false;
+        rse_AddScore.Call(currentScore);
+        currentScore = 0;
     }
 }

@@ -525,8 +525,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePosition: {fileID: 2093888309544386874}
   scoreCanvas: {fileID: 4792069474225727867}
+  comboPositon: {fileID: 6058976709326826867}
   rsoScorePosition: {fileID: 11400000, guid: b2b04fb68154f5f4791d9677ade4df5e, type: 2}
   rsoScoreCanvas: {fileID: 11400000, guid: 562ff79bba5ad7e42b102a2dc64fd412, type: 2}
+  rsoComboPosition: {fileID: 11400000, guid: 9d572eba5b6a631459d7f75b2ea40d1a, type: 2}
 --- !u!1 &7310758223933718492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,6 +1985,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3206895157160528773}
     m_Modifications:
+    - target: {fileID: 578515485789093735, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 442.6014
+      objectReference: {fileID: 0}
+    - target: {fileID: 578515485789093735, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9914449
+      objectReference: {fileID: 0}
+    - target: {fileID: 578515485789093735, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 578515485789093735, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 578515485789093735, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.13052624
+      objectReference: {fileID: 0}
+    - target: {fileID: 578515485789093735, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 172.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 578515485789093735, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -650
+      objectReference: {fileID: 0}
+    - target: {fileID: 578515485789093735, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15
+      objectReference: {fileID: 0}
     - target: {fileID: 1325855246451832449, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
       propertyPath: m_Name
       value: ScoreCanvas
@@ -1990,6 +2024,34 @@ PrefabInstance:
     - target: {fileID: 1325855246451832449, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378389885842304264, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378389885842304264, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378389885842304264, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.43755782
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378389885842304264, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.8328045
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378389885842304264, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.90943396
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378389885842304264, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378389885842304264, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 7394536
       objectReference: {fileID: 0}
     - target: {fileID: 2202922398267259759, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
       propertyPath: m_Pivot.x
@@ -2096,6 +2158,11 @@ RectTransform:
 --- !u!224 &4792069474225727867 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2202922398267259759, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
+  m_PrefabInstance: {fileID: 6634510284902830612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6058976709326826867 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 578515485789093735, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
   m_PrefabInstance: {fileID: 6634510284902830612}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7183063956458085042

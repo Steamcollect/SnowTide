@@ -1193,6 +1193,9 @@ MonoBehaviour:
   rsoScoreCanvas: {fileID: 11400000, guid: 562ff79bba5ad7e42b102a2dc64fd412, type: 2}
   currentScorePosOffset: {x: -170, y: 200}
   rsoScorePosition: {fileID: 11400000, guid: b2b04fb68154f5f4791d9677ade4df5e, type: 2}
+  rsoComboPosition: {fileID: 11400000, guid: 9d572eba5b6a631459d7f75b2ea40d1a, type: 2}
+  comboPosOffset: {x: 190, y: 210}
+  rseOnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
   rse_OnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
 --- !u!1 &8691058473805315709
 GameObject:
