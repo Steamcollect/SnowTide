@@ -64,16 +64,14 @@ public class UiManager : MonoBehaviour
         panelEnd.SetActive(false);
         panelPause.SetActive(false);
         panelHUD.SetActive(false);
-        onUIAction.Call(UiActionGame.Restart, () => { });
-        panelHUD.SetActive(true);
+        onUIAction.Call(UiActionGame.Restart, () => { panelHUD.SetActive(true); });
     }
 
     public void BackHomeButton()
     {
         panelEnd.SetActive(false);
         panelPause.SetActive(false);
-        onUIAction.Call(UiActionGame.BackMenu, () => { });
-        canvasMenu.SetActive(true);
+        onUIAction.Call(UiActionGame.BackMenu, () => {canvasMenu.SetActive(true); });
     }
     
 }

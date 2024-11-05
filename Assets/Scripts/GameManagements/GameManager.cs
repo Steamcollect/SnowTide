@@ -32,25 +32,19 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SleepLoop());
+        StartCoroutine(InitGame());
+    }
+
+    private IEnumerator InitGame()
+    {
         if (vehicleStopAtStart)
         {
             rso_VehicleMovement.Value.ToggleMovement(false);
         }
         BackgroundMusicEvent.Invoke();
         rse_SetStateJoystick.Call(false);
+        yield return new WaitForSeconds(0.1f);
         rso_VehicleMovement.Value.SnapPosition(vehicleSpawnPoint.position);
-    }
-
-    private IEnumerator SleepLoop()
-    {
-        float time = 0;
-        while (time < 2.5f)
-        {
-            time += Time.deltaTime;
-            rso_VehicleMovement.Value.SleepVehicle();
-            yield return null;
-        }
     }
 
     private void OnEnable()
@@ -127,6 +121,7 @@ public class GameManager : MonoBehaviour
                 break;
             case UiActionGame.BackMenu:
                 StartCoroutine(BackMenu());
+                StartCoroutine(Utils.Delay(() => ev?.Invoke(),0.3f));
                 break;
             case UiActionGame.Pause:
                 Pause();
@@ -136,9 +131,9 @@ public class GameManager : MonoBehaviour
                 break;
             case UiActionGame.Restart:
                 StartCoroutine(RestartGame());
+                StartCoroutine(Utils.Delay(() => ev?.Invoke(),0.3f));
                 break;
         }
-        ev?.Invoke();
     }
 
     private void OnApplicationQuit()
