@@ -15,7 +15,15 @@ public class CameraController : MonoBehaviour
 
     Quaternion targetRotation = Quaternion.identity;
 
+    [Space(10)]
+    [SerializeField] Camera cam;
+    [SerializeField] RSO_Camera rso_Cam;
     [SerializeField] RSE_FloatEvent rse_VehicleRotation;
+
+    private void Start()
+    {
+        rso_Cam.Value = cam;
+    }
 
     private void Update()
     {
