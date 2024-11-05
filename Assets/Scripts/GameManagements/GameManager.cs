@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-
         rse_SetStateJoystick.Call(false);
         rse_StopBuildAuto.Call();
     }

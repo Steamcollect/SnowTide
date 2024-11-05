@@ -49,7 +49,7 @@ MonoBehaviour:
   rsoLife: {fileID: 11400000, guid: 992560e98af77114ebcd9fe802993f24, type: 2}
   hidenPos: {x: 0, y: 0, z: -55}
   showPos: {x: 0, y: 0, z: -18}
-  destroyPos: {x: 0, y: 0, z: 18}
+  destroyPos: {x: 0, y: 0, z: 15}
   timeOffset: 0.2
 --- !u!1 &9081810499929099310
 GameObject:
@@ -94,18 +94,6 @@ PrefabInstance:
     - target: {fileID: 58402548899034416, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
       propertyPath: ShapeModule.m_Scale.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 58402548899034416, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 58402548899034416, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 58402548899034416, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1797706446962150520, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -159,33 +147,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 17.4
       objectReference: {fileID: 0}
-    - target: {fileID: 7656149068665840191, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 7656149068665840191, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7656149068665840191, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
-      propertyPath: m_RenderAlignment
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7954099287162474469, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
       propertyPath: m_Name
       value: Snow_Smoke
       objectReference: {fileID: 0}
     - target: {fileID: 8818365236357457692, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 51
-      objectReference: {fileID: 0}
-    - target: {fileID: 9082456901699064628, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 9082456901699064628, guid: b540e9db521edd04491615c8a73fb5f1, type: 3}
-      propertyPath: m_RenderMode
-      value: 4
+      value: 46.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

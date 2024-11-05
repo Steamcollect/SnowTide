@@ -119,7 +119,6 @@ MonoBehaviour:
   joystick: {fileID: 9199489516767938478}
   rseSetStateActive: {fileID: 11400000, guid: 1f55bf9fcaa8d9e4e902872c0b492deb, type: 2}
   rso_FloatingJoystick: {fileID: 11400000, guid: 06310b7029f45324e86f1a42bfc1f1ed, type: 2}
-  rse_OnStartEvent: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
 --- !u!1 &7562169827676690939
 GameObject:
   m_ObjectHideFlags: 0
