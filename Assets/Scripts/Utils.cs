@@ -24,7 +24,7 @@ public static class Utils
     public static void BumpFieldOfView(this Camera cam)
     {
         cam.DOKill();
-        cam.DOFieldOfView(50, .06f).OnComplete(() =>
+        cam.DOFieldOfView(55, .06f).OnComplete(() =>
         {
             cam.DOFieldOfView(60, .08f);
         });
