@@ -35,6 +35,59 @@ Transform:
   - {fileID: 8992984745914773209}
   m_Father: {fileID: 142702283719897924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &352497412695098335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8217804351856771203}
+  - component: {fileID: 883566635891659776}
+  m_Layer: 0
+  m_Name: Collid
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8217804351856771203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352497412695098335}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8485035333990588850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &883566635891659776
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352497412695098335}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3190053, y: 1.2829053, z: 2.8410068}
+  m_Center: {x: 0, y: 0.5085473, z: -0.027248621}
 --- !u!1 &722716040533888913
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +834,7 @@ Transform:
   - {fileID: 1535899847214098894}
   - {fileID: 8143805477393071744}
   - {fileID: 3195879848820725367}
+  - {fileID: 8217804351856771203}
   m_Father: {fileID: 5461000963252465114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8215748401644279743
@@ -1108,7 +1162,7 @@ MonoBehaviour:
   maxHealth: 2
   healtRegenTime: 15
   invincibilityDelay: 3
-  invincibilityFlahDelay: 0.15
+  invincibilityFlahDelay: 0.3
   graphics: {fileID: 8215748401644279743}
   rsoLife: {fileID: 11400000, guid: 992560e98af77114ebcd9fe802993f24, type: 2}
   OnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}

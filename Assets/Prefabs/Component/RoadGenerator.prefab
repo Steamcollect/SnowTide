@@ -51,9 +51,12 @@ MonoBehaviour:
   loaderRoadChunk: {fileID: 5834548674661811309}
   roadChunkMenuT: {fileID: 1271070144976020458, guid: 3833938a0db6f304ebf4f94c64e4f4e5, type: 3}
   roadChunkT:
-  - {fileID: 1271070144976020458, guid: 3115af5c9c072cc40b4886fc9cd9db5b, type: 3}
-  - {fileID: 1271070144976020458, guid: 4abe8fb3923bb02468e86d2a8c195ead, type: 3}
-  - {fileID: 1271070144976020458, guid: 843d5878083b9ba44a13e59f3cef63d9, type: 3}
+  - {fileID: 3613890569510702629, guid: 90ecebb39ed28a64dafd2ec8bf1f4b84, type: 3}
+  - {fileID: 473667395256441948, guid: 1b31d5fb01f36f64d98ebbbb174657f7, type: 3}
+  - {fileID: 6483059175585469599, guid: e3a2c7d5cd6474f4b8794a8d670eab5d, type: 3}
+  - {fileID: 1786124465655136562, guid: 279543e7666ec3a4a913e8cc76fa1f89, type: 3}
+  - {fileID: 4466036111457786202, guid: 6dd1ec6dc0ad2fd4aaa7167038dd8615, type: 3}
+  - {fileID: 6550609696260523592, guid: bd87bbf7c85bfff42940aa5c72d8c431, type: 3}
   scoRoadGen: {fileID: 11400000, guid: 931423b9504ede04780ee8442026bebd, type: 2}
   rse_StartBuildAuto: {fileID: 11400000, guid: 065e21f441bc02a42b2f5c4e852ab5cc, type: 2}
   rse_StopBuildAuto: {fileID: 11400000, guid: 33a00e6d116446b4d98ffb152ccc2360, type: 2}
