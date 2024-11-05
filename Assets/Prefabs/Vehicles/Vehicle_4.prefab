@@ -1061,6 +1061,7 @@ MonoBehaviour:
   avalancheFollow: {fileID: 0}
   rso_Cam: {fileID: 11400000, guid: 45f2a7d0da29f9f4d8b8c8219f12da16, type: 2}
   rsoTakeDamageCrack: {fileID: 11400000, guid: 69bdfe226b664124ca4a7ea1478f6385, type: 2}
+  rseToggleSpeedLines: {fileID: 11400000, guid: 9e8d1daf72daed1429a38d570dc5c589, type: 2}
 --- !u!114 &2340657120261254109
 MonoBehaviour:
   m_ObjectHideFlags: 0

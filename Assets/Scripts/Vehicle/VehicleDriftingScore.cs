@@ -91,14 +91,17 @@ public class VehicleDriftingScore : MonoBehaviour
             {
                 isScoreReset = true;
 
-                GameObject go = currentScoreTxt.gameObject;
-                int cScore = currentScore;
-                currentScoreTxt = null;
-                go.transform.DOMove(rsoScorePosition.Value.position, .25f).SetEase(Ease.InOutCubic).OnComplete(()=>
+                if(currentScoreTxt != null)
                 {
-                    rse_AddScore.Call(cScore);
-                    Destroy(go);
-                });
+                    GameObject go = currentScoreTxt.gameObject;
+                    int cScore = currentScore;
+                    currentScoreTxt = null;
+                    go.transform.DOMove(rsoScorePosition.Value.position, .25f).SetEase(Ease.InOutCubic).OnComplete(() =>
+                    {
+                        rse_AddScore.Call(cScore);
+                        Destroy(go);
+                    });
+                }
 
                 currentDriftTime = 0;
                 currentBigCombo = 0;

@@ -25,6 +25,8 @@ public class VehicleHealth : MonoBehaviour
     [SerializeField] private AvalancheFollow avalancheFollow;
     [SerializeField] RSO_Camera rso_Cam;
     [SerializeField] RSO_TakeDamageCrack rsoTakeDamageCrack;
+    [Space(5)]
+    [SerializeField] RSE_ToggleSpeedLines rseToggleSpeedLines;
 
     public void Start()
     {
@@ -40,6 +42,8 @@ public class VehicleHealth : MonoBehaviour
         if (rsoLife.Value.health <= 0) Die();
         else
         {
+            rseToggleSpeedLines.Call(false);
+
             transform.BumpVisual();
             rso_Cam.Value.BumpFieldOfView();
 
@@ -101,6 +105,7 @@ public class VehicleHealth : MonoBehaviour
             rsoTakeDamageCrack.Value[i].DOKill();
             rsoTakeDamageCrack.Value[i].DOFade(0, 1f);
         }
+        rseToggleSpeedLines.Call(true);
     }
 }
 
