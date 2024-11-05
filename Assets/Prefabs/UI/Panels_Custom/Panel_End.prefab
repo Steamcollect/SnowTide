@@ -1314,7 +1314,7 @@ MonoBehaviour:
   rsoScore: {fileID: 11400000, guid: 9418c3233b344a3498a5f8b0769d8dd9, type: 2}
   rsoMaxCombo: {fileID: 11400000, guid: fe6763d45b3b5c549849fd4d0c2a8396, type: 2}
   rsoPeopleAmount: {fileID: 11400000, guid: 32824d6091b876c4aa7466c216d827c2, type: 2}
-  rsoBestScore: {fileID: 11400000, guid: 1f52053a6c9953c48a83ce5edadd4ba6, type: 2}
+  rsoContentSave: {fileID: 0}
 --- !u!1001 &3063970561879513901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1648,7 +1648,19 @@ PrefabInstance:
     - target: {fileID: 4057443889415134552, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ab1f7a16079fde846ac190e159e2293e, type: 3}
+      objectReference: {fileID: 21300000, guid: b6f689c04f056794d84f96c2162520e2, type: 3}
+    - target: {fileID: 4057443889415134552, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057443889415134552, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057443889415134552, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4057443889415134552, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
       propertyPath: m_PreserveAspect
       value: 1
@@ -1695,11 +1707,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5764585452411919517, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 250
+      value: 280
       objectReference: {fileID: 0}
     - target: {fileID: 5764585452411919517, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 250
+      value: 280
       objectReference: {fileID: 0}
     - target: {fileID: 5764585452411919517, guid: 4f574fc0bd70f4845bcf10329342b2de, type: 3}
       propertyPath: m_LocalPosition.x

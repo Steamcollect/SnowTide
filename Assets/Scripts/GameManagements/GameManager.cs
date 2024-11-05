@@ -3,6 +3,7 @@ using System.Collections;
 using BT.Save;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(SleepLoop());
         if (vehicleStopAtStart)
         {
             rso_VehicleMovement.Value.ToggleMovement(false);
@@ -38,6 +40,17 @@ public class GameManager : MonoBehaviour
         BackgroundMusicEvent.Invoke();
         rse_SetStateJoystick.Call(false);
         rso_VehicleMovement.Value.SnapPosition(vehicleSpawnPoint.position);
+    }
+
+    private IEnumerator SleepLoop()
+    {
+        float time = 0;
+        while (time < 2.5f)
+        {
+            time += Time.deltaTime;
+            rso_VehicleMovement.Value.SleepVehicle();
+            yield return null;
+        }
     }
 
     private void OnEnable()
