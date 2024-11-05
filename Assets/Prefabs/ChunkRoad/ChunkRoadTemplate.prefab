@@ -88,8 +88,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.22}
-  m_Center: {x: 0, y: 0.5, z: 1}
+  m_Size: {x: 200, y: 50, z: 3}
+  m_Center: {x: 0, y: 25, z: 1}
 --- !u!114 &6645865621247186360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +117,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <anchorEnd>k__BackingField: {fileID: 6636152273908165448}
   collider: {fileID: 995848554020776921}
-  <sizeColliderExit>k__BackingField: {x: 1, y: 1, z: 0.22}
+  interactablesParent: {fileID: 152602656421692785}
+  <sizeColliderExit>k__BackingField: {x: 200, y: 50, z: 3}
+  chunkActive: 1
 --- !u!1 &5085273125966785958
 GameObject:
   m_ObjectHideFlags: 0

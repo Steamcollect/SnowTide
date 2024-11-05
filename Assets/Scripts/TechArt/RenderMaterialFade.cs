@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class RenderMaterialFade : MonoBehaviour
 { 
     [Header("Parameters")]
-    [SerializeField] private Renderer renderer;
+    [SerializeField] private new Renderer renderer;
     [SerializeField] private float fadeDuration = 0.5f;
     
     [Header("Render Blends")]
