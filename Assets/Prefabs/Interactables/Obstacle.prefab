@@ -66,8 +66,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.29, y: 1, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.2239943, y: 1, z: 0.62680125}
+  m_Center: {x: 0.4248519, y: 0, z: -0.22069514}
+
 --- !u!1001 &7784423663280341134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,7 +121,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 8.878
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8912177477929800214, guid: d490d5805a8f22c449470acc5c2bbf6f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

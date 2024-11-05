@@ -45,7 +45,10 @@ public class VehicleStatistics : MonoBehaviour
         driftFrictionStatistics.slideFriction += frictionToAdd.slideFriction;
 
         driftFrictionStatistics.driftAngle += frictionToAdd.driftAngle;
+        if (driftFrictionStatistics.driftAngle < 0) driftFrictionStatistics.driftAngle = 0;
+
         driftFrictionStatistics.slideAngle += frictionToAdd.slideAngle;
+        if (driftFrictionStatistics.slideAngle < 0) driftFrictionStatistics.slideAngle = 0;
 
         peopleCount++;
         rsoPeopleAmount.Value = peopleCount;

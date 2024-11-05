@@ -111,6 +111,7 @@ MonoBehaviour:
   timeOffset: 0.2
   rotationTime: 1
   maxRotation: 30
+
   cam: {fileID: 8183003498180748219}
   rso_Cam: {fileID: 11400000, guid: 45f2a7d0da29f9f4d8b8c8219f12da16, type: 2}
   rse_VehicleRotation: {fileID: 11400000, guid: 53fcb42100120ac4cad2a847fa64e7da, type: 2}
