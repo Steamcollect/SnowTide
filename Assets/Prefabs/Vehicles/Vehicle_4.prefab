@@ -996,8 +996,8 @@ MonoBehaviour:
   moveMaximumSpeed: 28.5
   accelerationTime: 0.3
   turnSmoothTime: 0.38
-  maxVelocityAngle: 68.5
-  maxRotationAngle: 100
+  maxVelocityAngle: 71
+  maxRotationAngle: 110
   driftParticles:
   - {fileID: 9184241104907411385}
   - {fileID: 1891580286183081551}
@@ -1033,9 +1033,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   driftFrictionStatistics:
     turnFriction: 4
-    slideAngle: 30
-    slideFriction: 30
-    driftAngle: 60
+    slideAngle: 25
+    slideFriction: 25
+    driftAngle: 55
     driftFriction: 60
   rsoPeopleAmount: {fileID: 11400000, guid: 32824d6091b876c4aa7466c216d827c2, type: 2}
   rse_OnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
