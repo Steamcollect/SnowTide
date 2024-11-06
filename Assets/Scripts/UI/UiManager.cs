@@ -50,7 +50,6 @@ public class UiManager : MonoBehaviour
 
         panelEnd.SetActive(true);
         panelEnd.transform.BumpVisual();
-
         rse_SetupDeathPanel.Call();
     }
     

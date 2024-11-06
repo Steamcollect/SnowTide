@@ -894,9 +894,6 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5035709176616653100, guid: 279543e7666ec3a4a913e8cc76fa1f89, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6426515455946797786}
-    - targetCorrespondingSourceObject: {fileID: 5035709176616653100, guid: 279543e7666ec3a4a913e8cc76fa1f89, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1617721160809439567}
     - targetCorrespondingSourceObject: {fileID: 5035709176616653100, guid: 279543e7666ec3a4a913e8cc76fa1f89, type: 3}
       insertIndex: -1
@@ -1494,77 +1491,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3420846882621109543, guid: 53c43bd882d996b4eb838e2408e398b3, type: 3}
   m_PrefabInstance: {fileID: 4110105094346757224}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5453467633086313067
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6976485125897406788}
-    m_Modifications:
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 11.709998
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 11.709998
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -35.546806
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.4038725
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 31.470116
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1455413138156588910, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-      propertyPath: m_Name
-      value: Obstacle (10) Variant
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5989782937128727999, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
---- !u!4 &6426515455946797786 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1333358136550424753, guid: 459085dfdf0c7b54b983ce77551da747, type: 3}
-  m_PrefabInstance: {fileID: 5453467633086313067}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5657287242968703276
 PrefabInstance:

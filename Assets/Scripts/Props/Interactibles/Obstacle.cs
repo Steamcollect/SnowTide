@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Obstacle : Interactible
 {
+    [SerializeField] bool disableAfterHit = true;
     [SerializeField] int damage;
 
     public override void ResetComponent()
@@ -16,7 +17,7 @@ public class Obstacle : Interactible
         if (player.TryGetComponent(out VehicleHealth vehicleHealth))
         {
             vehicleHealth.TakeDamage(damage);
-            gameObject.SetActive(false);
+            if (disableAfterHit) gameObject.SetActive(false);
         }
     }
 }

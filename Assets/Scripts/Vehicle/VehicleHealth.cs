@@ -22,7 +22,6 @@ public class VehicleHealth : MonoBehaviour
     [Space(5)]
     [SerializeField] private RSO_Life rsoLife;
     [SerializeField] private RSE_Event OnPlayerDeath;
-    [SerializeField] private AvalancheFollow avalancheFollow;
     [SerializeField] RSO_Camera rso_Cam;
     [SerializeField] RSO_TakeDamageCrack rsoTakeDamageCrack;
     [SerializeField] RSO_IntValue rsoObstacleTouch;
@@ -38,6 +37,7 @@ public class VehicleHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        print("take damage");
         if (isInvincible) return;
 
         rsoObstacleTouch.Value++;
