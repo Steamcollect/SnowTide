@@ -79,12 +79,11 @@ public class RoadGenerator : MonoBehaviour
 
     private void Start()
     {
-        
-        loaderRoadChunk.LoadChunk(roadChunkMenuT, scoRoadGen.chunksVisibe + 1,chunks=>NotifyLoadComplete(chunks,_loadedMenuChunk));
+        loaderRoadChunk.LoadChunk(roadChunkMenuT, scoRoadGen.chunksVisibe + 1,Vector3.zero,chunks=>NotifyLoadComplete(chunks,_loadedMenuChunk));
         
         foreach (var chunkT in roadChunkT)
         {
-            loaderRoadChunk.LoadChunk(chunkT, scoRoadGen.chunksVisibe + 1,chunks=>NotifyLoadComplete(chunks,_loadedRoadChunks));
+            loaderRoadChunk.LoadChunk(chunkT, scoRoadGen.chunksVisibe + 1,new(0,-100,-300),chunks=>NotifyLoadComplete(chunks,_loadedRoadChunks));
         }
     }
 

@@ -32,18 +32,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(InitGame());
-    }
-
-    private IEnumerator InitGame()
-    {
         if (vehicleStopAtStart)
         {
             rso_VehicleMovement.Value.ToggleMovement(false);
         }
         BackgroundMusicEvent.Invoke();
         rse_SetStateJoystick.Call(false);
-        yield return new WaitForSeconds(0.1f);
         rso_VehicleMovement.Value.SnapPosition(vehicleSpawnPoint.position);
     }
 

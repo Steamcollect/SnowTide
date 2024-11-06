@@ -33,7 +33,11 @@ namespace BT.Save
             filepath = Application.persistentDataPath + "/Save.json";
 
             if (FileAlreadyExist()) LoadFromJson();
-            else SaveToJson();
+            else
+            {
+                rsoContentSaved.Value = new ContentSaved();
+                SaveToJson();
+            }
         }
 
         private void SaveToJson()
@@ -46,7 +50,8 @@ namespace BT.Save
         {
             string infoData = System.IO.File.ReadAllText(filepath);
             rsoContentSaved.Value = JsonUtility.FromJson<ContentSaved>(infoData);
-        }
+            if (rsoContentSaved.Value == null) rsoContentSaved.Value = new ContentSaved();
+        } 
 
         private void ClearContent()
         {
