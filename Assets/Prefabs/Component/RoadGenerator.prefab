@@ -57,6 +57,17 @@ MonoBehaviour:
   - {fileID: 1786124465655136562, guid: 279543e7666ec3a4a913e8cc76fa1f89, type: 3}
   - {fileID: 4466036111457786202, guid: 6dd1ec6dc0ad2fd4aaa7167038dd8615, type: 3}
   - {fileID: 6550609696260523592, guid: bd87bbf7c85bfff42940aa5c72d8c431, type: 3}
+  - {fileID: 5543894448158022249, guid: 99134a84d281b6949b51aed376b27022, type: 3}
+  - {fileID: 2038589425812452022, guid: b4344eba54bc34645a82d475acc80041, type: 3}
+  - {fileID: 7971104716719986279, guid: 23ec26a55fbefbc48b937d9466097d5e, type: 3}
+  - {fileID: 7735432301002874267, guid: b02cdf640d3964f46a76b3430b6ddcab, type: 3}
+  - {fileID: 7203144612371629021, guid: 9babc3442b6e51b469c13e32ffdc0eea, type: 3}
+  - {fileID: 903527389606773287, guid: 369615a34323113408d0300196324cb1, type: 3}
+  - {fileID: 1765737909235552699, guid: b725146311bd3884c819c2821b502a02, type: 3}
+  - {fileID: 2988925927918696126, guid: dd82bcfacc7d1a14ca92a7774d9b73f7, type: 3}
+  - {fileID: 6987660587620667477, guid: 5fda8e4caee3df540a912a8c0cf31d0a, type: 3}
+  - {fileID: 4498983388797421797, guid: e5db0b34e6128bc4a891b83efa10e845, type: 3}
+  - {fileID: 7336008646139384306, guid: 3607ffa9a3266d6459dd9214b93bef2c, type: 3}
   scoRoadGen: {fileID: 11400000, guid: 931423b9504ede04780ee8442026bebd, type: 2}
   rse_StartBuildAuto: {fileID: 11400000, guid: 065e21f441bc02a42b2f5c4e852ab5cc, type: 2}
   rse_StopBuildAuto: {fileID: 11400000, guid: 33a00e6d116446b4d98ffb152ccc2360, type: 2}
