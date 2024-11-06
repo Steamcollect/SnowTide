@@ -28,6 +28,7 @@ public class VehicleHealth : MonoBehaviour
     [Space(5)]
     [SerializeField] RSE_ToggleSpeedLines rseToggleSpeedLines;
     [SerializeField] GameObject onDeathParticle;
+    [SerializeField] private BT.Audio.SoundLauncher deathSoundPlayer;
 
     public void Start()
     {
@@ -99,6 +100,7 @@ public class VehicleHealth : MonoBehaviour
     private void Die()
     {
         Instantiate(onDeathParticle, transform.position, Quaternion.identity);
+        deathSoundPlayer.LaunchAudio();
         OnPlayerDeath.Call();
     }
 
