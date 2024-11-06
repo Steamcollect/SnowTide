@@ -12,7 +12,7 @@ public class VehicleHealth : MonoBehaviour
 
     [Space(5)]
     [SerializeField] float invincibilityDelay;
-    bool isInvincible = false;
+    [HideInInspector] public bool isInvincible = false;
     [SerializeField] float invincibilityFlahDelay;
 
     private Coroutine regenCoroutine;

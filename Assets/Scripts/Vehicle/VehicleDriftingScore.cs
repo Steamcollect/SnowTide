@@ -96,7 +96,7 @@ public class VehicleDriftingScore : MonoBehaviour
                     GameObject go = currentScoreTxt.gameObject;
                     int cScore = currentScore;
                     currentScoreTxt = null;
-                    go.transform.DOMove(rsoScorePosition.Value.position, .25f).SetEase(Ease.InOutCubic).OnComplete(() =>
+                    go.transform.DOMove(rsoScorePosition.Value.position, .25f).SetEase(Ease.InCubic).OnComplete(() =>
                     {
                         rse_AddScore.Call(cScore);
                         Destroy(go);

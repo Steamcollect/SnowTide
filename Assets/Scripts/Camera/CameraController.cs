@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
 
     void ToggleSpeedLines(bool isActive)
     {
-        speedLine.SetActive(isActive);
+        //speedLine.SetActive(isActive);
     }
 
     private void OnEnable()

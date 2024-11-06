@@ -43,6 +43,8 @@ public class UiManager : MonoBehaviour
     {
         panelHUD.SetActive(false);
         panelEnd.SetActive(true);
+        panelEnd.transform.BumpVisual();
+
         rse_SetupDeathPanel.Call();
     }
     
