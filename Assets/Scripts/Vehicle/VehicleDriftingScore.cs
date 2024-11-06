@@ -23,6 +23,9 @@ public class VehicleDriftingScore : MonoBehaviour
     bool isDrifting = false;
     bool canCountScore = false;
 
+    Vector3 startDirftPosition;
+
+
     [Header("References")]
     [SerializeField] TMP_Text comboCountTxt;
     [SerializeField] RSE_IntEvent rse_AddScore;
@@ -35,7 +38,11 @@ public class VehicleDriftingScore : MonoBehaviour
     [SerializeField] RSO_ComboPosition rsoComboPosition;
     [SerializeField] Vector2 comboPosOffset;
     [Space(10)]
+    [SerializeField] RSE_BasicEvent rseOnGameStart;
     [SerializeField] RSE_Event rseOnPlayerDeath;
+    [Space(10)]
+    [SerializeField] RSO_IntValue diftDistance;
+    [SerializeField] RSO_ContentSaved rsoContentSaved;
 
     int currentScore;
     TMP_Text currentScoreTxt;
@@ -53,6 +60,11 @@ public class VehicleDriftingScore : MonoBehaviour
             isScoreReset = false;
             currentDriftTime += Time.deltaTime;
             noDriftDelay = 0;
+            if(currentDriftTime < .2f)
+            {
+                startDirftPosition = transform.position;
+            }
+
 
             if (currentDriftTime >= (bigComboTime * currentBigCombo))
             {
@@ -110,6 +122,10 @@ public class VehicleDriftingScore : MonoBehaviour
 
                 comboCountTxt.DOKill();
                 comboCountTxt.DOFade(0, .1f);
+
+                int driftDist = (int)Vector3.Distance(startDirftPosition, transform.position);
+                rsoContentSaved.Value.totalDriftReach += driftDist;
+                if (driftDist > rsoContentSaved.Value.maxDriftReach) rsoContentSaved.Value.maxDriftReach = driftDist;
             }
         }
 
@@ -135,11 +151,13 @@ public class VehicleDriftingScore : MonoBehaviour
     {
         rse_OnGameStart.action += ResetPeopleAmount;
         rseOnPlayerDeath.action += OnPlayerDeath;
+        rseOnGameStart.action += OnGameStart;
     }
     private void OnDisable()
     {
         rse_OnGameStart.action -= ResetPeopleAmount;
         rseOnPlayerDeath.action -= OnPlayerDeath;
+        rseOnGameStart.action -= OnGameStart;
     }
 
     void ResetPeopleAmount()
@@ -152,5 +170,9 @@ public class VehicleDriftingScore : MonoBehaviour
         canCountScore = false;
         rse_AddScore.Call(currentScore);
         currentScore = 0;
+    }
+    void OnGameStart()
+    {
+        StartCoroutine(StopCountingScore(.5f));
     }
 }
