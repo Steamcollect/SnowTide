@@ -1035,7 +1035,7 @@ MonoBehaviour:
     turnFriction: 4
     slideAngle: 25
     slideFriction: 25
-    driftAngle: 55
+    driftAngle: 60
     driftFriction: 60
   rsoPeopleAmount: {fileID: 11400000, guid: 32824d6091b876c4aa7466c216d827c2, type: 2}
   rse_OnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
@@ -1059,7 +1059,6 @@ MonoBehaviour:
   graphics: {fileID: 8215748401644279743}
   rsoLife: {fileID: 11400000, guid: 992560e98af77114ebcd9fe802993f24, type: 2}
   OnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
-  avalancheFollow: {fileID: 0}
   rso_Cam: {fileID: 11400000, guid: 45f2a7d0da29f9f4d8b8c8219f12da16, type: 2}
   rsoTakeDamageCrack: {fileID: 11400000, guid: 69bdfe226b664124ca4a7ea1478f6385, type: 2}
   rseToggleSpeedLines: {fileID: 11400000, guid: 9e8d1daf72daed1429a38d570dc5c589, type: 2}
