@@ -42,6 +42,12 @@ public class UiManager : MonoBehaviour
     private void End()
     {
         panelHUD.SetActive(false);
+        StartCoroutine(OpenDeathPanel());
+    }
+    IEnumerator OpenDeathPanel()
+    {
+        yield return new WaitForSeconds(1.5f);
+
         panelEnd.SetActive(true);
         panelEnd.transform.BumpVisual();
 

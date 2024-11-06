@@ -61,8 +61,17 @@ public class VehicleMovement : MonoBehaviour
         }
     }
 
-    private void OnEnable() => OnPlayerDeath.action += ShowHideRender;
-    private void OnDisable() => OnPlayerDeath.action -= ShowHideRender;
+    private void OnEnable()
+    {
+        OnPlayerDeath.action += ShowHideRender;
+        OnPlayerDeath.action += ToggleMovement;
+    }
+
+    private void OnDisable()
+    {
+        OnPlayerDeath.action -= ShowHideRender;
+        OnPlayerDeath.action -= ToggleMovement;
+    }
 
     public void SnapPosition(Vector3 position)
     {

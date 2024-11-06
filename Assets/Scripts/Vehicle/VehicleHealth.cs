@@ -27,6 +27,7 @@ public class VehicleHealth : MonoBehaviour
     [SerializeField] RSO_TakeDamageCrack rsoTakeDamageCrack;
     [Space(5)]
     [SerializeField] RSE_ToggleSpeedLines rseToggleSpeedLines;
+    [SerializeField] GameObject onDeathParticle;
 
     public void Start()
     {
@@ -93,6 +94,7 @@ public class VehicleHealth : MonoBehaviour
 
     private void Die()
     {
+        Instantiate(onDeathParticle, transform.position, Quaternion.identity);
         OnPlayerDeath.Call();
     }
 
