@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using BT.Save;
 using UnityEngine;
@@ -12,6 +11,7 @@ public class VehicleMovement : MonoBehaviour
     float speedVelocity;
     Vector3 velocity;
     [SerializeField, Tooltip("Time to reach the max speed")] float accelerationTime;
+    Vector3 startPosition;
 
     Vector3 rotationVelocity;
 
@@ -44,12 +44,15 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] private GameObject renderPlayer;
     [Space(10)]
     [SerializeField] RSE_FloatEvent rse_SetCameraRotation;
-
+    [SerializeField] RSO_ContentSaved rsoContentSaved;
+    [SerializeField] RSE_BasicEvent rseOnGameStart;
     Vector2 input;
 
     bool canMove = true;
     bool canRotate = true;
     bool isMoving = true;
+
+    float gameTime;
 
     private void Awake() => rsoVehicleMovement.Value = this;
 
@@ -65,18 +68,35 @@ public class VehicleMovement : MonoBehaviour
     {
         OnPlayerDeath.action += ShowHideRender;
         OnPlayerDeath.action += ToggleMovement;
+        OnPlayerDeath.action += CalculateDistReach;
+
+        rseOnGameStart.action += OnGameStart;
     }
 
     private void OnDisable()
     {
         OnPlayerDeath.action -= ShowHideRender;
         OnPlayerDeath.action -= ToggleMovement;
+        OnPlayerDeath.action -= CalculateDistReach;
+
+        rseOnGameStart.action -= OnGameStart;
     }
 
     public void SnapPosition(Vector3 position)
     {
         rb.position = position;
     }
+
+    void CalculateDistReach()
+    {
+        int dist = (int)Vector3.Distance(startPosition, transform.position);
+        rsoContentSaved.Value.totalDistanceReach += dist;
+        if(rsoContentSaved.Value.maxDistanceReach < dist) rsoContentSaved.Value.maxDistanceReach = dist;
+
+        rsoContentSaved.Value.gameTime += gameTime;
+    }
+
+    public void SleepVehicle() => rb.Sleep();
 
     public void ResetVehicle(Vector3 position)
     {
@@ -95,7 +115,11 @@ public class VehicleMovement : MonoBehaviour
     
     void Update()
     {
-        if(isMoving) CheckDrift();
+        if (isMoving)
+        {
+            gameTime += Time.deltaTime;
+            CheckDrift();
+        }
     }
 
     private void FixedUpdate()
@@ -236,7 +260,10 @@ public class VehicleMovement : MonoBehaviour
         currentDriftAngle = Vector3.Angle(transform.forward, rb.velocity.normalized);
         if (currentDriftAngle >= statistics.Friciton.slideAngle)
         {
-            if (currentDriftAngle >= statistics.Friciton.driftAngle && !isDrifting) SetDriftParticle(true);
+            if (currentDriftAngle >= statistics.Friciton.driftAngle && !isDrifting)
+            {
+                SetDriftParticle(true);
+            }
             else if(currentDriftAngle < statistics.Friciton.driftAngle) SetDriftParticle(false);
 
 
@@ -245,7 +272,10 @@ public class VehicleMovement : MonoBehaviour
         }
         else
         {
-            if (isDrifting) SetDriftParticle(false);              
+            if (isDrifting)
+            {
+                SetDriftParticle(false);
+            }            
 
             StopEmmiter();
             vehicleDriftScore.SetDriftState(false);
@@ -332,6 +362,12 @@ public class VehicleMovement : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         yield return new WaitForSeconds(.1f);
         rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+    }
+
+    void OnGameStart()
+    {
+        gameTime = 0;
+        startPosition = transform.position;
     }
 
     private void OnDrawGizmosSelected()

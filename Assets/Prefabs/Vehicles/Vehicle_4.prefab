@@ -1019,6 +1019,8 @@ MonoBehaviour:
   OnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
   renderPlayer: {fileID: 7706981989544892937}
   rse_SetCameraRotation: {fileID: 11400000, guid: 53fcb42100120ac4cad2a847fa64e7da, type: 2}
+  rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
+  rseOnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
 --- !u!114 &3520671360094562413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,6 +1063,7 @@ MonoBehaviour:
   OnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
   rso_Cam: {fileID: 11400000, guid: 45f2a7d0da29f9f4d8b8c8219f12da16, type: 2}
   rsoTakeDamageCrack: {fileID: 11400000, guid: 69bdfe226b664124ca4a7ea1478f6385, type: 2}
+  rsoObstacleTouch: {fileID: 11400000, guid: d62e47b33a3b45843bf4be8526df21e8, type: 2}
   rseToggleSpeedLines: {fileID: 11400000, guid: 9e8d1daf72daed1429a38d570dc5c589, type: 2}
   onDeathParticle: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
 --- !u!114 &2340657120261254109
@@ -1089,7 +1092,10 @@ MonoBehaviour:
   rsoScorePosition: {fileID: 11400000, guid: b2b04fb68154f5f4791d9677ade4df5e, type: 2}
   rsoComboPosition: {fileID: 11400000, guid: 9d572eba5b6a631459d7f75b2ea40d1a, type: 2}
   comboPosOffset: {x: 190, y: 210}
+  rseOnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
   rseOnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
+  diftDistance: {fileID: 11400000, guid: 929527856e9e5e940908195700283b35, type: 2}
+  rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
   rse_OnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
 --- !u!1 &8691058473805315709
 GameObject:

@@ -46,7 +46,7 @@ namespace BT.Save
 
         // Other
         public int gamePlayed;
-        public int gameTime;
+        public float gameTime;
     }
 }
 

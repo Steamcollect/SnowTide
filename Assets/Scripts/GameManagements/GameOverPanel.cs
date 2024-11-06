@@ -35,6 +35,7 @@ public class GameOverPanel : MonoBehaviour
     [SerializeField] RSO_IntValue rsoScore;
     [SerializeField] RSO_IntValue rsoMaxCombo;
     [SerializeField] RSO_IntValue rsoPeopleAmount;
+    [SerializeField] RSO_IntValue rsoObstacleTouch;
     [SerializeField] RSO_ContentSaved rsoContentSave;
 
     private void OnEnable()
@@ -65,6 +66,10 @@ public class GameOverPanel : MonoBehaviour
         if(rsoContentSave.Value.maxPeopleSaved < peopleAmount) rsoContentSave.Value.maxPeopleSaved = peopleAmount;
         rsoContentSave.Value.totalDriftCombo += maxCombo;
         if(rsoContentSave.Value.maxDriftCombo < maxCombo) rsoContentSave.Value.maxDriftCombo = maxCombo;
+        rsoContentSave.Value.totalObstacleTouch += rsoObstacleTouch.Value;
+        if(rsoObstacleTouch.Value > rsoContentSave.Value.maxObstacleTouch) rsoContentSave.Value.maxObstacleTouch = rsoObstacleTouch.Value;
+        rsoContentSave.Value.gamePlayed += 1;
+
         rsoContentSave.Value.AddScore(finalScore);
         bestScore = rsoContentSave.Value.highscores[0];
     }

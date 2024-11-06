@@ -24,6 +24,7 @@ public class VehicleHealth : MonoBehaviour
     [SerializeField] private RSE_Event OnPlayerDeath;
     [SerializeField] RSO_Camera rso_Cam;
     [SerializeField] RSO_TakeDamageCrack rsoTakeDamageCrack;
+    [SerializeField] RSO_IntValue rsoObstacleTouch;
     [Space(5)]
     [SerializeField] RSE_ToggleSpeedLines rseToggleSpeedLines;
     [SerializeField] GameObject onDeathParticle;
@@ -31,12 +32,15 @@ public class VehicleHealth : MonoBehaviour
     public void Start()
     {
         rsoLife.Value = new HealthData{maxHealth = maxHealth, health = maxHealth, isRegen = true};
+        rsoObstacleTouch.Value = 0;
     }
 
     public void TakeDamage(int damage)
     {
         print("take damage");
         if (isInvincible) return;
+
+        rsoObstacleTouch.Value++;
 
         if (regenCoroutine != null) StopCoroutine(regenCoroutine);
         rsoLife.Value = new HealthData{maxHealth = maxHealth, health = rsoLife.Value.health - damage};
