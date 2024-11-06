@@ -1865,7 +1865,8 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8011244814966814899, guid: 5ea404a3048352047ba60c06590efcd5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1919,23 +1920,23 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
     - target: {fileID: 1473860047187593429, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1473860047187593429, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1473860047187593429, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 678.99146
       objectReference: {fileID: 0}
     - target: {fileID: 1473860047187593429, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 339.49573
       objectReference: {fileID: 0}
     - target: {fileID: 1473860047187593429, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -1515.77
       objectReference: {fileID: 0}
     - target: {fileID: 2847217144857610585, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2031,19 +2032,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4900150313850611154, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4900150313850611154, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4900150313850611154, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 678.99146
       objectReference: {fileID: 0}
     - target: {fileID: 4900150313850611154, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 339.49573
       objectReference: {fileID: 0}
     - target: {fileID: 5732477241441477123, guid: 1aa1ee3dd8ca51242b57479f8a2ce7fc, type: 3}
       propertyPath: m_AnchorMax.y

@@ -78,8 +78,6 @@ public class VehicleMovement : MonoBehaviour
         rb.position = position;
     }
 
-    public void SleepVehicle() => rb.Sleep();
-
     public void ResetVehicle(Vector3 position)
     {
         ShowHideRender(true);

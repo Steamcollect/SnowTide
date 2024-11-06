@@ -57,7 +57,7 @@ public class GameOverPanel : MonoBehaviour
         score = rsoScore.Value;
         maxCombo = rsoMaxCombo.Value;
         peopleAmount = rsoPeopleAmount.Value;
-
+        print($"{score},{maxCombo},{peopleAmount}");
         finalScore = score + peopleAmount * peopleScoreGiven;
 
         rsoContentSave.Value.totalScore += score;
