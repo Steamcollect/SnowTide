@@ -18,6 +18,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] private RSE_UIAction onUIAction;
     [SerializeField] private RSE_Event onPlayerDeath;
     [SerializeField] RSE_BasicEvent rse_SetupDeathPanel;
+    [SerializeField] private BT.Audio.SoundLauncher loseSoundLauncher;
 
     private void Start()
     {
@@ -48,6 +49,7 @@ public class UiManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
+        loseSoundLauncher.LaunchAudio();
         panelEnd.SetActive(true);
         panelEnd.transform.BumpVisual();
         rse_SetupDeathPanel.Call();

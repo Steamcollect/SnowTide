@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RSE_SetStateActive rse_SetStateJoystick;
     [SerializeField] private RSO_VehicleMovement rso_VehicleMovement;
     [Space(10)]
-    [SerializeField] private UnityEvent BackgroundMusicEvent;
+    [SerializeField] private BT.Audio.Playlist menuPlaylist;
+    [SerializeField] private BT.Audio.Playlist gamePlaylist;
     [Space(10)]
     [SerializeField] RSE_BasicEvent rse_OnGameStart;
 
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
         {
             rso_VehicleMovement.Value.ToggleMovement(false);
         }
-        BackgroundMusicEvent.Invoke();
+        menuPlaylist.LaunchPlaylist();
         rse_SetStateJoystick.Call(false);
         rso_VehicleMovement.Value.SnapPosition(vehicleSpawnPoint.position);
     }
@@ -55,7 +56,8 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-
+        gamePlaylist.StopPlaylist();
+        
         rse_SetStateJoystick.Call(false);
         rse_StopBuildAuto.Call();
     }
@@ -111,9 +113,13 @@ public class GameManager : MonoBehaviour
         switch (actionUI)
         {
             case UiActionGame.Play:
+                menuPlaylist.StopPlaylist();
+                gamePlaylist.LaunchPlaylist();
                 Play();
                 break;
             case UiActionGame.BackMenu:
+                gamePlaylist.StopPlaylist();
+                menuPlaylist.LaunchPlaylist();
                 StartCoroutine(BackMenu());
                 StartCoroutine(Utils.Delay(() => ev?.Invoke(),0.3f));
                 break;
@@ -124,8 +130,13 @@ public class GameManager : MonoBehaviour
                 Resume();
                 break;
             case UiActionGame.Restart:
+                gamePlaylist.StopPlaylist();
                 StartCoroutine(RestartGame());
-                StartCoroutine(Utils.Delay(() => ev?.Invoke(),0.3f));
+                StartCoroutine(Utils.Delay(() =>
+                {
+                    gamePlaylist.LaunchPlaylist();
+                    ev?.Invoke();
+                },0.3f));
                 break;
         }
     }

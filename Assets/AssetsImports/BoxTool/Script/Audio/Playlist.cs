@@ -26,24 +26,26 @@ namespace BT.Audio
 
         public void LaunchPlaylist()
         {
+            if (CoroutineAudioPlaying != null) return;
             StartCoroutine(LaunchPlaylistC());
         }
 
         public void StopPlaylist()
         {
+            if (CoroutineAudioPlaying == null) return;
             OnCallAudioStop.Call(this,null);
         }
         
         private IEnumerator LaunchPlaylistC()
         {
             int maxLoopMacro = maxLoop;
+            _indexCurrentClip = 0;
             while (maxLoopMacro is -1 or > 0)
             {
                 //Send Message to Audio Manager to play the clip
                 OnCallAudioPlay.Call(this,clipsPlaylist[_indexCurrentClip]);
                 
                 yield return new WaitForSeconds(clipsPlaylist[_indexCurrentClip].Clip.length + transitionTimeClip);
-                
                 //Increment clip index and loop
                 _indexCurrentClip = (_indexCurrentClip + 1) % clipsPlaylist.Length;
                 maxLoopMacro = maxLoopMacro == -1 ? -1 : maxLoopMacro - 1;
@@ -52,11 +54,12 @@ namespace BT.Audio
 
         public void CallbackAudioPlay()
         {
+            print(CoroutineAudioPlaying);
         }
 
         public void CallbackAudioStop()
         {
-            StopCoroutine(LaunchPlaylistC());
+            StopAllCoroutines();
             CoroutineAudioPlaying = null;
             AudioSourcePlaying = null;
         }

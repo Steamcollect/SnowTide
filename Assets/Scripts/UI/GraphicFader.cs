@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class ImageFader : MonoBehaviour
+public class GraphicFader : MonoBehaviour
 {
     [SerializeField][Range(0,1)] private float transparencyMin;
     [SerializeField] private float fadeDuration;
-    [SerializeField] private Image image;
+    [SerializeField] private Graphic image;
 
     private Color _color;
 

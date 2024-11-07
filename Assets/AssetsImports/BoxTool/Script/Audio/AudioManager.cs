@@ -83,25 +83,22 @@ namespace BT.Audio
         /// <param name="clipData"> Scriptable Object which contain the clip and parameter</param>
         private void PlayClip(IAudioComponent audioComponent, ClipData clipData)
         {
+            Queue<AudioSource> queue;
+            
             //Find an audio source available to play the clip
             switch (audioComponent.SoundType)
             {
                 case SoundType.Sound:
-                    audioComponent.AudioSourcePlaying = _queueSoundAudioSource.Count <= 0 ? 
-                        CreateAudioGameObject(_soundsGameObjectParent,"SoundGameObject",soundMixerGroup)
-                        : _queueSoundAudioSource.Dequeue();
+                    queue = _queueSoundAudioSource;
                     break;
                 case SoundType.Music:
-                    audioComponent.AudioSourcePlaying = _queueMusicAudioSource.Count <= 0 ? 
-                        CreateAudioGameObject(_musicGameObjectParent,"MusicGameObject",musicMixerGroup)
-                        : _queueMusicAudioSource.Dequeue();
+                    queue = _queueMusicAudioSource;
                     break;
                 default:
-                    audioComponent.AudioSourcePlaying = _queueSoundAudioSource.Count <= 0 ? 
-                        CreateAudioGameObject(_soundsGameObjectParent,"SoundGameObject",soundMixerGroup)
-                        : _queueSoundAudioSource.Dequeue();
+                    queue = _queueSoundAudioSource;
                     break;
             }
+            audioComponent.AudioSourcePlaying = queue.Count <= 0 ? CreateAudioGameObject(_musicGameObjectParent,"MusicGameObject",musicMixerGroup) : queue.Dequeue();
             audioComponent.AudioSourcePlaying.gameObject.SetActive(true);
 
             // Set parameter of audio clip in the audio source
@@ -113,7 +110,7 @@ namespace BT.Audio
             // Set the clip
             audioComponent.AudioSourcePlaying.clip = clipData.Clip;
             audioComponent.AudioSourcePlaying.Play();
-            audioComponent.CoroutineAudioPlaying = StartCoroutine(AwaitEnqueueAudioSource(audioComponent.AudioSourcePlaying));
+            audioComponent.CoroutineAudioPlaying = StartCoroutine(AwaitEnqueueAudioSource(audioComponent.AudioSourcePlaying,queue));
             audioComponent.CallbackAudioPlay();
         }
         
@@ -122,16 +119,16 @@ namespace BT.Audio
         /// </summary>
         /// <param name="audioSource"> Audio Source use to play the clip</param>
         /// <returns></returns>
-        private IEnumerator AwaitEnqueueAudioSource(AudioSource audioSource)
+        private IEnumerator AwaitEnqueueAudioSource(AudioSource audioSource,Queue<AudioSource> queue)
         {
             yield return new WaitForSeconds(audioSource.clip.length);
-            EnqueueAudioSource(audioSource);
+            EnqueueAudioSource(audioSource,queue);
         }
 
-        private void EnqueueAudioSource(AudioSource audioSource)
+        private void EnqueueAudioSource(AudioSource audioSource, Queue<AudioSource> queue)
         {
+            queue.Enqueue(audioSource);
             audioSource.gameObject.SetActive(false);
-            _queueSoundAudioSource.Enqueue(audioSource);
         }
 
         /// <summary>
@@ -141,8 +138,9 @@ namespace BT.Audio
         /// <param name="clipData"></param>
         private void StopClip(IAudioComponent audioComponent, ClipData clipData)
         {
-            if (audioComponent.CoroutineAudioPlaying != null) StopCoroutine(audioComponent.CoroutineAudioPlaying);
-            EnqueueAudioSource(audioComponent.AudioSourcePlaying);
+            
+            EnqueueAudioSource(audioComponent.AudioSourcePlaying,audioComponent.SoundType  == SoundType.Music? _queueMusicAudioSource : _queueSoundAudioSource);
+            StopCoroutine(audioComponent.CoroutineAudioPlaying);
             audioComponent.CallbackAudioStop();
         }
         #endregion
