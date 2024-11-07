@@ -110,7 +110,7 @@ MonoBehaviour:
   target: {fileID: 0}
   posOffset: {x: 0, y: 32, z: -15}
   timeOffset: 0.2
-  rotationTime: 1
+  rotationTime: 1.2
   maxRotation: 30
   speedLine: {fileID: 6108876584849859539}
   cam: {fileID: 8183003498180748219}

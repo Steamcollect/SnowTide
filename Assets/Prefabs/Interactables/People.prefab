@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7020819761470056078}
-  - component: {fileID: 507205524114394348}
   - component: {fileID: 5192682580864825195}
+  - component: {fileID: 6673140483630766326}
   m_Layer: 0
   m_Name: People
   m_TagString: Untagged
@@ -29,33 +29,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.4239597, y: -2.0643635, z: 25.538193}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3427783687703029902}
   - {fileID: 5022544633115873869}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &507205524114394348
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4982289983077436132}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 8, y: 6, z: 8}
-  m_Center: {x: 0, y: 3, z: 0}
 --- !u!114 &5192682580864825195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +123,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!136 &6673140483630766326
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982289983077436132}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7.838748
+  m_Height: 17.896355
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.36, z: 0}
 --- !u!1001 &226177777085717839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,6 +157,10 @@ PrefabInstance:
     - target: {fileID: 607275101404362230, guid: ef0f7f6e9ef5919469fedabf8f820d8c, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 741098202102251860, guid: ef0f7f6e9ef5919469fedabf8f820d8c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3067928845456050575, guid: ef0f7f6e9ef5919469fedabf8f820d8c, type: 3}
       propertyPath: m_Name
