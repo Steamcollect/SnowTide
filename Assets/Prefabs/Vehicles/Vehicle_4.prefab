@@ -973,6 +973,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 142702283719897924}
     m_Modifications:
+    - target: {fileID: 2589171936554616902, guid: 3e0da54df102ac24d846cbca4e20c208, type: 3}
+      propertyPath: renderParent
+      value: 
+      objectReference: {fileID: 142702283719897924}
     - target: {fileID: 2735257456788105176, guid: 3e0da54df102ac24d846cbca4e20c208, type: 3}
       propertyPath: jointObjects.Array.data[7]
       value: 

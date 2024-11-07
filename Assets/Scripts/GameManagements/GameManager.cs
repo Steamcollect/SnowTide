@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator BackMenu()
     {
+        rse_OnGameStart.Call();
         rse_SetStateJoystick.Call(false);
         rseFadeInOut.Call(true);
         yield return new WaitForSeconds(0.30f);

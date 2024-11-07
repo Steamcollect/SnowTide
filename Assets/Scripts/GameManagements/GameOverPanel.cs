@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameOverPanel : MonoBehaviour
 {
@@ -27,6 +28,10 @@ public class GameOverPanel : MonoBehaviour
     [SerializeField] TMP_Text finalScoreTxt;
     [Space(10)]
     [SerializeField] GameObject[] buttons;
+    [Space(10)]
+    [SerializeField] Transform peopleCountPos;
+    [SerializeField] GameObject scoreNotifPrefab;
+    [SerializeField] Color scoreNotifColor;
 
     [Header("RSE")]
     [SerializeField] RSE_BasicEvent rseSetupGameOverPanel;
@@ -86,22 +91,48 @@ public class GameOverPanel : MonoBehaviour
 
         float targetDelay = 0;
 
-        SetTextValue(scoreTxt, "Score : ", score);
+        SetTextValue(scoreTxt, "Score : ", score, false);
 
         targetDelay = GetTargetDelay(score);
         yield return new WaitForSeconds(targetDelay);
 
-        SetTextValue(maxComboTxt, "Max Combo : ", maxCombo);
+        SetTextValue(maxComboTxt, "Max Combo : ", maxCombo, false);
 
         targetDelay = GetTargetDelay(maxCombo);
         yield return new WaitForSeconds(targetDelay);
 
-        SetTextValue(peopleAmountTxt, "People Amount : ", peopleAmount);
+        SetTextValue(peopleAmountTxt, "People Amount : ", peopleAmount, false);
 
         targetDelay = GetTargetDelay(peopleAmount);
         yield return new WaitForSeconds(targetDelay);
 
-        SetTextValue(finalScoreTxt, "", finalScore);
+        SetTextValue(finalScoreTxt, "", score, false);
+        yield return new WaitForSeconds (targetDelay + .5f);
+
+       if(peopleAmount > 0)
+        {
+            TMP_Text text = Instantiate(scoreNotifPrefab, transform).GetComponent<TMP_Text>();
+            text.transform.BumpVisual();
+            text.fontSize = finalScoreTxt.fontSize * .65f;
+            text.color = scoreNotifColor;
+            text.transform.position = peopleCountPos.position;
+            text.transform.rotation = Quaternion.identity;
+            text.text = "+" + peopleAmount.ToString("#,0") + " people saved";
+
+            yield return new WaitForSeconds(.7f);
+
+            bool canContinue = false;
+            text.transform.DOMove(finalScoreTxt.transform.position, .2f).SetEase(Ease.InCubic).OnComplete(() =>
+            {
+                canContinue = true;
+                Destroy(text.gameObject);
+                finalScoreTxt.transform.BumpVisual();
+            });
+
+            yield return new WaitUntil(() => canContinue);
+        }
+
+        SetTextValue(finalScoreTxt, "", finalScore, true);
 
         targetDelay = GetTargetDelay(finalScore);
         yield return new WaitForSeconds(targetDelay);
@@ -112,11 +143,12 @@ public class GameOverPanel : MonoBehaviour
         for (int i = 0; i < buttons.Length; i++) buttons[i].SetActive(true);
     }
 
-    void SetTextValue(TMP_Text TXT, string initTxt, int targetValue)
+    void SetTextValue(TMP_Text TXT, string initTxt, int targetValue, bool isFinalScore)
     {
         TXT.text = initTxt + "0";
 
         int currentValue = 0;
+        if (isFinalScore) currentValue = score;
 
         DOTween.To(() => currentValue, x => currentValue = x, targetValue, targetTime).SetEase(Ease.OutExpo)
             .OnUpdate(() =>
