@@ -349,12 +349,20 @@ PrefabInstance:
       value: 25.9
       objectReference: {fileID: 0}
     - target: {fileID: 1907190946841343774, guid: 1b31d5fb01f36f64d98ebbbb174657f7, type: 3}
+      propertyPath: m_Size.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907190946841343774, guid: 1b31d5fb01f36f64d98ebbbb174657f7, type: 3}
       propertyPath: m_Size.y
-      value: 50
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907190946841343774, guid: 1b31d5fb01f36f64d98ebbbb174657f7, type: 3}
+      propertyPath: m_Size.z
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 1907190946841343774, guid: 1b31d5fb01f36f64d98ebbbb174657f7, type: 3}
       propertyPath: m_Center.y
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2341116435526933897, guid: 1b31d5fb01f36f64d98ebbbb174657f7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -410,7 +418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6268655184182037178, guid: 1b31d5fb01f36f64d98ebbbb174657f7, type: 3}
       propertyPath: <sizeColliderExit>k__BackingField.y
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8150706342731708635, guid: 1b31d5fb01f36f64d98ebbbb174657f7, type: 3}
       propertyPath: m_LocalPosition.x

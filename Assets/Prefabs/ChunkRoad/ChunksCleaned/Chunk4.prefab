@@ -559,19 +559,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 995848554020776921, guid: 5dd6e48a3f799c542bb526fdb43a6fab, type: 3}
       propertyPath: m_Size.x
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 995848554020776921, guid: 5dd6e48a3f799c542bb526fdb43a6fab, type: 3}
       propertyPath: m_Size.y
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 995848554020776921, guid: 5dd6e48a3f799c542bb526fdb43a6fab, type: 3}
       propertyPath: m_Size.z
-      value: 3
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 995848554020776921, guid: 5dd6e48a3f799c542bb526fdb43a6fab, type: 3}
       propertyPath: m_Center.y
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 995848554020776921, guid: 5dd6e48a3f799c542bb526fdb43a6fab, type: 3}
       propertyPath: m_Center.z
@@ -636,6 +636,18 @@ PrefabInstance:
     - target: {fileID: 2197382049868381239, guid: 5dd6e48a3f799c542bb526fdb43a6fab, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4708793068784703101, guid: 5dd6e48a3f799c542bb526fdb43a6fab, type: 3}
+      propertyPath: <sizeColliderExit>k__BackingField.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4708793068784703101, guid: 5dd6e48a3f799c542bb526fdb43a6fab, type: 3}
+      propertyPath: <sizeColliderExit>k__BackingField.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4708793068784703101, guid: 5dd6e48a3f799c542bb526fdb43a6fab, type: 3}
+      propertyPath: <sizeColliderExit>k__BackingField.z
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 6636152273908165448, guid: 5dd6e48a3f799c542bb526fdb43a6fab, type: 3}
       propertyPath: m_LocalPosition.z
