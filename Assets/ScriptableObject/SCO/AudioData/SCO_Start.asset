@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5729b71ff5548c5439019bbb8cb6d642, type: 3}
   m_Name: SCO_Start
   m_EditorClassIdentifier: 
-  <Clip>k__BackingField: {fileID: 8300000, guid: fa5973cbb5a828d4aa727cb3c93c30cb, type: 3}
+  <Clip>k__BackingField: {fileID: 8300000, guid: bfe03ae5afd814c43ab6a5a86236c317, type: 3}
   <Priority>k__BackingField: 128
   <Volume>k__BackingField: 0.8
   <Picth>k__BackingField: 1

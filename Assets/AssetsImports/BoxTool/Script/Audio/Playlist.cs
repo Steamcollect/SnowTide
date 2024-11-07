@@ -54,7 +54,6 @@ namespace BT.Audio
 
         public void CallbackAudioPlay()
         {
-            print(CoroutineAudioPlaying);
         }
 
         public void CallbackAudioStop()

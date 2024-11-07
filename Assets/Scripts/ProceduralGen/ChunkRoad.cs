@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,15 +15,19 @@ public class ChunkRoad : MonoBehaviour
     [field:Header("Settings")]
     [field:SerializeField] public Vector3 sizeColliderExit { get; private set; } = new Vector3(1, 1, 1);
 
-    private List<Interactible> interactiblesProps  = new List<Interactible>();
+    private List<Interactible> interactiblesProps  = new ();
     [HideInInspector] public bool chunkActive = true; 
     
     
     private void OnValidate()
     {
         RecalibrateCollider();
+    }
+    
+    private void Awake()
+    {
         interactiblesProps.Clear();
-        interactiblesProps.AddRange(interactablesParent.GetComponentsInChildren<Interactible>());
+        interactiblesProps =interactablesParent.GetComponentsInChildren<Interactible>(true).ToList();
     }
 
     public void ResetChunk()

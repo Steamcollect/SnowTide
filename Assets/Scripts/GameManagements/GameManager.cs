@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         {
             case UiActionGame.Play:
                 menuPlaylist.StopPlaylist();
-                gamePlaylist.LaunchPlaylist();
+                StartCoroutine(Utils.Delay(() => gamePlaylist.LaunchPlaylist(), 0.9f));
                 Play();
                 break;
             case UiActionGame.BackMenu:
