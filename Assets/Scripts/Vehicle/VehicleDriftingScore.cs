@@ -43,6 +43,8 @@ public class VehicleDriftingScore : MonoBehaviour
     [Space(10)]
     [SerializeField] RSO_IntValue diftDistance;
     [SerializeField] RSO_ContentSaved rsoContentSaved;
+    [Space(10)]
+    [SerializeField] RSE_BasicEvent rseResetScore;
 
     int currentScore;
     TMP_Text currentScoreTxt;
@@ -101,31 +103,7 @@ public class VehicleDriftingScore : MonoBehaviour
 
             if(noDriftDelay >= maxDelayBetweenDrift && !isScoreReset)
             {
-                isScoreReset = true;
-
-                if(currentScoreTxt != null)
-                {
-                    GameObject go = currentScoreTxt.gameObject;
-                    int cScore = currentScore;
-                    currentScoreTxt = null;
-                    go.transform.DOMove(rsoScorePosition.Value.position, .25f).SetEase(Ease.InCubic).OnComplete(() =>
-                    {
-                        rse_AddScore.Call(cScore);
-                        Destroy(go);
-                    });
-                }
-
-                currentDriftTime = 0;
-                currentBigCombo = 0;
-                currentMiniCombo = 0;
-                currentScore = 0;
-
-                comboCountTxt.DOKill();
-                comboCountTxt.DOFade(0, .1f);
-
-                int driftDist = (int)Vector3.Distance(startDirftPosition, transform.position);
-                rsoContentSaved.Value.totalDriftReach += driftDist;
-                if (driftDist > rsoContentSaved.Value.maxDriftReach) rsoContentSaved.Value.maxDriftReach = driftDist;
+                ResetScore();
             }
         }
 
@@ -134,6 +112,35 @@ public class VehicleDriftingScore : MonoBehaviour
         {
             currentScoreTxt.transform.position = (Vector2)Camera.main.WorldToScreenPoint(transform.position) + currentScorePosOffset;
         }
+    }
+
+    void ResetScore()
+    {
+        isScoreReset = true;
+
+        if (currentScoreTxt != null)
+        {
+            GameObject go = currentScoreTxt.gameObject;
+            int cScore = currentScore;
+            currentScoreTxt = null;
+            go.transform.DOMove(rsoScorePosition.Value.position, .25f).SetEase(Ease.InCubic).OnComplete(() =>
+            {
+                rse_AddScore.Call(cScore);
+                Destroy(go);
+            });
+        }
+
+        currentDriftTime = 0;
+        currentBigCombo = 0;
+        currentMiniCombo = 0;
+        currentScore = 0;
+
+        comboCountTxt.DOKill();
+        comboCountTxt.DOFade(0, .1f);
+
+        int driftDist = (int)Vector3.Distance(startDirftPosition, transform.position);
+        rsoContentSaved.Value.totalDriftReach += driftDist;
+        if (driftDist > rsoContentSaved.Value.maxDriftReach) rsoContentSaved.Value.maxDriftReach = driftDist;
     }
 
     public void SetDriftState(bool _isDrifting) => isDrifting = _isDrifting;
@@ -152,12 +159,14 @@ public class VehicleDriftingScore : MonoBehaviour
         rse_OnGameStart.action += ResetPeopleAmount;
         rseOnPlayerDeath.action += OnPlayerDeath;
         rseOnGameStart.action += OnGameStart;
+        rseResetScore.action += ResetScore;
     }
     private void OnDisable()
     {
         rse_OnGameStart.action -= ResetPeopleAmount;
         rseOnPlayerDeath.action -= OnPlayerDeath;
         rseOnGameStart.action -= OnGameStart;
+        rseResetScore.action -= ResetScore;
     }
 
     void ResetPeopleAmount()

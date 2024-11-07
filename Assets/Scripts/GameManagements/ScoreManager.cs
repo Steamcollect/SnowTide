@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] RSE_IntEvent rse_AddScore;
     [SerializeField] RSE_SetStateActive rseSetStateActive;
     [SerializeField] RSE_AddScoreNotif rseAddScoreNotif;
+    [SerializeField] RSE_BasicEvent rseOnGameStart;
 
     [Header("RSO")]
     [SerializeField] RSO_IntValue rsoScore;
@@ -61,6 +62,7 @@ public class ScoreManager : MonoBehaviour
         rseSetStateActive.action += SetActiveVisual;
         rse_OnGameStart.action += ResetPeopleAmount;
         rseAddScoreNotif.action += AddScoreNotif;
+        rseOnGameStart.action += Start;
     }
     private void OnDisable()
     {
@@ -68,6 +70,7 @@ public class ScoreManager : MonoBehaviour
         rseSetStateActive.action -= SetActiveVisual;
         rse_OnGameStart.action -= ResetPeopleAmount;
         rseAddScoreNotif.action -= AddScoreNotif;
+        rseOnGameStart.action -= Start;
     }
 
     [SerializeField] RSE_BasicEvent rse_OnGameStart;

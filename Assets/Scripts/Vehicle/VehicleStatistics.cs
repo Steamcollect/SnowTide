@@ -7,12 +7,21 @@ public class VehicleStatistics : MonoBehaviour
     [SerializeField] VehicleDriftFrictionStatistics driftFrictionStatistics;
     VehicleDriftFrictionStatistics currentFriction;
     [SerializeField] RSO_IntValue rsoPeopleAmount;
+    [SerializeField] RSE_BasicEvent rseOnGameStart;
 
     int peopleCount;
 
     private void Start()
     {
-        currentFriction = driftFrictionStatistics;
+        currentFriction = new VehicleDriftFrictionStatistics(
+            driftFrictionStatistics.turnFriction,
+            driftFrictionStatistics.slideFriction,
+            driftFrictionStatistics.slideAngle,
+            driftFrictionStatistics.driftFriction,
+            driftFrictionStatistics.driftAngle
+             );
+
+        peopleCount = 0;
         rsoPeopleAmount.Value = 0;
     }
 
@@ -40,33 +49,26 @@ public class VehicleStatistics : MonoBehaviour
 
     public void AddFriction(VehicleDriftFrictionStatistics frictionToAdd)
     {
-        driftFrictionStatistics.turnFriction += frictionToAdd.turnFriction;
-        driftFrictionStatistics.driftFriction += frictionToAdd.driftFriction;
-        driftFrictionStatistics.slideFriction += frictionToAdd.slideFriction;
+        currentFriction.turnFriction += frictionToAdd.turnFriction;
+        currentFriction.driftFriction += frictionToAdd.driftFriction;
+        currentFriction.slideFriction += frictionToAdd.slideFriction;
 
-        driftFrictionStatistics.driftAngle += frictionToAdd.driftAngle;
-        if (driftFrictionStatistics.driftAngle < 0) driftFrictionStatistics.driftAngle = 0;
+        currentFriction.driftAngle += frictionToAdd.driftAngle;
+        if (currentFriction.driftAngle < 0) currentFriction.driftAngle = 0;
 
-        driftFrictionStatistics.slideAngle += frictionToAdd.slideAngle;
-        if (driftFrictionStatistics.slideAngle < 0) driftFrictionStatistics.slideAngle = 0;
+        currentFriction.slideAngle += frictionToAdd.slideAngle;
+        if (currentFriction.slideAngle < 0) currentFriction.slideAngle = 0;
 
         peopleCount++;
         rsoPeopleAmount.Value = peopleCount;
     }
 
-    [SerializeField] RSE_BasicEvent rse_OnGameStart;
     private void OnEnable()
     {
-        rse_OnGameStart.action += ResetPeopleAmount;
+        rseOnGameStart.action += Start;
     }
     private void OnDisable()
     {
-        rse_OnGameStart.action -= ResetPeopleAmount;
-    }
-
-    void ResetPeopleAmount()
-    {
-        peopleCount = 0;
-        rsoPeopleAmount.Value = 0;
+        rseOnGameStart.action -= Start;
     }
 }
