@@ -10,15 +10,11 @@ public class RenderMaterialFade : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private new Renderer renderer;
     [SerializeField] private float fadeDuration = 0.5f;
-    
-    [Header("Render Blends")]
-    [SerializeField] UnityEngine.Rendering.BlendMode scrBlendMode = UnityEngine.Rendering.BlendMode.SrcAlpha;
-    [SerializeField] UnityEngine.Rendering.BlendMode dstBlendMode = UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha;
 
     public void FadeMaterial()
     {
         StartCoroutine(Fade());
-        transform.DOMoveY(8f, fadeDuration).SetEase(Ease.InQuart);
+        transform.DOLocalMoveY(8f, fadeDuration).SetEase(Ease.InQuart);
     }
 
     private IEnumerator Fade()
@@ -37,7 +33,7 @@ public class RenderMaterialFade : MonoBehaviour
     public void ResetFade()
     {
         StopCoroutine(Fade());
-        transform.position = Vector3.zero;
+        transform.localPosition = Vector3.zero;
         renderer.material.color =  new Color(renderer.material.color.r,renderer.material.color.g,renderer.material.color.b, 1f);
     }
 }
