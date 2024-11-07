@@ -10,7 +10,7 @@ public class PeoplesRender : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject[] peoplesPlace;
     [SerializeField] private RSO_IntValue rsePeopleAmount;
-
+    [SerializeField] private Transform renderParent;
     private void OnEnable()
     {
         rsePeopleAmount.OnChanged += TreasholdPeopleRender;
@@ -38,6 +38,6 @@ public class PeoplesRender : MonoBehaviour
             }
         }
         
-        transform.DOPunchScale(Vector3.one * 0.8f, 0.2f);
+        renderParent.BumpVisual(1.6f,0.12f);
     }
 }

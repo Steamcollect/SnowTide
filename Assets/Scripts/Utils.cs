@@ -13,12 +13,12 @@ public static class Utils
         return elems.ElementAt(new System.Random().Next(0, elems.Count()));
     }
 
-    public static void BumpVisual(this Transform t)
+    public static void BumpVisual(this Transform t, float  endValue = 1.1f, float duration = 0.06f)
     {
         t.DOKill();
-        t.DOScale(1.1f, .06f).OnComplete(() =>
+        t.DOScale(endValue, duration).OnComplete(() =>
         {
-            t.DOScale(1, .08f);
+            t.DOScale(1, duration + 0.02f);
         });
     }
     public static void BumpFieldOfView(this Camera cam)
