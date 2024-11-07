@@ -124,7 +124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3369369409703486823, guid: 90ecebb39ed28a64dafd2ec8bf1f4b84, type: 3}
       propertyPath: m_Size.y
-      value: 10.77
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3369369409703486823, guid: 90ecebb39ed28a64dafd2ec8bf1f4b84, type: 3}
       propertyPath: m_Center.x
@@ -132,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3369369409703486823, guid: 90ecebb39ed28a64dafd2ec8bf1f4b84, type: 3}
       propertyPath: m_Center.y
-      value: 5.385
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3418758265829320788, guid: 90ecebb39ed28a64dafd2ec8bf1f4b84, type: 3}
       propertyPath: m_LocalPosition.x
@@ -237,10 +237,6 @@ PrefabInstance:
     - target: {fileID: 6705676911873389039, guid: 90ecebb39ed28a64dafd2ec8bf1f4b84, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 7082876895627630787, guid: 90ecebb39ed28a64dafd2ec8bf1f4b84, type: 3}
-      propertyPath: <sizeColliderExit>k__BackingField.y
-      value: 10.77
       objectReference: {fileID: 0}
     - target: {fileID: 7443231033486294805, guid: 90ecebb39ed28a64dafd2ec8bf1f4b84, type: 3}
       propertyPath: m_LocalPosition.x
