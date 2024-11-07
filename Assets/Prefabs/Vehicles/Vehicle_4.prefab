@@ -1041,7 +1041,7 @@ MonoBehaviour:
     driftAngle: 60
     driftFriction: 60
   rsoPeopleAmount: {fileID: 11400000, guid: 32824d6091b876c4aa7466c216d827c2, type: 2}
-  rse_OnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
+  rseOnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
 --- !u!114 &8848872729660146779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1068,6 +1068,7 @@ MonoBehaviour:
   rseToggleSpeedLines: {fileID: 11400000, guid: 9e8d1daf72daed1429a38d570dc5c589, type: 2}
   onDeathParticle: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
   deathSoundPlayer: {fileID: 5189912811210880631}
+  rseResetScore: {fileID: 11400000, guid: 3d2b8e45c8f29814e9485c6bbc498309, type: 2}
 --- !u!114 &2340657120261254109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1098,6 +1099,7 @@ MonoBehaviour:
   rseOnPlayerDeath: {fileID: 11400000, guid: d2d5226f1b6c03649a0664bed381cdfc, type: 2}
   diftDistance: {fileID: 11400000, guid: 929527856e9e5e940908195700283b35, type: 2}
   rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
+  rseResetScore: {fileID: 11400000, guid: 3d2b8e45c8f29814e9485c6bbc498309, type: 2}
   rse_OnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
 --- !u!1 &8691058473805315709
 GameObject:

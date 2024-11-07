@@ -29,6 +29,7 @@ public class VehicleHealth : MonoBehaviour
     [SerializeField] RSE_ToggleSpeedLines rseToggleSpeedLines;
     [SerializeField] GameObject onDeathParticle;
     [SerializeField] private BT.Audio.SoundLauncher deathSoundPlayer;
+    [SerializeField] RSE_BasicEvent rseResetScore;
 
     public void Start()
     {
@@ -48,6 +49,7 @@ public class VehicleHealth : MonoBehaviour
         if (rsoLife.Value.health <= 0) Die();
         else
         {
+            rseResetScore.Call();
             rseToggleSpeedLines.Call(false);
 
             transform.BumpVisual();
@@ -102,6 +104,11 @@ public class VehicleHealth : MonoBehaviour
         Instantiate(onDeathParticle, transform.position, Quaternion.identity);
         deathSoundPlayer.LaunchAudio();
         OnPlayerDeath.Call();
+        for (int i = 0; i < rsoTakeDamageCrack.Value.Length; i++)
+        {
+            rsoTakeDamageCrack.Value[i].DOKill();
+            rsoTakeDamageCrack.Value[i].DOFade(0, 1f);
+        }
     }
 
     IEnumerator Regen()

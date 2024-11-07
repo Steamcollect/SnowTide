@@ -183,10 +183,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle_4
       objectReference: {fileID: 0}
-    - target: {fileID: 8848872729660146779, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
-      propertyPath: onDeathParticle
-      value: 
-      objectReference: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -461,23 +457,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 418409423402022269, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9576938
+      value: 0.9396927
       objectReference: {fileID: 0}
     - target: {fileID: 418409423402022269, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.28778923
+      value: 0.3420201
       objectReference: {fileID: 0}
     - target: {fileID: 418409423402022269, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 418409423402022269, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 418409423402022269, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 33.451
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 418409423402022269, guid: f4277a0c9eeafa0489325cbef15557f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
