@@ -47,7 +47,7 @@ public class ScoreManager : MonoBehaviour
 
     void SetTextVisual()
     {
-        rsoTxtSet.Value.text = score.ToString();
+        rsoTxtSet.Value.text = score.ToString("#,0");
         rsoTxtSet.Value.transform.BumpVisual();
     }
 
