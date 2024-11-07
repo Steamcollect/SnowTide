@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTime: 1
   delayBetween: 0.1
-  peopleScoreGiven: 100
+  peopleScoreGiven: 500
   scoreTxt: {fileID: 4265751788517198755}
   maxComboTxt: {fileID: 7322944545177346773}
   peopleAmountTxt: {fileID: 6816485324482954723}
@@ -1314,6 +1314,7 @@ MonoBehaviour:
   rsoScore: {fileID: 11400000, guid: 9418c3233b344a3498a5f8b0769d8dd9, type: 2}
   rsoMaxCombo: {fileID: 11400000, guid: fe6763d45b3b5c549849fd4d0c2a8396, type: 2}
   rsoPeopleAmount: {fileID: 11400000, guid: 32824d6091b876c4aa7466c216d827c2, type: 2}
+  rsoObstacleTouch: {fileID: 0}
   rsoContentSave: {fileID: 0}
 --- !u!1001 &3063970561879513901
 PrefabInstance:

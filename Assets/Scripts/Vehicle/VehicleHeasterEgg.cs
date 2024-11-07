@@ -37,7 +37,7 @@ public class VehicleHeasterEgg : MonoBehaviour
     {
         if (isSkinActive)
         {
-            color += Time.deltaTime * .2f;
+            color += Time.deltaTime * .8f;
             if (color > 1)
             {
                 color = 0f;

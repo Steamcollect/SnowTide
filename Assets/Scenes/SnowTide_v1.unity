@@ -135,6 +135,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 937129806}
     m_Modifications:
+    - target: {fileID: 163203133374275565, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+      propertyPath: renderParent
+      value: 
+      objectReference: {fileID: 341679057}
     - target: {fileID: 2340657120261254109, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
       propertyPath: comboCountTxt
       value: 
@@ -188,6 +192,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+--- !u!4 &341679057 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 142702283719897924, guid: 810aa2931e96520499eb4c4c1b294be5, type: 3}
+  m_PrefabInstance: {fileID: 341679056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &377577547
 PrefabInstance:
   m_ObjectHideFlags: 0

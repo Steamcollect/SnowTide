@@ -38,6 +38,6 @@ public class PeoplesRender : MonoBehaviour
             }
         }
         
-        renderParent.BumpVisual(1.6f,0.12f);
+        renderParent.BumpVisual(1.45f,0.12f);
     }
 }
