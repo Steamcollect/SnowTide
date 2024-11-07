@@ -77,7 +77,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         HandleInput(input.magnitude, input.normalized, radius, cam);
         handle.anchoredPosition = input * radius * handleRange;
 
-        float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg - 90;
+        float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
         handle.rotation = Quaternion.Euler(0, 0, angle);
     }
 

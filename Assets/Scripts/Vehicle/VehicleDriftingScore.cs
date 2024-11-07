@@ -45,10 +45,17 @@ public class VehicleDriftingScore : MonoBehaviour
     [SerializeField] RSO_ContentSaved rsoContentSaved;
     [Space(10)]
     [SerializeField] RSE_BasicEvent rseResetScore;
+    [SerializeField] RSE_PauseGame rsePauseGame;
 
     int currentScore;
     TMP_Text currentScoreTxt;
     bool isScoreReset = false;
+    bool isPaused = false;
+
+    void OnGamePaused(bool paused)
+    {
+        isPaused = paused;
+    }
 
     private void Start()
     {
@@ -57,6 +64,8 @@ public class VehicleDriftingScore : MonoBehaviour
 
     private void Update()
     {
+        if (isPaused) return;
+
         if (isDrifting && canCountScore)
         {
             isScoreReset = false;
@@ -160,6 +169,7 @@ public class VehicleDriftingScore : MonoBehaviour
         rseOnPlayerDeath.action += OnPlayerDeath;
         rseOnGameStart.action += OnGameStart;
         rseResetScore.action += ResetScore;
+        rsePauseGame.action += OnGamePaused;
     }
     private void OnDisable()
     {
@@ -167,6 +177,7 @@ public class VehicleDriftingScore : MonoBehaviour
         rseOnPlayerDeath.action -= OnPlayerDeath;
         rseOnGameStart.action -= OnGameStart;
         rseResetScore.action -= ResetScore;
+        rsePauseGame.action -= OnGamePaused;
     }
 
     void ResetPeopleAmount()

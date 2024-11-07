@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StatisticsManager : MonoBehaviour
 {
     [SerializeField] StatisticData[] datas;
+
+    [SerializeField] TMP_Text[] highScoreTxt;
 
     [Header("RSO")]
     [SerializeField] RSO_ContentSaved rsoContentSaved;
@@ -29,6 +32,11 @@ public class StatisticsManager : MonoBehaviour
         datas[10].SetValue(rsoContentSaved.Value.maxDriftCombo);
         datas[11].SetValue(rsoContentSaved.Value.totalObstacleTouch);
         datas[12].SetValue(rsoContentSaved.Value.maxObstacleTouch);
+
+        for (int i = 0; i < highScoreTxt.Length; i++)
+        {
+            highScoreTxt[i].text = rsoContentSaved.Value.highscores[i].ToString("#,0");
+        }
     }
 }
 

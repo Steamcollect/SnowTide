@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using BT.Save;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class UiManager : MonoBehaviour
 {
@@ -19,6 +17,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] private RSE_Event onPlayerDeath;
     [SerializeField] RSE_BasicEvent rse_SetupDeathPanel;
     [SerializeField] private BT.Audio.SoundLauncher loseSoundLauncher;
+    [SerializeField] RSE_PauseGame rsePauseGame;
+    [SerializeField] RSE_BasicEvent rseOnGameStart;
 
     private void Start()
     {
@@ -59,6 +59,7 @@ public class UiManager : MonoBehaviour
     {
         panelHUD.SetActive(!open);
         onUIAction.Call(open ? UiActionGame.Pause : UiActionGame.Resume, () => { });
+        rsePauseGame.Call(open);
         panelPause.SetActive(open);
     }
 
@@ -74,6 +75,7 @@ public class UiManager : MonoBehaviour
         panelPause.SetActive(false);
         panelHUD.SetActive(false);
         onUIAction.Call(UiActionGame.Restart, () => { panelHUD.SetActive(true); });
+        rsePauseGame.Call(false);
     }
 
     public void BackHomeButton()
@@ -81,8 +83,10 @@ public class UiManager : MonoBehaviour
         panelEnd.SetActive(false);
         panelPause.SetActive(false);
         onUIAction.Call(UiActionGame.BackMenu, () => {canvasMenu.SetActive(true); });
+        rsePauseGame.Call(false);
+        rseOnGameStart.Call();
     }
-    
+
 }
 
 [Serializable]

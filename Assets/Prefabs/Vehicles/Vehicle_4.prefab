@@ -663,6 +663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   driftminimumSpeed: 20
   moveMaximumSpeed: 28.5
+  moveSpeedAddedPerSec: 0.1
   accelerationTime: 0.3
   turnSmoothTime: 0.38
   maxVelocityAngle: 71
@@ -690,6 +691,7 @@ MonoBehaviour:
   rse_SetCameraRotation: {fileID: 11400000, guid: 53fcb42100120ac4cad2a847fa64e7da, type: 2}
   rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
   rseOnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
+  rsePauseGame: {fileID: 11400000, guid: 99eb9d0e8f8ccaa49ada411d9094560b, type: 2}
 --- !u!114 &3520671360094562413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,6 +770,7 @@ MonoBehaviour:
   diftDistance: {fileID: 11400000, guid: 929527856e9e5e940908195700283b35, type: 2}
   rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
   rseResetScore: {fileID: 11400000, guid: 3d2b8e45c8f29814e9485c6bbc498309, type: 2}
+  rsePauseGame: {fileID: 11400000, guid: 99eb9d0e8f8ccaa49ada411d9094560b, type: 2}
   rse_OnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
 --- !u!114 &8313308356461134843
 MonoBehaviour:

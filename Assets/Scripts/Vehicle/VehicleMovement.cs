@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using BT.Save;
 using UnityEngine;
@@ -6,7 +7,10 @@ public class VehicleMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField, Tooltip("Forward drifting speed")] float driftminimumSpeed = 5;
+    float moveMinSpeed;
     [SerializeField, Tooltip("Forward movement speed")] float moveMaximumSpeed = 10;
+    float moveMaxSpeed;
+    [SerializeField, Tooltip("Move speed added each second")] float moveSpeedAddedPerSec;
 
     float speedVelocity;
     Vector3 velocity;
@@ -47,6 +51,7 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField] RSO_ContentSaved rsoContentSaved;
     [SerializeField] RSE_BasicEvent rseOnGameStart;
     Vector2 input;
+    [SerializeField] RSE_PauseGame rsePauseGame;
 
     bool canMove = true;
     bool canRotate = true;
@@ -54,7 +59,20 @@ public class VehicleMovement : MonoBehaviour
 
     float gameTime;
 
+    bool isPaused = false;
+
     private void Awake() => rsoVehicleMovement.Value = this;
+
+    private void Start()
+    {
+        SetMoveSpeed();
+    }
+
+    void SetMoveSpeed()
+    {
+        moveMinSpeed = driftminimumSpeed;
+        moveMaxSpeed = moveMaximumSpeed;
+    }
 
     private void OnDestroy()
     {
@@ -71,6 +89,7 @@ public class VehicleMovement : MonoBehaviour
         OnPlayerDeath.action += CalculateDistReach;
 
         rseOnGameStart.action += OnGameStart;
+        rsePauseGame.action += OnPause;
     }
 
     private void OnDisable()
@@ -80,6 +99,7 @@ public class VehicleMovement : MonoBehaviour
         OnPlayerDeath.action -= CalculateDistReach;
 
         rseOnGameStart.action -= OnGameStart;
+        rsePauseGame.action -= OnPause;
     }
 
     public void SnapPosition(Vector3 position)
@@ -118,6 +138,8 @@ public class VehicleMovement : MonoBehaviour
         if (isMoving)
         {
             gameTime += Time.deltaTime;
+            moveMinSpeed += Time.deltaTime * moveSpeedAddedPerSec;
+            moveMaxSpeed += Time.deltaTime * moveSpeedAddedPerSec;
             CheckDrift();
         }
     }
@@ -137,6 +159,11 @@ public class VehicleMovement : MonoBehaviour
         rb.velocity = GetVelocity();
     }
 
+    void OnPause(bool isPaused)
+    {
+        this.isPaused = isPaused;
+    }
+
     Vector3 GetVelocity()
     {
         // Get current friction
@@ -149,7 +176,7 @@ public class VehicleMovement : MonoBehaviour
 		if(currentDriftAngle < .1f) currentDriftAngle = friction;
 
         // Get Move speed
-        float targetSpeed = Mathf.Lerp(driftminimumSpeed, moveMaximumSpeed, 1 - Mathf.Clamp(currentDriftAngle, 0, 90) / 90);
+        float targetSpeed = Mathf.Lerp(moveMinSpeed, moveMaxSpeed, 1 - Mathf.Clamp(currentDriftAngle, 0, 90) / 90);
 
         float speed = targetSpeed;
         if (speed < targetSpeed) speed = Mathf.SmoothDamp(speed, targetSpeed, ref speedVelocity, accelerationTime);
@@ -368,6 +395,8 @@ public class VehicleMovement : MonoBehaviour
     {
         gameTime = 0;
         startPosition = transform.position;
+
+        SetMoveSpeed();
     }
 
     private void OnDrawGizmosSelected()
