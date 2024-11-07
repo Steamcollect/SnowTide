@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] RSE_SetStateActive rseSetStateActive;
     [SerializeField] RSE_AddScoreNotif rseAddScoreNotif;
     [SerializeField] RSE_BasicEvent rseOnGameStart;
+    [SerializeField] RSE_BasicEvent rseActiveSkin;
 
     [Header("RSO")]
     [SerializeField] RSO_IntValue rsoScore;
@@ -27,6 +28,11 @@ public class ScoreManager : MonoBehaviour
     private void AddScore(int scoreGiven)
     {
         score += scoreGiven;
+        if(score >= 500000)
+        {
+            rseActiveSkin.Call();
+        }
+
         rsoScore.Value = score;
         SetTextVisual();
     }

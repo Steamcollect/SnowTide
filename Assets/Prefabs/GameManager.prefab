@@ -80,6 +80,7 @@ MonoBehaviour:
   rseSetStateActive: {fileID: 11400000, guid: 1f55bf9fcaa8d9e4e902872c0b492deb, type: 2}
   rseAddScoreNotif: {fileID: 11400000, guid: e6fbfafb3ccd280408520df0c1d08d82, type: 2}
   rseOnGameStart: {fileID: 11400000, guid: 42ca35a376d09eb4a92f68bcb5e1f7d7, type: 2}
+  rseActiveSkin: {fileID: 11400000, guid: d67f57456526598469234af55df7ad20, type: 2}
   rsoScore: {fileID: 11400000, guid: 9418c3233b344a3498a5f8b0769d8dd9, type: 2}
   rsoTxtSet: {fileID: 11400000, guid: 0d40e326b40588c469cee8d0e8081aab, type: 2}
   rsoScoreCanvas: {fileID: 11400000, guid: 562ff79bba5ad7e42b102a2dc64fd412, type: 2}
