@@ -135,7 +135,8 @@ PrefabInstance:
       value: Chunk16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2104600894108102335, guid: 99134a84d281b6949b51aed376b27022, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1280190854158568055, guid: 99134a84d281b6949b51aed376b27022, type: 3}
       insertIndex: -1
