@@ -42,6 +42,7 @@ public class GameOverPanel : MonoBehaviour
     [SerializeField] RSO_IntValue rsoPeopleAmount;
     [SerializeField] RSO_IntValue rsoObstacleTouch;
     [SerializeField] RSO_ContentSaved rsoContentSave;
+    [SerializeField] private RSE_Event OnCommandSave;
 
     private void OnEnable()
     {
@@ -77,6 +78,7 @@ public class GameOverPanel : MonoBehaviour
 
         rsoContentSave.Value.AddScore(finalScore);
         bestScore = rsoContentSave.Value.highscores[0];
+        OnCommandSave.Call();
     }
 
     IEnumerator SetText()

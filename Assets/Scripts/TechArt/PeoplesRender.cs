@@ -14,6 +14,7 @@ public class PeoplesRender : MonoBehaviour
     private void OnEnable()
     {
         rsePeopleAmount.OnChanged += TreasholdPeopleRender;
+        TreasholdPeopleRender();
     }
 
     private void OnDisable()
